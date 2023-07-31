@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đổi Mật Khẩu</title>
+    <link rel="stylesheet" href="Doi_mat_khau.css">
+    <script src="https://kit.fontawesome.com/e123c1a84c.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="div-all">
+        <nav>
+            <section class="head">
+                <h2>Coffee Bee Order</h2>
+                <section class="use">
+                    <img src="./anh/use.png" class="img" alt="">
+                    <section>
+                        <span>Xin chào,</span> <br>
+                        <span>Administrator</span>
+                    </section>
+                </section>
+                <span>GENERAL</span>
+            </section>
+
+            <section class="menu">
+                <ul>
+                    <a href="http://127.0.0.1:5500/man_chinh/Do_ban_chay.html">
+                        <li><i class="fas fa-caravan"></i>Đồ bán chạy</li>
+                    </a>
+                    <a href="http://127.0.0.1:5500/man_chinh/Quan_ly_do_uong.html">
+                        <li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li>
+                    </a>
+                    <a href="http://127.0.0.1:5500/man_chinh/Quan_ly_nguyen_lieu.html">
+                        <li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li>
+                    </a>
+                    <a href="http://127.0.0.1:5500/man_chinh/Quan_ly_ban.html">
+                        <li>Quản lý bàn </li>
+                    </a>
+                    <a href="http://127.0.0.1:5500/man_chinh/Tai_khoan_nhan_vien.html">
+                        <li>Tài khoản nhân viên</li>
+                    </a>
+                    <a href="http://127.0.0.1:5500/man_chinh/Thong_ke.html">
+                        <li>Thống kê</li>
+                    </a>
+                    <a href="http://127.0.0.1:5500/man_chinh/Khuyen_mai.html">
+                        <li>Khuyến mại</li>
+                    </a>
+                </ul>
+            </section>
+        </nav>
+        <main>
+
+            <section class="canhan">
+                <i class="fas fa-bars"></i>
+                <img src="./anh/use.png" alt="">
+                <section class="dropdown">
+                    <section class="dropdwon_select">
+                        <span class="dropdown_selected"> Administrator</span>
+                        <i class="fas fa-sort-down"></i>
+                        <ul class="dropdown_list">
+                            <a href="">
+                                <li class="dropdown_item">
+                                    <span class="dropdown_test"> Đổi Mật Khẩu</span>
+                                    <i class="fas fa-key"></i>
+                                </li>
+                            </a>
+                            <a href="" type=" color: #000">
+                                <li class="dropdown_item">
+                                    <span class="dropdown_test">Đăng Xuất</span>
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </li>
+                            </a>
+
+                        </ul>
+                    </section>
+
+                </section>
+            </section>
+            <section class="tenQL">
+                <span>Đổi Mật Khẩu</span>
+            </section>
+
+
+            <section class="thongtinMK">
+                <label for="">Mật khẩu cũ:<input type="password" placeholder="Mật khẩu cũ"></label> <br>
+                <label for="">Mật khẩu mới:<input type="text" placeholder="Nhập mật khẩu mới"></label> <br>
+                <label for="">Nhập lại mật khẩu:<input type="text" placeholder="Nhập lại mật khẩu"></label><br>
+                <div class="oclock">
+                    <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span> 
+                    <span >Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
+                </div><br>
+                <Button type="submit">Đổi mật khẩu</Button>
+            </section>
+        </main>
+    </div>
+</body>
+<script>
+    function getCurrentTime() {
+            // Tạo đối tượng Date đại diện cho thời gian hiện tại
+            const now = new Date();
+
+            // Lấy thông tin về giờ, phút và giây
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+            const second = now.getSeconds();
+
+            // Định dạng lại chuỗi để hiển thị đẹp hơn (nếu muốn)
+            const formattedTime = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`;
+
+            // Hiển thị giờ hiện tại trong thẻ p có id="current-time"
+            document.getElementById('current-time').textContent = formattedTime;
+        }
+
+        // Gọi hàm getCurrentTime mỗi giây một lần để cập nhật giờ hiện tại
+        setInterval(getCurrentTime, 1000);
+        function getCurrentDate() {
+            // Tạo đối tượng Date đại diện cho thời gian hiện tại
+            const now = new Date();
+
+            // Lấy thông tin về ngày, tháng và năm
+            const day = now.getDate();
+            const month = now.getMonth() + 1; // Tháng trong JavaScript bắt đầu từ 0 (0 -> Tháng 1)
+            const year = now.getFullYear();
+
+            // Định dạng lại chuỗi để hiển thị đẹp hơn (nếu muốn)
+            const formattedDate = `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
+
+            // Hiển thị ngày hiện tại trong thẻ p có id="current-date"
+            document.getElementById('current-date').textContent = formattedDate;
+        }
+
+        // Gọi hàm getCurrentDate khi trang được tải và sau đó mỗi ngày một lần để cập nhật ngày hiện tại
+        getCurrentDate();
+</script>
+</html>

@@ -1,0 +1,208 @@
+body{
+    margin: auto;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    width: 1900px;
+    height: 1080px;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('đường_dẫn_đến_tệp_font/inter.woff2') format('woff2'),
+         url('đường_dẫn_đến_tệp_font/inter.woff') format('woff');
+    /* Nếu muốn hỗ trợ thêm các định dạng font khác, bạn có thể thêm vào đây */
+    font-weight: normal; /* Trọng lượng phông chữ */
+    font-style: normal; /* Kiểu phông chữ */
+  }
+ 
+.div-all{
+    display: flex;
+}
+nav{
+    flex: 1;
+    background-color: #2A3F53;
+    color: aliceblue;
+    padding: 20px;
+
+}
+.head h2{
+    margin-left: 60px;
+    margin-bottom: 40px;
+}
+.img{
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    padding: 20px;
+    background-color: white;
+    flex-shrink: 0; /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
+    width: 25px; /* Đặt chiều rộng ảnh là 200px */
+    height: auto;
+}
+.use{
+    display: flex;
+    row-gap: 1fr;
+    margin-bottom: 20px;
+    
+}
+/**/
+/*xin chao */
+.use section{
+    margin-left: 40px;
+    margin-top: 15px;
+}
+/*menu list danh sach */
+.menu {
+    margin-top: 40px;
+    border-top:  1px solid white;
+    padding-bottom: 90px;
+}
+.menu ul{
+    list-style-type: none;
+}
+ul li i{
+     margin-right: 20px;
+     width: 20px;
+     height: 10px;
+}
+ul li{
+    margin-top: 70px;
+}
+ul a{
+    color: white;
+        text-decoration: none;
+}
+main{
+
+    flex: 5;
+}
+/****************************************************/
+main i{
+
+}
+.canhan {
+    background-color: #D9D9D9;
+    padding: 25px;
+    position: relative;
+    
+}
+.canhan img{
+    position: absolute;
+    right: 190px;
+    margin-top: -12px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    padding: 15px;
+    background-color: white;
+    flex-shrink: 0; /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
+    width: 15px; /* Đặt chiều rộng ảnh là 200px */
+    height: auto;
+}
+.canhan .dropdown{
+    position: absolute;
+    right: 60px;
+    margin-top: -20px;
+}
+.dropdown{
+   position: relative;
+}
+.dropdown_select{
+    cursor: pointer;
+   
+}
+.dropdown:hover .dropdown_list{
+    display: block;
+}
+.dropdown_selected {
+   
+}
+.dropdown_list{
+    width: 135px;
+    border-radius:  4px;
+    background-color: #D9D9D9;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+}
+.dropdown_list::before{
+    content: "";
+    height: 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    transform: translateY(-100%);
+}
+.dropdown_item{
+   
+    text-align: center;
+    margin-top: -5px;
+    margin-left: -40px;
+    padding: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s linear;
+    list-style-type: none;
+}
+.dropdown_item:hover{
+    background-color: #2A3F53;
+}
+/****************************************************/
+.tenQL{
+    margin-top: 10px;
+    padding: 25px;
+    border-bottom:1px solid #D9D9D9 ;
+}
+.tenQL a{
+    text-decoration: none;
+    color: black;
+}
+.thoigian{
+    padding: 20px;
+    border-bottom: 2px solid #D9D9D9;
+}
+.themDS{
+    position: absolute;
+    right: 50px;
+    width: 100px;
+}
+.themDS button{
+    padding: 5px;
+}
+/****************************************************/
+.thongtinMK{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+}
+.thongtinMK label{
+    margin-left: -100px;
+    padding: 10px;
+
+}
+.thongtinMK input{
+    margin-left: 30px;
+    width: 500px;
+    padding: 10px;
+}
+.thongtinMK span{
+    margin-top: 20px;
+    margin-left: -300px;
+}
+.thongtinMK button{
+    padding: 10px;
+    margin: 50px 0 0 500px;
+    border-radius: 5px;
+}
+.thongtinMK button:hover{
+    background-color: #2A3F53;
+    color: white;
+}
+/**************************************************/
+.oclock{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+/***************************/
