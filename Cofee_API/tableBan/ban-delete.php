@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Kiểm tra xem sản phẩm có tồn tại trong CSDL hay không
-        $sql_check_product = "SELECT * FROM `table` WHERE `Id_Table` = :Id_Table";
+        $sql_check_product = "SELECT * FROM `tables` WHERE `Id_Table` = :Id_Table";
         $stmt_check_product = $objConn->prepare($sql_check_product);
         $stmt_check_product->bindParam(':Id_Table', $Id_Table);
         $stmt_check_product->execute();
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Thực hiện truy vấn để xóa sản phẩm khỏi CSDL
         try {
-            $sql_delete = "DELETE FROM `table` WHERE `Id_Table` = :Id_Table";
+            $sql_delete = "DELETE FROM `tables` WHERE `Id_Table` = :Id_Table";
             $stmt_delete = $objConn->prepare($sql_delete);
             $stmt_delete->bindParam(':Id_Table', $Id_Table);
 

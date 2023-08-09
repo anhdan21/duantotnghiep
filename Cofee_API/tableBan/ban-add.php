@@ -1,5 +1,4 @@
 <?php
-
 $db_host = "localhost";
 $db_name = "coffeoder";
 $db_user = "root";
@@ -12,8 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id_tang = $_POST['id_tang'];
         $trangThai = $_POST['trangThai'];
         $soBan = $_POST['soBan'];
-  
-     
 
         // Thực hiện kết nối CSDL
         try {
@@ -29,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Thực hiện truy vấn để thêm người dùng vào CSDL
         try {
-            $sql_str = "INSERT INTO `table` (`id_tang`, `trangThai`, `soBan`) VALUES (:id_tang, :trangThai, :soBan)";
+            $sql_str = "INSERT INTO tables (id_tang, trangThai, soBan) VALUES (:id_tang, :trangThai, :soBan)";
             $stmt = $objConn->prepare($sql_str);
             $stmt->bindParam(':id_tang', $id_tang);
             $stmt->bindParam(':trangThai', $trangThai);
