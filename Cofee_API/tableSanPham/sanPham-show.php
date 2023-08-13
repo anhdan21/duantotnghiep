@@ -5,27 +5,46 @@ $db_name = "coffeoder";
 $db_user = "root";
 $db_pass = "";
 
-try {
-    // Kết nối tới database sử dụng PDO
-    $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-    
-    // Truy vấn dữ liệu từ bảng employee_data
-    $stmt = $conn->query("SELECT * FROM sanpham");
+$conn = new mysqli($db_host,$db_user,$db_pass,$db_name);
+mysqli_set_charset($conn,'utf8');
 
-    // Lấy tất cả các bản ghi và chuyển thành mảng kết quả JSON
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Thiết lập header để trả về JSON
-    header('Content-Type: application/json');
-        
-    // Hiển thị kết quả JSON hoặc trả về mã lỗi HTTP 404 Not Found nếu không có bản ghi nào được tìm thấy
-    echo ($stmt->rowCount() > 0) ? json_encode($result) : http_response_code(404);
-} catch(PDOException $e) {
-    // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
-    http_response_code(500);
-    echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// Đóng kết nối database
-$conn = null;
+$sql = "SELECT * FROM sanpham";
+
+$result = $conn->query($sql);
+
+if($result -> num_rows > 0){
+    $listSanPham = array();
+
+    while($row = $result-> fetch_assoc())
+    {
+        array_push($listSanPham, new SanPham($row["Id_sanPham"],$row["id_danhMuc"],$row["giaSanPham"],$row["gioiThieu"],$row["anhSanPham"],$row["id_giamGia"],$row["ten_sp"],$row["size"],$row["soluong"],$row["note"]));
+    }
+    
+    echo json_encode($listSanPham);
+}else{
+    echo "không có dữ liệu";
+}
+
+class SanPham
+{
+    public $_Id_sanPham,$_id_danhMuc,$_giaSanPham, $_gioiThieu,$_anhSanPham,$_id_giamGia,$_ten_sp,$_size,$_soluong,$_note;
+
+    public function __construct($Id_sanPham,$id_danhMuc,$giaSanPham, $gioiThieu,$anhSanPham,$id_giamGia,$ten_sp,$size,$soluong,$note)
+    {
+        $this->_Id_sanPham = $Id_sanPham;
+        $this->_id_danhMuc = $id_danhMuc;
+        $this->_giaSanPham = $giaSanPham;
+        $this->_gioiThieu = $gioiThieu;
+        $this->_anhSanPham = $anhSanPham;
+        $this->_id_giamGia = $id_giamGia;
+        $this->_ten_sp = $ten_sp;
+        $this->_size = $size;
+        $this->_soluong = $soluong;
+        $this->_note = $note;
+    }
+}
 ?>

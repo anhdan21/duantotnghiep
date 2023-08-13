@@ -5,27 +5,42 @@ $db_name = "coffeoder";
 $db_user = "root";
 $db_pass = "";
 
-try {
-    // Kết nối tới database sử dụng PDO
-    $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-    
-    // Truy vấn dữ liệu từ bảng employee_data
-    $stmt = $conn->query("SELECT * FROM nguyenlieu");
+$conn = new mysqli($db_host,$db_user,$db_pass,$db_name);
+mysqli_set_charset($conn,'utf8');
 
-    // Lấy tất cả các bản ghi và chuyển thành mảng kết quả JSON
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Thiết lập header để trả về JSON
-    header('Content-Type: application/json');
-        
-    // Hiển thị kết quả JSON hoặc trả về mã lỗi HTTP 404 Not Found nếu không có bản ghi nào được tìm thấy
-    echo ($stmt->rowCount() > 0) ? json_encode($result) : http_response_code(404);
-} catch(PDOException $e) {
-    // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
-    http_response_code(500);
-    echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// Đóng kết nối database
-$conn = null;
+$sql = "SELECT * FROM nguyenlieu";
+
+$result = $conn->query($sql);
+
+if($result -> num_rows > 0){
+    $listNguyenLieu = array();
+
+    while($row = $result-> fetch_assoc())
+    {
+        array_push($listNguyenLieu, new NguyenLieu($row["Id_nguyenLieu"],$row["soLuong"],$row["price"],$row["id_User"],$row["ten_nguyenLieu"]));
+    }
+    
+    echo json_encode($listNguyenLieu);
+}else{
+    echo "không có dữ liệu";
+}
+
+class NguyenLieu
+{
+    public $_Id_nguyenLieu,$_soLuong,$_price, $_id_User,$_ten_nguyenLieu;
+
+    public function __construct($Id_nguyenLieu,$soLuong,$price, $id_User,$ten_nguyenLieu)
+    {
+        $this->_Id_nguyenLieu = $Id_nguyenLieu;
+        $this->_soLuong = $soLuong;
+        $this->_price = $price;
+        $this->_id_User = $id_User;
+        $this->_ten_nguyenLieu = $ten_nguyenLieu;
+       
+    }
+}
 ?>

@@ -5,27 +5,44 @@ $db_name = "coffeoder";
 $db_user = "root";
 $db_pass = "";
 
-try {
-    // Kết nối tới database sử dụng PDO
-    $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-    
-    // Truy vấn dữ liệu từ bảng employee_data
-    $stmt = $conn->query("SELECT * FROM hoadonct");
+$conn = new mysqli($db_host,$db_user,$db_pass,$db_name);
+mysqli_set_charset($conn,'utf8');
 
-    // Lấy tất cả các bản ghi và chuyển thành mảng kết quả JSON
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Thiết lập header để trả về JSON
-    header('Content-Type: application/json');
-        
-    // Hiển thị kết quả JSON hoặc trả về mã lỗi HTTP 404 Not Found nếu không có bản ghi nào được tìm thấy
-    echo ($stmt->rowCount() > 0) ? json_encode($result) : http_response_code(404);
-} catch(PDOException $e) {
-    // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
-    http_response_code(500);
-    echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// Đóng kết nối database
-$conn = null;
+$sql = "SELECT * FROM hoadonct";
+
+$result = $conn->query($sql);
+
+if($result -> num_rows > 0){
+    $listHoaDonCT = array();
+
+    while($row = $result-> fetch_assoc())
+    {
+        array_push($listHoaDonCT, new HoaDonCT($row["Id_hoaDonCT"],$row["id_hoaDon"],$row["id_sanPham"],$row["time_Data"],$row["gia_sanPham"],$row["tongTien"],$row["trangThai"],$row["id_giamGia"]));
+    }
+    
+    echo json_encode($listHoaDonCT);
+}else{
+    echo "không có dữ liệu";
+}
+
+class HoaDonCT {
+    public $_Id_hoaDonCT,$_id_hoaDon,$_id_sanPham, $_time_Data,$_gia_sanPham,$_tongTien,$_trangThai,$_id_giamGia;
+
+    public function __construct($Id_hoaDonCT,$id_hoaDon,$id_sanPham, $time_Data,$gia_sanPham,$tongTien,$trangThai,$id_giamGia)
+    {
+        $this->_Id_hoaDonCT = $Id_hoaDonCT;
+        $this->_id_hoaDon = $id_hoaDon;
+        $this->_id_sanPham = $id_sanPham;
+        $this->_time_Data = $time_Data;
+        $this->_gia_sanPham = $gia_sanPham;
+        $this->_tongTien = $tongTien;
+        $this->_trangThai = $trangThai;
+        $this->_id_giamGia = $id_giamGia;
+    }
+}
+
 ?>

@@ -5,27 +5,44 @@ $db_name = "coffeoder";
 $db_user = "root";
 $db_pass = "";
 
-try {
+
     // Kết nối tới database sử dụng PDO
-    $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-    
-    // Truy vấn dữ liệu từ bảng employee_data
-    $stmt = $conn->query("SELECT * FROM `table`");
+    //$conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+    $conn = new mysqli($db_host,$db_user,$db_pass,$db_name);
+    mysqli_set_charset($conn,'utf8');
 
-    // Lấy tất cả các bản ghi và chuyển thành mảng kết quả JSON
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-    // Thiết lập header để trả về JSON
-    header('Content-Type: application/json');
-        
-    // Hiển thị kết quả JSON hoặc trả về mã lỗi HTTP 404 Not Found nếu không có bản ghi nào được tìm thấy
-    echo ($stmt->rowCount() > 0) ? json_encode($result) : http_response_code(404);
-} catch(PDOException $e) {
-    // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
-    http_response_code(500);
-    echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
-}
+    $sql = "SELECT * FROM `tables`";
+    $stmt = $conn->query($sql);
 
-// Đóng kết nối database
-$conn = null;
+    if($stmt->num_rows > 0){
+        $listTable = array();
+
+        while($row = $stmt->fetch_assoc()){
+            array_push($listTable, new tablemodel($row["Id_Table"],$row["id_tang"],$row["trangThai"],$row["soBan"]));
+
+        }
+        echo json_encode($listTable); 
+    }else {
+        echo "không có dữ liệu";
+    }
+
+class tablemodel
+{
+    public $_id_Table,$_id_Tang,$_trangThai, $_soBan;
+
+    public function __construct($Id_Table,$id_tang,$trangThai,$soBan)
+    {
+        $this->_id_Table = $Id_Table;
+        $this->_id_Tang = $id_tang;
+        $this->_trangThai = $trangThai;
+        $this->_soBan = $soBan;
+    }
+
+}   
+
 ?>
+
