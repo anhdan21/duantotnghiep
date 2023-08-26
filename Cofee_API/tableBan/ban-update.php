@@ -58,3 +58,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update thông tin bàn</title>
+</head>
+<body>
+
+    <h1>Update thông tin bàn</h1>
+
+    <form action="ban-update.php" method="POST">
+        <label>Id_Table: <input type="text" name="Id_Table"></label><br>
+        <label>id_tang: <input type="text" name="id_tang"></label><br>
+        <label>trangThai: <input type="text" name="trangThai"></label><br>
+        <label>soBan: <input type="text" name="soBan"></label><br>
+
+        <input type="submit" value="Update thông tin bàn">
+    </form>
+
+</body>
+</html>

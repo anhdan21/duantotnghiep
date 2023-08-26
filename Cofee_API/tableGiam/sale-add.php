@@ -49,3 +49,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add giảm giá</title>
+</head>
+<body>
+
+    <h1>Add giảm giá</h1>
+
+    <form action="sale-add.php" method="POST">
+        <label>time_Start: <input type="date" name="time_Start"></label><br>
+        <label>time_End: <input type="date" name="time_End"></label><br>
+        <label>giam: <input type="text" name="giam"></label><br>
+    
+        <input type="submit" value="Add User">
+    </form>
+
+</body>
+</html>

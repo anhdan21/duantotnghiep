@@ -51,3 +51,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Bàn</title>
+</head>
+<body>
+
+    <h1>Add bàn</h1>
+
+    <form action="ban-add.php" method="POST">
+        <label>id_tang: <input type="text" name="id_tang"></label><br>
+        <label>trangThai: <input type="text" name="trangThai"></label><br>
+        <label>soBan: <input type="text" name="soBan"></label><br>
+        <input type="submit" value="Add User">
+    </form>
+
+</body>
+</html>

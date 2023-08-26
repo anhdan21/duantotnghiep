@@ -53,3 +53,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add User</title>
+</head>
+<body>
+
+    <h1>Add User</h1>
+
+    <form action="user-add.php" method="POST">
+        <label>Username: <input type="text" name="username"></label><br>
+        <label>Password: <input type="password" name="passwd"></label><br>
+        <label>Image: <input type="text" name="image"></label><br>
+        <label>phone_Number: <input type="phone_Number" name="phone_Number"></label><br>
+        <label>chucNang: <input type="text" name="chucNang"></label><br>
+        <label>Full Name: <input type="text" name="fullname"></label><br>
+        <input type="submit" value="Add User">
+    </form>
+
+</body>
+</html>

@@ -51,3 +51,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Xóa bàn</title>
+</head>
+<body>
+
+    <h1>Xóa bàn</h1>
+
+    <form action="ban-delete.php" method="POST">
+        <label>id bàn: <input type="text" name="Id_Table"></label><br>
+        <input type="submit" value="Xóa Sản phẩm">
+    </form>
+
+</body>
+</html>

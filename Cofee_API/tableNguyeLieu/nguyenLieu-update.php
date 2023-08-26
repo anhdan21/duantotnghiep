@@ -59,3 +59,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update nguyên liệu</title>
+</head>
+<body>
+
+    <h1>Update nguyên liệu</h1>
+
+    <form action="nguyenLieu-update.php" method="POST">
+        <label>Id_nguyenLieu: <input type="text" name="Id_nguyenLieu"></label><br>
+        <label>soLuong: <input type="text" name="soLuong"></label><br>
+        <label>price: <input type="text" name="price"></label><br>
+        <label>id_User: <input type="text" name="id_User"></label><br>
+        <label>ten_nguyenLieu: <input type="text" name="ten_nguyenLieu"></label><br>
+
+        <input type="submit" value="Update nguyên liệu">
+    </form>
+
+</body>
+</html>

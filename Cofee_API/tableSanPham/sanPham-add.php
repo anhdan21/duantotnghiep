@@ -56,3 +56,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Sản phẩm</title>
+</head>
+<body>
+
+    <h1>Add Sản phẩm</h1>
+
+    <form action="sanPham-add.php" method="POST">
+        <label>ten_sp: <input type="text" name="ten_sp"></label><br>
+        <label>giaSanPham: <input type="text" name="giaSanPham"></label><br>
+        <label>size: <input type="text" name="size"></label><br>
+        <label>anhSanPham: <input type="text" name="anhSanPham"></label><br>
+        <label>gioiThieu: <input type="text" name="gioiThieu"></label><br>
+        <label>id_danhMuc: <input type="text" name="id_danhMuc"></label><br>
+        <label>id_giamGia: <input type="text" name="id_giamGia"></label><br>
+        <input type="submit" value="Add User">
+    </form>
+
+</body>
+</html>

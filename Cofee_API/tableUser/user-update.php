@@ -62,3 +62,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update User</title>
+</head>
+<body>
+
+    <h1>Update User</h1>
+
+    <form action="user-update.php" method="POST">
+        <label>id_User: <input type="text" name="id_User"></label><br>
+        <label>userName: <input type="text" name="userName"></label><br>
+        <label>image: <input type="text" name="image"></label><br>
+        <label>passwd: <input type="text" name="passwd"></label><br>
+        <label>phone_Number: <input type="text" name="phone_Number"></label><br>
+        <label>chucNang: <input type="text" name="chucNang"></label><br>
+        <label>fullName: <input type="text" name="fullName"></label><br>
+        <input type="submit" value="Update user">
+    </form>
+
+</body>
+</html>

@@ -51,3 +51,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Xóa giảm giá</title>
+</head>
+<body>
+
+    <h1>Xóa giảm giá</h1>
+
+    <form action="danhMuc-delete.php" method="POST">
+        <label>id sản phẩm: <input type="text" name="Id_danhMuc"></label><br>
+        <input type="submit" value="Xóa Sản phẩm">
+    </form>
+
+</body>
+</html>

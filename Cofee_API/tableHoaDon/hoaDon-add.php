@@ -50,3 +50,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add hoá đơn</title>
+</head>
+<body>
+
+    <h1>Add hoá đơn</h1>
+
+    <form action="hoaDon-add.php" method="POST">
+        <label>id_Table: <input type="text" name="id_Table"></label><br>
+        <label>price: <input type="text" name="giaTien"></label><br>
+        <label>id_User: <input type="text" name="id_User"></label><br>
+        <input type="submit" value="Add hoá đơn">
+    </form>
+
+</body>
+</html>

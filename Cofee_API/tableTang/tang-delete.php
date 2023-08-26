@@ -51,3 +51,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Xóa tầng</title>
+</head>
+<body>
+
+    <h1>Xóa Sản phẩm</h1>
+
+    <form action="user-delete.php" method="POST">
+        <label>id tầng: <input type="text" name="id_tang"></label><br>
+        <input type="submit" value="Xóa Sản phẩm">
+    </form>
+
+</body>
+</html>

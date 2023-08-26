@@ -53,3 +53,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update thông tin danh mục</title>
+</head>
+<body>
+
+    <h1>Update thông tin danh mục</h1>
+
+    <form action="danhMuc-update.php" method="POST">
+        <label>Id_danhMuc: <input type="text" name="Id_danhMuc"></label><br>
+        <label>ten_danhMuc: <input type="text" name="ten_danhMuc"></label><br>
+
+
+        <input type="submit" value="Update thông tin danh mục">
+    </form>
+
+</body>
+</html>

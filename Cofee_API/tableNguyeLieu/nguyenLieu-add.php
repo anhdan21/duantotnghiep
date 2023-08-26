@@ -52,3 +52,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add giảm giá</title>
+</head>
+<body>
+
+    <h1>Add giảm giá</h1>
+
+    <form action="nguyenLieu-add.php" method="POST">
+        <label>ten_nguyenLieu: <input type="text" name="ten_nguyenLieu"></label><br>
+        <label>price: <input type="text" name="price"></label><br>
+        <label>soLuong: <input type="text" name="soLuong"></label><br>
+        <label>id_User: <input type="text" name="id_User"></label><br>
+        <input type="submit" value="Add User">
+    </form>
+
+</body>
+</html>

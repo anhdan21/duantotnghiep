@@ -50,3 +50,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Sản phẩm</title>
+</head>
+<body>
+
+    <h1>Add Sản phẩm</h1>
+
+    <form action="hoaDonCt-add.php" method="POST">
+        <label>id_hoaDon: <input type="text" name="id_hoaDon"></label><br>
+        <label>id_sanPham: <input type="text" name="id_sanPham"></label><br>
+        <label>time_Data: <input type="date" name="time_Data"></label><br>
+        <label>gia_sanPham: <input type="text" name="gia_sanPham"></label><br>
+        <label>tongTien: <input type="text" name="tongTien"></label><br>
+        <label>trangThai: <input type="text" name="trangThai"></label><br>
+        <label>id_giamGia: <input type="text" name="id_giamGia"></label><br>
+        <input type="submit" value="Add Sản phẩm">
+    </form>
+
+</body>
+</html>

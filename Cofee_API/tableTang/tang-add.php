@@ -40,4 +40,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-?>  
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Tầng</title>
+</head>
+<body>
+
+    <h1>Add Tầng</h1>
+
+    <form action="tang-add.php" method="POST">
+        <label>Số Tầng: <input type="text" name="soTang"></label><br>
+      
+        <input type="submit" value="Add Tầng">
+    </form>
+
+</body>
+</html>

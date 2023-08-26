@@ -51,3 +51,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Xóa nguyên liệu</title>
+</head>
+<body>
+
+    <h1>Xóa nguyên liệu</h1>
+
+    <form action="nguyenLieu-delete.php" method="POST">
+        <label>id sản phẩm: <input type="text" name="Id_nguyenLieu"></label><br>
+        <input type="submit" value="Xóa Sản phẩm">
+    </form>
+
+</body>
+</html>

@@ -41,3 +41,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Danh Mục</title>
+</head>
+<body>
+
+    <h1>Add Danh Mục</h1>
+
+    <form action="danhMuc-add.php" method="POST">
+        <label>Tên danh mục: <input type="text" name="ten_danhMuc"></label><br>
+      
+        <input type="submit" value="Add Tầng">
+    </form>
+
+</body>
+</html>

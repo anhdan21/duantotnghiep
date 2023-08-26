@@ -69,3 +69,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Sản phẩm</title>
+</head>
+<body>
+
+    <h1>Update Sản phẩm</h1>
+
+    <form action="sanPham-update.php" method="POST">
+        <label>id sản phẩm: <input type="text" name="Id_sanPham"></label><br>
+        <label>ten_sp: <input type="text" name="ten_sp"></label><br>
+        <label>giaSanPham: <input type="text" name="giaSanPham"></label><br>
+        <label>size: <input type="text" name="size"></label><br>
+        <label>anhSanPham: <input type="text" name="anhSanPham"></label><br>
+        <label>gioiThieu: <input type="text" name="gioiThieu"></label><br>
+        <label>id_danhMuc: <input type="text" name="id_danhMuc"></label><br>
+        <label>id_giamGia: <input type="text" name="id_giamGia"></label><br>
+        <input type="submit" value="Update Sản phẩm">
+    </form>
+
+</body>
+</html>
