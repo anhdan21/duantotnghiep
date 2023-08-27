@@ -1,7 +1,7 @@
 <?php
 // Thông tin kết nối database
 $db_host = "localhost";
-$db_name = "coffeoder";
+$db_name = "du_an_tot_ngiep";
 $db_user = "root";
 $db_pass = "";
 

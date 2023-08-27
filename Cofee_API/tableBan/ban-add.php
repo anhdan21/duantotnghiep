@@ -1,7 +1,7 @@
 <?php
 
 $db_host = "localhost";
-$db_name = "coffeoder";
+$db_name = "du_an_tot_ngiep";
 $db_user = "root";
 $db_pass = "";
 
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label>id_tang: <input type="text" name="id_tang"></label><br>
         <label>trangThai: <input type="text" name="trangThai"></label><br>
         <label>soBan: <input type="text" name="soBan"></label><br>
-        <input type="submit" value="Add User">
+        <input type="submit" value="Add Us">
     </form>
 
 </body>

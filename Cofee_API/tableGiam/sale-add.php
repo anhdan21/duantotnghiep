@@ -1,7 +1,7 @@
 <?php
 
 $db_host = "localhost";
-$db_name = "coffeoder";
+$db_name = "du_an_tot_ngiep";
 $db_user = "root";
 $db_pass = "";
 
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-
+<!-- 
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,4 +68,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
 </body>
-</html>
+</html> -->

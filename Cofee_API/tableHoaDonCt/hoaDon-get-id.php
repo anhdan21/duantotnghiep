@@ -1,6 +1,6 @@
 <?php
 $db_host = "localhost";
-$db_name = "coffeoder";
+$db_name = "du_an_tot_ngiep";
 $db_user = "root";
 $db_pass = "";
 
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // ... (Đóng kết nối CSDL)
 ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Get hoa don ct id</title>
@@ -72,4 +72,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
 </body>
-</html>
+</html> -->
