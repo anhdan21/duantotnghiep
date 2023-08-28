@@ -8,6 +8,45 @@
     <title>Tài khoản nhân viên</title>
     <link rel="stylesheet" href="Quan_ly_nhan_vien.css">
     <script src="https://kit.fontawesome.com/e123c1a84c.js" crossorigin="anonymous"></script>
+
+    <style>
+        #customers {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 80%;
+          margin: 20px;
+        }
+        
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+          /* width: 150px; */
+          text-align: center;
+        }
+        
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #customers tr:hover {background-color: #ddd;}
+        
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: center;
+          background-color: #2A3F53;
+          color: white;
+          
+        }
+        #customers td .sua a{
+          
+          text-decoration: none;
+          color: black;
+        }
+        #customers td .sua a:hover{
+          /* background: yellow; */
+          color: blue;
+          
+        }
+        </style>
 </head>
 
 <body>
@@ -68,6 +107,89 @@
 
                <section class="thoigian"> 
                 <a href="http://127.0.0.1:5500/duantotnghiep/Them/ThemNhanVien.html" class="themDS"><button class="">Thêm Nhân Viên</button></a>
+               </section>
+
+               <section>
+                <table id="customers">
+                    <tr>
+                      <th style="width: 150px;">Tên nhân viên</th>
+                      <th style="width: 60px;">Tuổi</th>
+                      <th style="width: 100px;">Nhân viên</th>
+                      <th style="width: 150px;">Số điện thoại</th>
+                      <th style="width: 200px;">Thông tin</th>
+                    </tr>
+                    <tr>
+                      <td>Bột matcha</td>
+                      <td><p>20</p></td>
+                      <td><p>Nguyen Anh Tuan</p></td>
+                      <td>0987654321</td>
+                      <td> <div  class="sua" >
+                        <a style="margin-right: 18px;" href="">Sửa</a>
+                        <a style="margin-right: 18px;" href="">Xóa</a>
+                        <a href="">Chi tiết</a>
+                        
+                        </div> </td>
+                    </tr>
+                    <tr>
+                      <td>Caffe</td>
+                      <td><p>21</p></td>
+                      <td><p>Nguyen Anh Tuan</p></td>
+                      <td>0987654321</td>
+                      <td> <div  class="sua" >
+                        <a style="margin-right: 18px;" href="">Sửa</a>
+                        <a style="margin-right: 18px;" href="">Xóa</a>
+                        <a href="">Chi tiết</a>
+                        
+                        </div> </td>
+                    </tr>
+                    <tr>
+                      <td>Sữa tươi</td>
+                      <td><p>22</p></td>
+                      <td><p>Nguyen Anh Tuan</p></td>
+                      <td>0987654321</td>
+                      <td> <div  class="sua" >
+                        <a style="margin-right: 18px;" href="">Sửa</a>
+                        <a style="margin-right: 18px;" href="">Xóa</a>
+                        <a href="">Chi tiết</a>
+                        
+                        </div> </td>
+                    </tr>
+                    <tr>
+                      <td>Caffe</td>
+                      <td><p>22</p></td>
+                      <td><p>Nguyen Anh Tuan</p></td>
+                      <td>0987654321</td>
+                      <td> <div  class="sua" >
+                        <a style="margin-right: 18px;" href="">Sửa</a>
+                        <a style="margin-right: 18px;" href="">Xóa</a>
+                        <a href="">Chi tiết</a>
+                        
+                        </div> </td>
+                    </tr>
+                    <tr>
+                      <td>Caffe</td>
+                      <td><p>23</p></td>
+                      <td><p>Nguyen Anh Tuan</p></td>
+                      <td>0987654321</td>
+                      <td> <div  class="sua" >
+                        <a style="margin-right: 18px;" href="">Sửa</a>
+                        <a style="margin-right: 18px;" href="">Xóa</a>
+                        <a href="">Chi tiết</a>
+                     </div> </td>
+                    </tr>
+                    <tr>
+                      <td>Caffe</td>
+                      <td><p>24</p></td>
+                      <td><p>Nguyen Anh Tuan</p></td>
+                      <td>0987654321</td>
+                      <td> <div  class="sua" >
+                        <a style="margin-right: 18px;" href="">Sửa</a> 
+                        <a style="margin-right: 18px;" href="">Xóa</a>
+                        <a href="">Chi tiết</a>
+                        </div> </td>
+                    </tr>
+                    
+                  </table>   
                </section>
             </main>
         </div>
