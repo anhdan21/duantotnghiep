@@ -2,17 +2,13 @@
 
 include 'API.php';
 
-// Kiểm tra xem người dùng đã gửi yêu cầu POST hay chưa
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Kiểm tra xem tất cả các tham số cần thiết đã được cung cấp hay chưa
     if (isset($_POST['ten_nguyenLieu'], $_POST['price'], $_POST['soLuong'], $_POST['id_User'])) {
         $ten_nguyenLieu = $_POST['ten_nguyenLieu'];
         $price = $_POST['price'];
         $soLuong = $_POST['soLuong'];
         $id_User = $_POST['id_User'];
      
-
-        // Thực hiện kết nối CSDL
         try {
             $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
             $objConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -20,11 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die('Lỗi kết nối CSDL: ' . $e->getMessage());
         }
 
-        // Kiểm tra và xử lý giá trị nhập liệu hợp lệ
-        // (Bạn nên thực hiện kiểm tra hợp lệ và xử lý nhập liệu dựa trên yêu cầu cụ thể của ứng dụng)
-        // Ví dụ: Xử lý giá trị rỗng, kiểm tra định dạng email, v.v.
-
-        // Thực hiện truy vấn để thêm người dùng vào CSDL
         try {
             $sql_str = "INSERT INTO `nguyenlieu` (`ten_nguyenLieu`, `price`, `soLuong`, `id_User`) VALUES (:ten_nguyenLieu, :price, :soLuong, :id_User)";
             $stmt = $objConn->prepare($sql_str);
@@ -37,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute() && $stmt->rowCount() > 0) {
                 echo "User added successfully.";
-                header("Location:http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html");
+                header("Location:../man_chinh/Quan_ly_nguyen_lieu.html");
             } else {
                 echo "Failed to add user.";
             }
@@ -50,26 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Add giảm giá</title>
-</head>
-<body>
-
-    <h1>Add giảm giá</h1>
-
-    <form action="nguyenLieu-add.php" method="POST">
-        <label>ten_nguyenLieu: <input type="text" name="ten_nguyenLieu"></label><br>
-        <label>price: <input type="text" name="price"></label><br>
-        <label>soLuong: <input type="text" name="soLuong"></label><br>
-        <label>id_User: <input type="text" name="id_User"></label><br>
-        <input type="submit" value="Add User">
-    </form>
-
-</body>
-</html> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -94,7 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     font-family: 'Inter';
     src: url('đường_dẫn_đến_tệp_font/inter.woff2') format('woff2'),
          url('đường_dẫn_đến_tệp_font/inter.woff') format('woff');
-    /* Nếu muốn hỗ trợ thêm các định dạng font khác, bạn có thể thêm vào đây */
     font-weight: normal; /* Trọng lượng phông chữ */
     font-style: normal; /* Kiểu phông chữ */
   }
@@ -309,13 +279,13 @@ main i{
 
             <section class="menu">
                 <ul>
-                    <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Do_ban_chay.html"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_ban.html"><li>Quản lý bàn </li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Tai_khoan_nhan_vien.html"><li>Tài khoản nhân viên</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Thong_ke.html"><li>Thống kê</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
+                        <a href="../man_chinh/Do_ban_chay.html"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
+                        <a href="../man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
+                        <a href="../man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
+                        <a href="../man_chinh/Quan_ly_ban.html"><li>Quản lý bàn </li></a>
+                        <a href="../man_chinh/Tai_khoan_nhan_vien.html"><li>Tài khoản nhân viên</li></a>
+                        <a href="../man_chinh/Thong_ke.html"><li>Thống kê</li></a>
+                        <a href="../man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
                 </ul>
             </section>
         </nav>
@@ -329,11 +299,11 @@ main i{
                         <span class="dropdown_selected"> Administrator</span>
                         <i class="fas fa-sort-down"></i>
                         <ul class="dropdown_list">
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/Doi_mat_khau.html"><li class="dropdown_item">
+                            <a href="../Dang_nhap/Doi_mat_khau.html"><li class="dropdown_item">
                                 <span class="dropdown_test"> Đổi Mật Khẩu</span>
                                 <i class="fas fa-key"></i>
                             </li></a>
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/dang_nhap.html" type=" color: #000">
+                            <a href="../Dang_nhap/dang_nhap.html" type=" color: #000">
                                 <li class="dropdown_item">
                                     <span class="dropdown_test">Đăng Xuất</span>
                                     <i class="fas fa-sign-out-alt"></i>
@@ -346,7 +316,7 @@ main i{
                 </section>
             </section>
             <section class="tenQL">
-                <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><span>Quản lý nguyên liệu</span></a>
+                <a href="../man_chinh/Quan_ly_nguyen_lieu.html"><span>Quản lý nguyên liệu</span></a>
                 <a href=""><span>/ Thêm nguyên liệu</span></a>
                 
             </section>

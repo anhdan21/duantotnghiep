@@ -9,6 +9,8 @@ try {
     // Kết nối tới database sử dụng PDO
     $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
     
+    $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
     // // Truy vấn dữ liệu từ bảng employee_data
     // $stmt = $conn->query("SELECT * FROM user");
 
@@ -27,5 +29,5 @@ try {
 }
 
 // Đóng kết nối database
-$conn = null;
+//$conn = null;
 ?>

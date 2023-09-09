@@ -11,57 +11,62 @@
 
     <style>
         #customers {
-          font-family: Arial, Helvetica, sans-serif;
-          border-collapse: collapse;
-          width: 80%;
-          margin: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px;
         }
-        
-        #customers td, #customers th {
-          border: 1px solid #ddd;
-          padding: 8px;
-          /* width: 150px; */
-          text-align: center;
-        }
-        
-        #customers tr:nth-child(even){background-color: #f2f2f2;}
-        
-        #customers tr:hover {background-color: #ddd;}
-        
+
+        #customers td,
         #customers th {
-          padding-top: 12px;
-          padding-bottom: 12px;
-          text-align: center;
-          background-color: #2A3F53;
-          color: white;
-          
+            border: 1px solid #ddd;
+            padding: 8px;
+            /* width: 150px; */
+            text-align: center;
         }
-        #customers td .sua a{
-          
-          text-decoration: none;
-          color: black;
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
         }
-        #customers td .sua a:hover{
-          /* background: yellow; */
-          color: blue;
-          
+
+        #customers tr:hover {
+            background-color: #ddd;
         }
-        </style>
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background-color: #2A3F53;
+            color: white;
+
+        }
+
+        #customers td .sua a {
+
+            text-decoration: none;
+            color: black;
+        }
+
+        #customers td .sua a:hover {
+            /* background: yellow; */
+            color: blue;
+
+        }
+    </style>
 </head>
 
 <body>
-        <div class="div-all">
-            <nav>
-                <section class="head">
-                    <h2>Coffee Bee Order</h2>
-                    <section class="use">
-                        <img src="anh_manhinh/use.png" class="img" alt="">
-                        <section>
-                            <span>Xin chào,</span> <br>
-                            <span>Administrator</span>
-                        </section>
+    <div class="div-all">
+        <nav>
+            <section class="head">
+                <h2>Coffee Bee Order</h2>
+                <section class="use">
+                    <img src="anh_manhinh/use.png" class="img" alt="">
+                    <section>
+                        <span>Xin chào,</span> <br>
+                        <span>Administrator</span>
                     </section>
-                    <span>GENERAL</span>
                 </section>
                 
                 <section class="menu">
@@ -89,83 +94,49 @@
                                 <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/Doi_mat_khau.html"><li class="dropdown_item">
                                     <span class="dropdown_test"> Đổi Mật Khẩu</span>
                                     <i class="fas fa-key"></i>
-                                </li></a>
-                                <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/dang_nhap.html" type=" color: #000">
-                                    <li class="dropdown_item">
-                                        <span class="dropdown_test">Đăng Xuất</span>
-                                        <i class="fas fa-sign-out-alt"></i>
-                                    </li>
-                                </a>
-                            </ul>
-                        </section>
-                        
-                    </section>                
+                                </li>
+                            </a>
+                            <a href="../Dang_nhap/dang_nhap.html" type=" color: #000">
+                                <li class="dropdown_item">
+                                    <span class="dropdown_test">Đăng Xuất</span>
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </li>
+                            </a>
+                        </ul>
+                    </section>
+
                 </section>
-               <section class="tenQL">
+            </section>
+            <section class="tenQL">
                 <span>Quản lý đồ uống</span>
-               </section>
+            </section>
 
-               <section class="thoigian">
+            <section class="thoigian">
 
-                <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/sanPham-add.php" class="themDS"><button class="">Thêm Đồ Uống</button></a>
-               </section>
+                <a href="../CoffeOder/sanPham-add.php" class="themDS"><button
+                        class="">Thêm Đồ Uống</button></a>
+            </section>
 
-               <section>
+            <section>
                 <table id="customers">
-                    <tr>
-                      <th style="width: 150px;">Tên sản phẩm</th>
-                      <th style="width: 60px;">Đồ uống</th>
-                      <th style="width: 60px;">Ăn vặt</th>
-                      <th style="width: 200px;">Giá sản phẩm</th>
-                      <th style="width: 200px;">Thông tin</th>
-                    </tr>
-                    <tr>
-                      <td>Caffe</td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td>35.000đ</td>
-                      <td> <div  class="sua" ><a style="margin-right: 18px;" href="">Sửa</a> <a href="">Xóa</a></div> </td>
-                    </tr>
-                    <tr>
-                      <td>Caffe</td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td>35.000đ</td>
-                      <td> <div  class="sua" ><a style="margin-right: 18px;" href="">Sửa</a> <a href="">Xóa</a></div> </td>
-                    </tr>
-                    <tr>
-                      <td>Caffe</td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td>35.000d</td>
-                      <td> <div  class="sua" ><a style="margin-right: 18px;" href="">Sửa</a> <a href="">Xóa</a></div> </td>
-                    </tr>
-                    <tr>
-                      <td>Caffe</td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td>35.000đ</td>
-                      <td> <div  class="sua" ><a style="margin-right: 18px;" href="">Sửa</a> <a href="">Xóa</a></div> </td>
-                    </tr>
-                    <tr>
-                      <td>Caffe</td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td>35.000đ</td>
-                      <td> <div  class="sua" ><a style="margin-right: 18px;" href="">Sửa</a> <a href="">Xóa</a></div> </td>
-                    </tr>
-                    <tr>
-                      <td>Caffe</td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td>35.000đ</td>
-                      <td> <div  class="sua" ><a style="margin-right: 18px;" href="">Sửa</a> <a href="">Xóa</a></div> </td>
-                    </tr>
-                    
-                  </table>   
-               </section>
-            </main>
-        </div>
+
+                </table>
+            </section>
+
+            <script>
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "../CoffeOder/sanPham-list.php", true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        document.getElementById("customers").innerHTML = xhr.responseText;
+                    }
+                };
+
+                xhr.send();
+            </script>
+        </main>
+    </div>
 </body>
 
 </html>

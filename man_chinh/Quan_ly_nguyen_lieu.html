@@ -2,169 +2,157 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý nguyên liệu</title>
-    <link rel="stylesheet" href="Quan_ly_nguyen_lieu.css">
-    <script src="https://kit.fontawesome.com/e123c1a84c.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý nguyên liệu</title>
+  <link rel="stylesheet" href="Quan_ly_nguyen_lieu.css">
+  <script src="https://kit.fontawesome.com/e123c1a84c.js" crossorigin="anonymous"></script>
 
-    <style>
-        #customers {
-          font-family: Arial, Helvetica, sans-serif;
-          border-collapse: collapse;
-          width: 80%;
-          margin: 20px;
-        }
-        
-        #customers td, #customers th {
-          border: 1px solid #ddd;
-          padding: 8px;
-          /* width: 150px; */
-          text-align: center;
-        }
-        
-        #customers tr:nth-child(even){background-color: #f2f2f2;}
-        
-        #customers tr:hover {background-color: #ddd;}
-        
-        #customers th {
-          padding-top: 12px;
-          padding-bottom: 12px;
-          text-align: center;
-          background-color: #2A3F53;
-          color: white;
-          
-        }
-        #customers td .sua a{
-          
-          text-decoration: none;
-          color: black;
-        }
-        #customers td .sua a:hover{
-          /* background: yellow; */
-          color: blue;
-          
-        }
-        </style>
+  <style>
+    #customers {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 80%;
+      margin: 20px;
+    }
+
+    #customers td,
+    #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+      /* width: 150px; */
+      text-align: center;
+    }
+
+    #customers tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    #customers tr:hover {
+      background-color: #ddd;
+    }
+
+    #customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: center;
+      background-color: #2A3F53;
+      color: white;
+
+    }
+
+    #customers td .sua a {
+
+      text-decoration: none;
+      color: black;
+    }
+
+    #customers td .sua a:hover {
+      /* background: yellow; */
+      color: blue;
+
+    }
+  </style>
 </head>
 
 <body>
-        <div class="div-all">
-            <nav>
-                <section class="head">
-                    <h2>Coffee Bee Order</h2>
-                    <section class="use">
-                        <img src="anh_manhinh/use.png" class="img" alt="">
-                        <section>
-                            <span>Xin chào,</span> <br>
-                            <span>Administrator</span>
-                        </section>
-                    </section>
-                    <span>GENERAL</span>
-                </section>
-                
-                <section class="menu">
-                    <ul>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Do_ban_chay.html"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_ban.html"><li>Quản lý bàn </li></a>
-                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Thong_ke.html"><li>Thống kê</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
-                    </ul>
-                </section>
-            </nav>
-            <main>
-                
-                <section class="canhan">
-                    <i class="fas fa-bars"></i>
-                    <img src="anh_manhinh/use.png" alt="">
-                    <section class="dropdown">
-                        <section class="dropdwon_select">
-                            <span class="dropdown_selected">Administrator</span>
-                            <i class="fas fa-sort-down"></i>
-                            <ul class="dropdown_list">
-                                <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/Doi_mat_khau.html"><li class="dropdown_item">
-                                    <span class="dropdown_test"> Đổi Mật Khẩu</span>
-                                    <i class="fas fa-key"></i>
-                                </li></a>
-                                <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/dang_nhap.html" type=" color: #000">
-                                    <li class="dropdown_item">
-                                        <span class="dropdown_test">Đăng Xuất</span>
-                                        <i class="fas fa-sign-out-alt"></i>
-                                    </li>
-                                </a>
-                            </ul>
-                        </section>
-                        
-                    </section>                
-                </section>
-               <section class="tenQL">
-                <span>Quản lý nguyên liệu</span>
-               </section>
+  <div class="div-all">
+    <nav>
+      <section class="head">
+        <h2>Coffee Bee Order</h2>
+        <section class="use">
+          <img src="anh_manhinh/use.png" class="img" alt="">
+          <section>
+            <span>Xin chào,</span> <br>
+            <span>Administrator</span>
+          </section>
+        </section>
+        <span>GENERAL</span>
+      </section>
 
-               <section class="thoigian">
-                <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/nguyenLieu-add.php" class="themDS"><button class="">Thêm Nguyên Liệu</button></a>
-               </section>
+      <section class="menu">
+        <ul>
+          <a href="../man_chinh/Do_ban_chay.html">
+            <li><i class="fas fa-caravan"></i>Đồ bán chạy</li>
+          </a>
+          <a href="../man_chinh/Quan_ly_do_uong.html">
+            <li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li>
+          </a>
+          <a href="../man_chinh/Quan_ly_nguyen_lieu.html">
+            <li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li>
+          </a>
+          <a href="../man_chinh/Quan_ly_ban.html">
+            <li>Quản lý bàn </li>
+          </a>
+          <a href="../man_chinh/Tai_khoan_nhan_vien.html">
+            <li>Tài khoản nhân viên</li>
+          </a>
+          <a href="../man_chinh/Thong_ke.html">
+            <li>Thống kê</li>
+          </a>
+          <a href="../man_chinh/Khuyen_mai.html">
+            <li>Khuyến mại</li>
+          </a>
+        </ul>
+      </section>
+    </nav>
+    <main>
 
-               <section>
-                <table id="customers">
-                    <tr>
-                      <th style="width: 150px;">Tên sản phẩm</th>
-                      <th style="width: 60px;">Dạng bột</th>
-                      <th style="width: 60px;">Dạng nước</th>
-                      <th style="width: 200px;">Số lượng</th>
-                      <th style="width: 200px;">Thông tin</th>
-                    </tr>
-                    <tr>
-                      <td>Bột matcha</td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td>350</td>
-                      <td> <div  class="sua" ><a style="margin-right: 18px;" href="">Sửa</a> <a href="">Xóa</a></div> </td>
-                    </tr>
-                    <tr>
-                      <td>Caffe</td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td>300</td>
-                      <td> <div  class="sua" ><a style="margin-right: 18px;" href="">Sửa</a> <a href="">Xóa</a></div> </td>
-                    </tr>
-                    <tr>
-                      <td>Sữa tươi</td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td>355</td>
-                      <td> <div  class="sua" ><a style="margin-right: 18px;" href="">Sửa</a> <a href="">Xóa</a></div> </td>
-                    </tr>
-                    <tr>
-                      <td>Caffe</td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td>354</td>
-                      <td> <div  class="sua" ><a style="margin-right: 18px;" href="">Sửa</a> <a href="">Xóa</a></div> </td>
-                    </tr>
-                    <tr>
-                      <td>Caffe</td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td>353</td>
-                      <td> <div  class="sua" ><a style="margin-right: 18px;" href="">Sửa</a> <a href="">Xóa</a></div> </td>
-                    </tr>
-                    <tr>
-                      <td>Caffe</td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td>35</td>
-                      <td> <div  class="sua" ><a style="margin-right: 18px;" href="">Sửa</a> <a href="">Xóa</a></div> </td>
-                    </tr>
-                    
-                  </table>   
-               </section>
-            </main>
-        </div>
+      <section class="canhan">
+        <i class="fas fa-bars"></i>
+        <img src="anh_manhinh/use.png" alt="">
+        <section class="dropdown">
+          <section class="dropdwon_select">
+            <span class="dropdown_selected">Administrator</span>
+            <i class="fas fa-sort-down"></i>
+            <ul class="dropdown_list">
+              <a href="../Dang_nhap/Doi_mat_khau.html">
+                <li class="dropdown_item">
+                  <span class="dropdown_test"> Đổi Mật Khẩu</span>
+                  <i class="fas fa-key"></i>
+                </li>
+              </a>
+              <a href="../Dang_nhap/dang_nhap.html" type=" color: #000">
+                <li class="dropdown_item">
+                  <span class="dropdown_test">Đăng Xuất</span>
+                  <i class="fas fa-sign-out-alt"></i>
+                </li>
+              </a>
+            </ul>
+          </section>
+
+        </section>
+      </section>
+      <section class="tenQL">
+        <span>Quản lý nguyên liệu</span>
+      </section>
+
+      <section class="thoigian">
+        <a href="../CoffeOder/nguyenLieu-add.php" class="themDS"><button
+            class="">Thêm Nguyên Liệu</button></a>
+      </section>
+
+      <section>
+        <table id="customers">
+         
+        </table>
+      </section>
+
+      <script>
+        var xhr = new XMLHttpRequest();
+           xhr.open("GET", "../CoffeOder/nguyenLieu-show.php", true);
+           
+           xhr.onreadystatechange = function() {
+               if (xhr.readyState == 4 && xhr.status == 200) {
+                   document.getElementById("customers").innerHTML = xhr.responseText;
+               }
+           };
+           
+           xhr.send();
+       </script>
+    </main>
+  </div>
 </body>
 
 </html>
