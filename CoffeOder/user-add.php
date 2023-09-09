@@ -392,6 +392,7 @@ main i{
 
         // Hiển thị giờ hiện tại trong thẻ p có id="current-time"
         document.getElementById('current-time').textContent = formattedTime;
+        
     }
 
     // Gọi hàm getCurrentTime mỗi giây một lần để cập nhật giờ hiện tại
@@ -414,6 +415,7 @@ main i{
 
     // Gọi hàm getCurrentDate khi trang được tải và sau đó mỗi ngày một lần để cập nhật ngày hiện tại
     getCurrentDate();
+    
 </script>
 
 </html>

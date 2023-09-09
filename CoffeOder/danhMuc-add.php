@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute() && $stmt->rowCount() > 0) {
                 echo "Thêm danh mục thành công.";
+                
             } else {
                 echo "Failed to add user.";
             }

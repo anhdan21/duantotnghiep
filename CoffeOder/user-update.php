@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Update User</title>
@@ -82,4 +82,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
 </body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<body>
+<dialog id="myDialog">
+<from>
+<form action="user-update.php" method="POST">
+        <label>id_User: <input type="text" name="id_User"></label><br>
+        <label>userName: <input type="text" name="userName"></label><br>
+        <label>image: <input type="text" name="image"></label><br>
+        <label>passwd: <input type="text" name="passwd"></label><br>
+        <label>phone_Number: <input type="text" name="phone_Number"></label><br>
+        <label>chucNang: <input type="text" name="chucNang"></label><br>
+        <label>fullName: <input type="text" name="fullName"></label><br>
+        <input type="submit" value="Update user">
+    </form>
+<button type="submit" type="margin-top :2% " onclick="ex()"> X</button>
+</from>
+</dialog>
+
+<script>
+function myFunction() {
+  const element = document.getElementById("myDialog");
+  element.open = true;
+}
+function ex(){
+const element = document.getElementById("myDialog");
+	element.open = false;
+}
+</script>
+<style>
+dialog{
+margin-top: -50px;
+width : 200px;
+height: 100px
+}
+</style>
+
+</body>
 </html>
+
