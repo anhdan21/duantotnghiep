@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute() && $stmt->rowCount() > 0) {
                 echo "User added successfully.";
-                // header("Location:http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_do_uong.html");
+                header("Location:http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_do_uong.html");
             } else {
                 echo "Failed to add user.";
             }

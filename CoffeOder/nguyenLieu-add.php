@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute() && $stmt->rowCount() > 0) {
                 echo "User added successfully.";
+                header("Location:http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html");
             } else {
                 echo "Failed to add user.";
             }
@@ -361,7 +362,7 @@ main i{
                     <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span> 
                     <span >Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
                 </div><br>
-                <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html" type="sumbit">Thêm Nguyên Liệu </a>
+                <button type="submit">Thêm nguyên liệu</button>
             </section>
         </form>
         </main>
