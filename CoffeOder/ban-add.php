@@ -170,9 +170,7 @@ main{
     flex: 5;
 }
 /****************************************************/
-main i{
 
-}
 .canhan {
     background-color: #D9D9D9;
     padding: 25px;
@@ -205,9 +203,6 @@ main i{
 }
 .dropdown:hover .dropdown_list{
     display: block;
-}
-.dropdown_selected {
-   
 }
 .dropdown_list{
     width: 135px;
