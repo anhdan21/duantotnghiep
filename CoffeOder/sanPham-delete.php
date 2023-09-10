@@ -23,7 +23,7 @@ try {
 }
 
 // Thực hiện truy vấn để xóa sản phẩm khỏi CSDL
-if (isset($_POST['Id_sanPham'])) {
+if (isset($_POST['Id'])) {
     try {
         $stmt = $conn->prepare("DELETE FROM sanpham WHERE Id_sanPham = $id ");
         $stmt->execute();
@@ -38,7 +38,7 @@ if (isset($_POST['Id_sanPham'])) {
 <html>
 <head>
     <title>Xóa Sản phẩm</title>
-    <link rel="stylesheet" type="text/css" href="../man_chinh//delete.css">
+    <link rel="stylesheet" type="text/css" href="../man_chinh/delete.css">
 </head>
 <body>
     <h3>Xóa nguyên liệu</h3>

@@ -10,7 +10,7 @@ try {
     $stmt = $conn->prepare("SELECT * FROM giamgia ORDER BY id_giamGia ASC");
     $stmt->execute();
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    echo "<table id='customers' border='1' >
+    echo "<table border='1' >
             <tr> <th>ID</th> <th>Thời giam bắt đầu</th> <th>Thời gian kết thúc</th> <th>Khuyến mãi</th> <th>Setup</th></tr> ";
     foreach ($stmt->fetchAll() as $row) {
         $link_delete = '../CoffeOder/sale-delete.php?id_giamGia=' . $row['id_giamGia'];

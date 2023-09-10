@@ -23,7 +23,7 @@ try {
 }
 
 // Thực hiện truy vấn để xóa sản phẩm khỏi CSDL
-if (isset($_POST['id_giamGia'])) {
+if (isset($_POST['Id'])) {
     try {
         $stmt = $conn->prepare("DELETE FROM giamgia WHERE id_giamGia = $id ");
         $stmt->execute();
