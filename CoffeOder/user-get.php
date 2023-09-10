@@ -349,7 +349,7 @@
                            <td ><img src="<?php echo $r['image']; ?>" alt="Loading" style="width: 100px;height: 100px;"> </td>
                             <td><?php echo $r['chucNang']; ?></td>
                             
-                            <td>0987654321</td>
+                            <td><?php echo$r['phone_Number']?></td>
                             <td> <div  class="sua" >
                             
                                 <a onclick="myFunction() "  style="margin-right: 18px;"  href="user-edit.php?id=<?php echo $r['Id_User'];?>">Sửa</a>

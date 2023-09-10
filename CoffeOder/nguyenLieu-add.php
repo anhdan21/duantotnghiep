@@ -4,11 +4,15 @@ include 'API.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['ten_nguyenLieu'], $_POST['price'], $_POST['soLuong'], $_POST['id_User'])) {
-        $ten_nguyenLieu = $_POST['ten_nguyenLieu'];
-        $price = $_POST['price'];
         $soLuong = $_POST['soLuong'];
+        
+        $price = $_POST['price'];
+        $ten_nguyenLieu = $_POST['ten_nguyenLieu'];
         $id_User = $_POST['id_User'];
-     
+        $img_nguyenLieu = $_POST['img_nguyenLieu']; 
+        $kieuNguyenLieu = $_POST['kieuNguyenLieu'];
+       
+
         try {
             $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
             $objConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -17,14 +21,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         try {
-            $sql_str = "INSERT INTO `nguyenlieu` (`ten_nguyenLieu`, `price`, `soLuong`, `id_User`) VALUES (:ten_nguyenLieu, :price, :soLuong, :id_User)";
+            $sql_str = "INSERT INTO `nguyenlieu` (`soLuong`,`price`  ,`id_User` ,`ten_nguyenLieu`,`img_nguyenLieu` ,  `kieuNguyenLieu`) 
+                                            VALUES (:soLuong,:price,   :id_User,:ten_nguyenLieu,:img_nguyenLieu, :kieuNguyenLieu )";
             $stmt = $objConn->prepare($sql_str);
-            $stmt->bindParam(':ten_nguyenLieu', $ten_nguyenLieu);
-            $stmt->bindParam(':price', $price);
             $stmt->bindParam(':soLuong', $soLuong);
+            $stmt->bindParam(':price', $price);
+            $stmt->bindParam(':ten_nguyenLieu', $ten_nguyenLieu);
             $stmt->bindParam(':id_User', $id_User);
+            $stmt->bindParam(':img_nguyenLieu', $img_nguyenLieu);
+            $stmt->bindParam(':kieuNguyenLieu', $kieuNguyenLieu);
+            
+            
 
-          
 
             if ($stmt->execute() && $stmt->rowCount() > 0) {
                 echo "User added successfully.";
@@ -327,6 +335,9 @@ main i{
                 <label for="">Giá :<input type="text" name="price" placeholder="Nhập giá " required></label> <br>
                 <label for="">Số lượng:<input type="number" name="soLuong" required ></label> <br>
                 <label for="">User:<input type="text" name="id_User" required></label> <br>
+                <label for="">Image:<input type="text" name="img_nguyenLieu" required></label> <br>
+                <label for="">Kiểu:<input type="text" name="kieuNguyenLieu" required></label> <br>
+
 
                 <div class="oclock">
                     <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span> 

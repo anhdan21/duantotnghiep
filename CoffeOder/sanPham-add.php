@@ -28,16 +28,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Thực hiện truy vấn để thêm người dùng vào CSDL
         try {
-            $sql_str = "INSERT INTO `sanpham` (`ten_sp`, `giaSanPham`, `size`, `anhSanPham`, `gioiThieu`, `id_danhMuc`, `id_giamGia`) VALUES 
-            (:ten_sp, :giaSanPham, :size, :anhSanPham, :gioiThieu, :id_danhMuc, :id_giamGia)";
+            $sql_str = "INSERT INTO `sanpham` (`id_danhMuc`,`giaSanPham`,`gioiThieu`,`anhSanPham`,   `id_giamGia`,`ten_sp`,  `size`) 
+                                        VALUES ( :id_danhMuc, :giaSanPham, :gioiThieu,:anhSanPham,:id_giamGia,:ten_sp, :size)";
             $stmt = $objConn->prepare($sql_str);
-            $stmt->bindParam(':ten_sp', $ten_sp);
-            $stmt->bindParam(':giaSanPham', $giaSanPham);
-            $stmt->bindParam(':size', $size);
-            $stmt->bindParam(':anhSanPham', $anhSanPham);
-            $stmt->bindParam(':gioiThieu', $gioiThieu);
             $stmt->bindParam(':id_danhMuc', $id_danhMuc);
+            $stmt->bindParam(':giaSanPham', $giaSanPham);
+            $stmt->bindParam(':gioiThieu', $gioiThieu);
+            $stmt->bindParam(':anhSanPham', $anhSanPham);
             $stmt->bindParam(':id_giamGia', $id_giamGia);
+            $stmt->bindParam(':ten_sp', $ten_sp);
+            $stmt->bindParam(':size', $size);
+
 
             if ($stmt->execute() && $stmt->rowCount() > 0) {
                 header("Location:../man_chinh/Quan_ly_do_uong.html");
@@ -130,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <form action="sanPham-add.php" method="POST">
                 <section class="thongtinMK">
-                    <label for="">Ảnh SP:<input type="file" name="anhSanPham"></label> <br>
+                    <label for="">Ảnh SP:<input type="text" name="anhSanPham"></label> <br>
                     <label for="">Tên SP:<input type="text" name="ten_sp" placeholder="Nhập tên sản phẩm" required></label> <br>
                     <label for="">Giá SP:<input type="text" name="giaSanPham" placeholder="Nhập giá loại" required></label> <br>
                     <label for="">Size:<input type="text" name="size" placeholder="Nhạp size sản phẩm" required></label> <br>
