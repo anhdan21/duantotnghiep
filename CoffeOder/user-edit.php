@@ -355,7 +355,7 @@ main{
                 </section>
             </section>
             <section class="tenQL">
-                <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Tai_khoan_nhan_vien.html"><span>Sửa Thông Tin Nhân Viên</span></a>
+                <a href="#"><span>Sửa Thông Tin Nhân Viên</span></a>
 
             </section>
 
