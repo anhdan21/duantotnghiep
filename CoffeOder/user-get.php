@@ -257,14 +257,14 @@
                 </section>
                 
                 <section class="menu">
-                    <ul>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Do_ban_chay.html"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_ban.html"><li>Quản lý bàn </li></a>
+                <ul>
+                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
+                        <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
+                        <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
+                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
                         <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Thong_ke.html"><li>Thống kê</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
+                        <a href=""><li>Thống kê</li></a>
+                        <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
                     </ul>
                 </section>
             </nav>
@@ -352,85 +352,9 @@
                             <td>0987654321</td>
                             <td> <div  class="sua" >
                             
-                                <a onclick="myFunction() "  style="margin-right: 18px;" >Sửa</a>
+                                <a onclick="myFunction() "  style="margin-right: 18px;"  href="user-edit.php?id=<?php echo $r['Id_User'];?>">Sửa</a>
 
-                                <dialog id="myDialog">
-                                <?php
-
-                                        include 'API.php';
-
-                                        // Kiểm tra xem người dùng đã gửi yêu cầu POST hay chưa
-                                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                            // Kiểm tra xem tất cả các tham số cần thiết đã được cung cấp hay chưa
-                                            if (isset($_POST['id_User'], $_POST['userName'], $_POST['image'], $_POST['passwd'], $_POST['phone_Number'], $_POST['chucNang'], $_POST['fullName'])) {
-                                                $id_User = $_POST['id_User'];
-                                                $userName = $_POST['userName'];
-                                                $image = $_POST['image'];
-                                                $passwd = $_POST['passwd'];
-                                                $phone_Number = $_POST['phone_Number'];
-                                                $chucNang = $_POST['chucNang'];
-                                                $fullName = $_POST['fullName'];
-
-                                                // Thực hiện kết nối CSDL
-                                                try {
-                                                    $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-                                                    $objConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                                } catch (PDOException $e) {
-                                                    die('Lỗi kết nối CSDL: ' . $e->getMessage());
-                                                }
-
-                                                // Kiểm tra xem người dùng có tồn tại trong CSDL hay không
-                                                $sql_check_user = "SELECT * FROM `user` WHERE `id_User` = :id_User";
-                                                $stmt_check_user = $objConn->prepare($sql_check_user);
-                                                $stmt_check_user->bindParam(':id_User', $id_User);
-                                                $stmt_check_user->execute();
-                                                $user = $stmt_check_user->fetch(PDO::FETCH_ASSOC);
-
-                                                if (!$user) {
-                                                    echo "Người dùng không tồn tại.";
-                                                    exit;
-                                                }
-
-                                                // Thực hiện truy vấn để update thông tin người dùng trong CSDL
-                                                try {
-                                                    $sql_update = "UPDATE `user` SET `userName` = :userName, `image` = :image, `passwd` = :passwd, `phone_Number` = :phone_Number, `chucNang` = :chucNang, `fullName` = :fullName WHERE `id_User` = :id_User";
-                                                    $stmt_update = $objConn->prepare($sql_update);
-                                                    $stmt_update->bindParam(':userName', $userName);
-                                                    $stmt_update->bindParam(':image', $image);
-                                                    $stmt_update->bindParam(':passwd', $passwd);
-                                                    $stmt_update->bindParam(':phone_Number', $phone_Number);
-                                                    $stmt_update->bindParam(':chucNang', $chucNang);
-                                                    $stmt_update->bindParam(':fullName', $fullName);
-                                                    $stmt_update->bindParam(':id_User', $id_User);
-
-                                                    if ($stmt_update->execute() && $stmt_update->rowCount() > 0) {
-                                                        echo "Người dùng đã được cập nhật thành công.";
-                                                    } else {
-                                                        echo "Không thể cập nhật người dùng.";
-                                                    }
-                                                } catch (PDOException $e) {
-                                                    die('Lỗi cập nhật người dùng: ' . $e->getMessage());
-                                                }
-                                            } else {
-                                                echo "Vui lòng điền đầy đủ thông tin cần cập nhật.";
-                                            }
-                                        }
-
-                                        ?>
-                                <form action="user-update.php" method="POST">
-                                <label>id_User: <input type="text" name="id_User" placeholder="<?php echo $r['Id_User']?>"></label><br>
-                                <label>userName: <input type="text" name="userName"></label><br>
-                                <label>image: <input type="text" name="image"></label><br>
-                                <label>passwd: <input type="text" name="passwd"></label><br>
-                                <label>phone_Number: <input type="text" name="phone_Number"></label><br>
-                                <label>chucNang: <input type="text" name="chucNang"></label><br>
-                                <label>fullName: <input type="text" name="fullName"></label><br>
-                                <input type="submit" value="Update user">
-                                
-                            </form>
-                            <button type="submit" type="margin-top :2% " onclick="ex()"> X</button>
-                                </dialog>
-                                <a style="margin-right: 18px;" href="">Xóa</a>
+                                <a  onclick="return confirm('Bạn có muốn xóa không');" style="margin-right: 18px;" href="user-delete.php?id=<?php echo $r['Id_User'];?>">Xóa</a>
                                 <a href="">Chi tiết</a>
                         
                             </div> </td>

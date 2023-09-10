@@ -314,29 +314,15 @@ right: 60px;
             </section>
 
             <section class="menu">
-                <ul>
-                    <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/danhMuc-get.php">
-                        <li><i class="fas fa-caravan"></i>Đồ bán chạy</li>
-                    </a>
-                    <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_do_uong.html">
-                        <li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li>
-                    </a>
-                    <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html">
-                        <li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li>
-                    </a>
-                    <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_ban.html">
-                        <li><i class="fas fa-couch"></i>Quản lý bàn </li>
-                    </a>
-                    <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-get.php">
-                        <li><i class="fas fa-users"></i>Tài khoản nhân viên</li>
-                    </a>
-                    <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Thong_ke.html">
-                        <li><i class="fas fa-chart-line"></i>Thống kê</li>
-                    </a>
-                    <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Khuyen_mai.html">
-                        <li><i class="fas fa-gift"></i>Khuyến mại</li>
-                    </a>
-                </ul>
+            <ul>
+                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
+                        <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
+                        <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
+                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
+                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
+                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Thong_ke.html"><li>Thống kê</li></a>
+                        <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
+                    </ul>
             </section>
         </nav>
         <main>
