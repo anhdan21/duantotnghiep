@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute() && $stmt->rowCount() > 0) {
                 echo "User added successfully.";
-                header("Location:http://127.0.0.1:5500/duantotnghiep/man_chinh/Khuyen_mai.html");
+                header("Location:../man_chinh/Khuyen_mai.html");
             } else {
                 echo "Failed to add user.";
             }
@@ -47,26 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Add giảm giá</title>
-</head>
-<body>
-
-    <h1>Add giảm giá</h1>
-
-    <form action="sale-add.php" method="POST">
-        <label>time_Start: <input type="date" name="time_Start"></label><br>
-        <label>time_End: <input type="date" name="time_End"></label><br>
-        <label>giam: <input type="text" name="giam"></label><br>
-    
-        <input type="submit" value="Add User">
-    </form>
-
-</body>
-</html> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -305,13 +285,13 @@ main i{
 
             <section class="menu">
                 <ul>
-                    <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Do_ban_chay.html"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
-                    <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
-                    <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
-                    <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_ban.html"><li>Quản lý bàn </li></a>
-                    <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Tai_khoan_nhan_vien.html"><li>Tài khoản nhân viên</li></a>
-                    <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Thong_ke.html"><li>Thống kê</li></a>
-                    <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
+                    <a href="../man_chinh/Do_ban_chay.html"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
+                    <a href="../man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
+                    <a href="../man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
+                    <a href="../man_chinh/Quan_ly_ban.html"><li>Quản lý bàn </li></a>
+                    <a href="../man_chinh/Tai_khoan_nhan_vien.html"><li>Tài khoản nhân viên</li></a>
+                    <a href="../man_chinh/Thong_ke.html"><li>Thống kê</li></a>
+                    <a href="../man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
                 </ul>
             </section>
         </nav>
@@ -325,13 +305,13 @@ main i{
                         <span class="dropdown_selected"> Administrator</span>
                         <i class="fas fa-sort-down"></i>
                         <ul class="dropdown_list">
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/Doi_mat_khau.html">
+                            <a href="../Dang_nhap/Doi_mat_khau.html">
                                 <li class="dropdown_item">
                                     <span class="dropdown_test"> Đổi Mật Khẩu</span>
                                     <i class="fas fa-key"></i>
                                 </li>
                             </a>
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/dang_nhap.html" type=" color: #000">
+                            <a href="../Dang_nhap/dang_nhap.html" type=" color: #000">
                                 <li class="dropdown_item">
                                     <span class="dropdown_test">Đăng Xuất</span>
                                     <i class="fas fa-sign-out-alt"></i>
@@ -344,7 +324,7 @@ main i{
                 </section>
             </section>
             <section class="tenQL">
-                <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Khuyen_mai.html"><span>Khuyến mại</span></a>
+                <a href="../man_chinh/Khuyen_mai.html"><span>Khuyến mại</span></a>
                 <a href=""><span>/ Thêm giảm giá</span></a>
 
             </section>

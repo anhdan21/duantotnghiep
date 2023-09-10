@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    /* Chọn font chữ cho trang */
+    background-color: #f7f7f7;
+    /* Màu nền cho trang */
+    text-align: center;
+    /* Căn giữa văn bản trên trang */
+    margin: 0;
+    /* Xóa khoảng cách lề của body */
+    padding: 0;
+    /* Xóa padding mặc định của body */
+}
+
+h1 {
+    background-color: #333;
+    /* Màu nền cho tiêu đề */
+    color: #fff;
+    /* Màu chữ cho tiêu đề */
+    padding: 10px;
+    /* Khoảng cách giữa nội dung và đường viền của tiêu đề */
+}
+
+form {
+    background-color: #fff;
+    /* Màu nền cho biểu mẫu */
+    padding: 30px;
+    /* Khoảng cách giữa nội dung và đường viền của biểu mẫu */
+    border-radius: 5px;
+    /* Góc bo tròn cho biểu mẫu */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Hiệu ứng bóng đổ cho biểu mẫu */
+    display: inline-block;
+    /* Hiển thị biểu mẫu dưới dạng khối có chiều rộng tối thiểu */
+}
+
+button[name='Id_nguyenLieu'] {
+    background-color: #f00;
+    /* Màu nền cho nút Đồng ý xóa */
+    color: #fff;
+    /* Màu chữ cho nút Đồng ý xóa */
+    border: none;
+    /* Loại bỏ đường viền của nút */
+    padding: 10px 20px;
+    /* Khoảng cách bên trong nút */
+    margin-right: 10px;
+    /* Khoảng cách bên phải của nút */
+    cursor: pointer;
+    /* Biến con trỏ thành một cái tay khi trỏ vào nút */
+}
+
+button[name='Id'] {
+    background-color: #f00;
+    /* Màu nền cho nút Đồng ý xóa */
+    color: #fff;
+    /* Màu chữ cho nút Đồng ý xóa */
+    border: none;
+    /* Loại bỏ đường viền của nút */
+    padding: 10px 20px;
+    /* Khoảng cách bên trong nút */
+    margin-right: 10px;
+    /* Khoảng cách bên phải của nút */
+    cursor: pointer;
+    /* Biến con trỏ thành một cái tay khi trỏ vào nút */
+}
+
+a {
+    background-color: #333;
+    /* Màu nền cho liên kết Không xóa */
+    color: #fff;
+    /* Màu chữ cho liên kết Không xóa */
+    text-decoration: none;
+    /* Loại bỏ gạch chân cho liên kết */
+    padding: 10px 20px;
+    /* Khoảng cách bên trong liên kết */
+    border-radius: 5px;
+    /* Góc bo tròn cho liên kết */
+    transition: background-color 0.3s ease;
+    /* Hiệu ứng thay đổi màu nền khi hover */
+}
+
+a:hover {
+    background-color: #555;
+    /* Màu nền khi hover qua liên kết */
+}

@@ -1,67 +1,53 @@
 <?php
+session_start();
 
-include 'API.php';
+require_once '../CoffeOder/API.php';
 
-// Kiểm tra xem người dùng đã gửi yêu cầu POST hay chưa
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Kiểm tra xem ID sản phẩm cần xóa đã được cung cấp hay chưa
-    if (isset($_POST['Id_sanPham'])) {
-        $Id_sanPham = $_POST['Id_sanPham'];
-
-        // Thực hiện kết nối CSDL
-        try {
-            $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-            $objConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            die('Lỗi kết nối CSDL: ' . $e->getMessage());
-        }
-
-        // Kiểm tra xem sản phẩm có tồn tại trong CSDL hay không
-        $sql_check_product = "SELECT * FROM `sanpham` WHERE `Id_sanPham` = :Id_sanPham";
-        $stmt_check_product = $objConn->prepare($sql_check_product);
-        $stmt_check_product->bindParam(':Id_sanPham', $Id_sanPham);
-        $stmt_check_product->execute();
-        $product = $stmt_check_product->fetch(PDO::FETCH_ASSOC);
-
-        if (!$product) {
-            echo "Sản phẩm không tồn tại.";
-            exit;
-        }
-
-        // Thực hiện truy vấn để xóa sản phẩm khỏi CSDL
-        try {
-            $sql_delete = "DELETE FROM `sanpham` WHERE `Id_sanPham` = :Id_sanPham";
-            $stmt_delete = $objConn->prepare($sql_delete);
-            $stmt_delete->bindParam(':Id_sanPham', $Id_sanPham);
-
-            if ($stmt_delete->execute() && $stmt_delete->rowCount() > 0) {
-                echo "Sản phẩm đã được xóa thành công.";
-            } else {
-                echo "Không thể xóa sản phẩm.";
-            }
-        } catch (PDOException $e) {
-            die('Lỗi xóa sản phẩm: ' . $e->getMessage());
-        }
-    } else {
-        echo "Vui lòng nhập ID sản phẩm cần xóa.";
-    }
+if (isset($_GET['Id_sanPham']) && is_numeric($_GET['Id_sanPham'])) {
+    $id = intval($_GET['Id_sanPham']);
+} else {
+    header("Location:../man_chinh/Quan_ly_do_uong.html");
 }
 
-?>
+try {
+    $stmt = $conn->prepare("SELECT * FROM sanpham WHERE Id_sanPham = $id ");
+    $stmt->execute();
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $row = $stmt->fetch();
+    if (empty($row)) {
+        $_SESSION['err'] = 'Không tồn tại Role cần xóa. Bạn vừa yêu cầu xóa Role ' .  $id;
+        header("Location:../man_chinh/Quan_ly_nguyen_lieu.html");
+    }
+} catch (PDOException $e) {
+    echo "<br>Loi truy van CSDL: " . $e->getMessage();
+}
 
+// Thực hiện truy vấn để xóa sản phẩm khỏi CSDL
+if (isset($_POST['Id'])) {
+    try {
+        $stmt = $conn->prepare("DELETE FROM sanpham WHERE Id_sanPham = $id ");
+        $stmt->execute();
+
+        header("Location:../man_chinh/Quan_ly_do_uong.html");
+    } catch (PDOException $e) {
+        echo "<br>Loi truy van CSDL: " . $e->getMessage();
+    }
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Xóa Sản phẩm</title>
+    <link rel="stylesheet" type="text/css" href="../man_chinh/delete.css">
 </head>
 <body>
+    <h3>Xóa nguyên liệu</h3>
+    <form action="" method="POST">
+        Bạn muốn xóa : <?php echo $row['ten_sp'] ?> <br><br>
 
-    <h1>Xóa Sản phẩm</h1>
-
-    <form action="sanPham-delete.php" method="POST">
-        <label>id sản phẩm: <input type="text" name="Id_sanPham"></label><br>
-        <input type="submit" value="Xóa Sản phẩm">
+        <button name='Id'>Đồng ý xóa</button>
+        <a href="../man_chinh/Quan_ly_do_uong.html">Không xóa</a>
     </form>
-
 </body>
+
 </html>

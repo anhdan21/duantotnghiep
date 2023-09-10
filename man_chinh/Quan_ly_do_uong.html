@@ -13,7 +13,7 @@
         #customers {
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
-            width: 80%;
+            width: 95%;
             margin: 20px;
         }
 
@@ -39,7 +39,6 @@
             text-align: center;
             background-color: #2A3F53;
             color: white;
-
         }
 
         #customers td .sua a {
@@ -71,13 +70,13 @@
                 
                 <section class="menu">
                     <ul>
-                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_ban.html"><li>Quản lý bàn </li></a>
-                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Thong_ke.html"><li>Thống kê</li></a>
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
+                        <a href="../man_chinh/Do_ban_chay.html"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
+                        <a href="../man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
+                        <a href="../man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
+                        <a href="../man_chinh/Quan_ly_ban.html"><li>Quản lý bàn </li></a>
+                        <a href="../CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
+                        <a href="../man_chinh/Thong_ke.html"><li>Thống kê</li></a>
+                        <a href="../man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
                     </ul>
                 </section>
             </nav>
@@ -91,7 +90,7 @@
                             <span class="dropdown_selected">Administrator</span>
                             <i class="fas fa-sort-down"></i>
                             <ul class="dropdown_list">
-                                <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/Doi_mat_khau.html"><li class="dropdown_item">
+                                <a href="../Dang_nhap/Doi_mat_khau.html"><li class="dropdown_item">
                                     <span class="dropdown_test"> Đổi Mật Khẩu</span>
                                     <i class="fas fa-key"></i>
                                 </li>
@@ -132,7 +131,6 @@
                         document.getElementById("customers").innerHTML = xhr.responseText;
                     }
                 };
-
                 xhr.send();
             </script>
         </main>
