@@ -1,80 +1,143 @@
 <?php
+session_start();
+require_once '../CoffeOder/API.php';
 
-include 'API.php';
+if (!isset($_GET['Id_nguyenLieu'])) {
+    $_SESSION['err'] = "Bạn chưa chọn Role để sửa";
+    header("Location:../man_chinh/Quan_ly_nguyen_lieu.html");
+}
+$id = intval($_GET['Id_nguyenLieu']);
+try {
+    $stmt = $conn->prepare("SELECT * FROM nguyenlieu WHERE Id_nguyenLieu = $id ");
+    $stmt->execute();
 
-// Kiểm tra xem người dùng đã gửi yêu cầu POST hay chưa
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Kiểm tra xem tất cả các tham số cần thiết đã được cung cấp hay chưa
-    if (isset($_POST['Id_nguyenLieu'], $_POST['soLuong'], $_POST['price'], $_POST['id_User'], $_POST['ten_nguyenLieu'])) {
-        $Id_nguyenLieu = $_POST['Id_nguyenLieu'];
-        $soLuong = $_POST['soLuong'];
-        $price = $_POST['price'];
-        $id_User = $_POST['id_User'];
-        $ten_nguyenLieu = $_POST['ten_nguyenLieu'];
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-        // Thực hiện kết nối CSDL
-        try {
-            $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-            $objConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            die('Lỗi kết nối CSDL: ' . $e->getMessage());
-        }
+    $row = $stmt->fetch();
 
-        // Kiểm tra xem nguyên liệu có tồn tại trong CSDL hay không
-        $sql_check_nguyenlieu = "SELECT * FROM `nguyenlieu` WHERE `Id_nguyenLieu` = :Id_nguyenLieu";
-        $stmt_check_nguyenlieu = $objConn->prepare($sql_check_nguyenlieu);
-        $stmt_check_nguyenlieu->bindParam(':Id_nguyenLieu', $Id_nguyenLieu);
-        $stmt_check_nguyenlieu->execute();
-        $nguyenlieu = $stmt_check_nguyenlieu->fetch(PDO::FETCH_ASSOC);
-
-        if (!$nguyenlieu) {
-            echo "Nguyên liệu không tồn tại.";
-            exit;
-        }
-
-        // Thực hiện truy vấn để update thông tin nguyên liệu trong CSDL
-        try {
-            $sql_update = "UPDATE `nguyenlieu` SET `soLuong` = :soLuong, `price` = :price, `id_User` = :id_User, `ten_nguyenLieu` = :ten_nguyenLieu WHERE `Id_nguyenLieu` = :Id_nguyenLieu";
-            $stmt_update = $objConn->prepare($sql_update);
-            $stmt_update->bindParam(':soLuong', $soLuong);
-            $stmt_update->bindParam(':price', $price);
-            $stmt_update->bindParam(':id_User', $id_User);
-            $stmt_update->bindParam(':ten_nguyenLieu', $ten_nguyenLieu);
-            $stmt_update->bindParam(':Id_nguyenLieu', $Id_nguyenLieu);
-
-            if ($stmt_update->execute() && $stmt_update->rowCount() > 0) {
-                echo "Nguyên liệu đã được cập nhật thành công.";
-            } else {
-                echo "Không thể cập nhật nguyên liệu.";
-            }
-        } catch (PDOException $e) {
-            die('Lỗi cập nhật nguyên liệu: ' . $e->getMessage());
-        }
-    } else {
-        echo "Vui lòng điền đầy đủ thông tin cần cập nhật.";
+    if (empty($row)) {
+        header("Location:../man_chinh/Quan_ly_nguyen_lieu.html");
     }
+} catch (PDOException $e) {
+    echo "<br>Loi truy van CSDL: " . $e->getMessage();
 }
 
+$err = [];
+if (isset($_POST['btnSave'])) {
+    $soLuong = $_POST['soLuong'];
+    $price = $_POST['price'];
+    $id_User = $_POST['id_User'];
+    $ten_nguyenLieu = $_POST['ten_nguyenLieu'];
+    // kiểm tra
+    if (empty($soLuong) || empty($price) || empty($id_User) || empty($ten_nguyenLieu)) {
+        $err[] = "Bạn chưa nhập đủ nội dung";
+    }
+
+    if (empty($err)) {
+
+        try {
+            $stmt = $conn->prepare("UPDATE nguyenlieu SET soLuong=:post_soLuong ,price=:post_price , id_User=:post_id_User , ten_nguyenLieu=:post_ten_nguyenLieu  WHERE Id_nguyenLieu=:get_id");
+            // gắn dữ liệu vào tham số
+            $stmt->bindParam(":post_soLuong", $soLuong);
+            $stmt->bindParam(":post_price", $price);
+            $stmt->bindParam(":post_id_User", $id_User);
+            $stmt->bindParam(":post_ten_nguyenLieu",  $ten_nguyenLieu);
+
+            $stmt->bindParam(":get_id", $id);
+            // thực thi câu lệnh
+            $stmt->execute();
+
+            $_SESSION['err'] = "Cập nhật thành công!";
+
+            header("Location:../man_chinh/Quan_ly_nguyen_lieu.html");
+        } catch (PDOException $e) {
+            $err[] = "Loi truy van CSDL: " . $e->getMessage();
+        }
+    }
+}else if(isset($_POST['btnCancel'])){
+    header("Location:../man_chinh/Quan_ly_nguyen_lieu.html");
+}
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Update nguyên liệu</title>
+    <style>
+#container {
+    max-width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[name="btnSave"], button[name="btnCancel"] {
+    width: 50%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #008000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[name="btnSave"] {
+    background-color: #008000; /* Màu xanh */
+}
+
+button[name="btnCancel"] {
+    background-color: #ff0000; /* Màu đỏ */
+}
+
+    </style>
 </head>
+
 <body>
+    <div id="container">
+        <p><?php echo implode('<br>', $err); ?></p>
 
-    <h1>Update nguyên liệu</h1>
+        <form action="" method="post">
+            <span>ID :<?php echo $row['Id_nguyenLieu']; ?></span>
 
-    <form action="nguyenLieu-update.php" method="POST">
-        <label>Id_nguyenLieu: <input type="text" name="Id_nguyenLieu"></label><br>
-        <label>soLuong: <input type="text" name="soLuong"></label><br>
-        <label>price: <input type="text" name="price"></label><br>
-        <label>id_User: <input type="text" name="id_User"></label><br>
-        <label>ten_nguyenLieu: <input type="text" name="ten_nguyenLieu"></label><br>
+            <label for="soLuong">So luong</label>
+            <input type="text" name="soLuong" value="<?php echo $row['soLuong']; ?>">
 
-        <input type="submit" value="Update nguyên liệu">
-    </form>
+            <label for="price">Price</label>
+            <input type="text" name="price" value="<?php echo $row['price']; ?>">
 
+            <label for="id_User">Id User</label>
+            <input type="text" name="id_User" value="<?php echo $row['id_User']; ?>">
+
+            <label for="ten_nguyenLieu">Ten nguyen lieu</label>
+            <input type="text" name="ten_nguyenLieu" value="<?php echo $row['ten_nguyenLieu']; ?>">
+
+            <button name="btnSave">Save Update</button>
+            <button name="btnCancel">Cancel</button>
+        </form>
+    </div>
 </body>
+
 </html>

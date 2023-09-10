@@ -1,92 +1,119 @@
-<?php
+ <?php
 
-include 'API.php';
+include "API.php";
+$id = $_GET['Id_sanPham'];
+$Con = mysqli_connect("localhost", "root","" ,"coffeoder");
+$Edit = "SELECT * FROM sanpham WHERE Id_sanPham= $id";
 
-// Kiểm tra xem người dùng đã gửi yêu cầu POST hay chưa
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Kiểm tra xem tất cả các tham số cần thiết đã được cung cấp hay chưa
-    if (isset($_POST['Id_sanPham'],$_POST['ten_sp'], $_POST['giaSanPham'], $_POST['size'], $_POST['anhSanPham'], $_POST['giaSanPham'], $_POST['gioiThieu'], $_POST['id_danhMuc'], $_POST['id_giamGia'])) {
-        $Id_sanPham = $_POST['Id_sanPham'];
-        $ten_sp = $_POST['ten_sp'];
-        $giaSanPham = $_POST['giaSanPham'];
-        $size = $_POST['size'];
-        $anhSanPham = $_POST['anhSanPham'];
-        $gioiThieu = $_POST['gioiThieu'];
-        $id_danhMuc = $_POST['id_danhMuc'];
-        $id_giamGia = $_POST['id_giamGia'];
-
-        // Thực hiện kết nối CSDL
-        try {
-            $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-            $objConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            die('Lỗi kết nối CSDL: ' . $e->getMessage());
-        }
-
-        // Kiểm tra và xử lý giá trị nhập liệu hợp lệ
-        // (Bạn nên thực hiện kiểm tra hợp lệ và xử lý nhập liệu dựa trên yêu cầu cụ thể của ứng dụng)
-        // Ví dụ: Xử lý giá trị rỗng, kiểm tra định dạng email, v.v.
-
-        // Kiểm tra xem sản phẩm có tồn tại trong CSDL hay không
-        $sql_check_product = "SELECT * FROM `sanpham` WHERE `Id_sanPham` = :Id_sanPham";
-        $stmt_check_product = $objConn->prepare($sql_check_product);
-        $stmt_check_product->bindParam(':Id_sanPham', $Id_sanPham);
-        $stmt_check_product->execute();
-        $product = $stmt_check_product->fetch(PDO::FETCH_ASSOC);
-
-        if (!$product) {
-            echo "Sản phẩm không tồn tại.";
-            exit;
-        }
-
-        // Thực hiện truy vấn để update thông tin sản phẩm trong CSDL
-        try {
-            $sql_update = "UPDATE `sanpham` SET `ten_sp` = :ten_sp, `giaSanPham` = :giaSanPham, `size` = :size, `anhSanPham` = :anhSanPham, `gioiThieu` = :gioiThieu, `id_danhMuc` = :id_danhMuc, `id_giamGia` = :id_giamGia WHERE `Id_sanPham` = :Id_sanPham";
-            $stmt_update = $objConn->prepare($sql_update);
-            $stmt_update->bindParam(':ten_sp', $ten_sp);
-            $stmt_update->bindParam(':giaSanPham', $giaSanPham);
-            $stmt_update->bindParam(':size', $size);
-            $stmt_update->bindParam(':anhSanPham', $anhSanPham);
-            $stmt_update->bindParam(':gioiThieu', $gioiThieu);
-            $stmt_update->bindParam(':id_danhMuc', $id_danhMuc);
-            $stmt_update->bindParam(':id_giamGia', $id_giamGia);
-            $stmt_update->bindParam(':Id_sanPham', $Id_sanPham);
-
-            if ($stmt_update->execute() && $stmt_update->rowCount() > 0) {
-                echo "Sản phẩm đã được cập nhật thành công.";
-            } else {
-                echo "Không thể cập nhật sản phẩm.";
-            }
-        } catch (PDOException $e) {
-            die('Lỗi cập nhật sản phẩm: ' . $e->getMessage());
-        }
-    } else {
-        echo "";
-    }
-}
+$result = mysqli_query($Con,$Edit);
+$row = mysqli_fetch_assoc($result);
 
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Update Sản phẩm</title>
+    <style>
+        /* CSS cho form */
+        form {
+            max-width: 500px;
+            /* Đặt chiều rộng tối đa của form */
+            margin: 0 auto;
+            /* Căn giữa form trong trang */
+            padding: 20px;
+            /* Khoảng cách nội dung và khung form */
+            border: 1px solid #ccc;
+            /* Đường viền khung form */
+            border-radius: 5px;
+            /* Bo tròn góc của khung form */
+            background-color: #f9f9f9;
+            /* Màu nền của form */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* Đổ bóng cho form */
+        }
+
+        /* CSS cho tiêu đề */
+        h1 {
+            text-align: center;
+            /* Căn giữa tiêu đề */
+            color: #333;
+            /* Màu chữ */
+        }
+
+        /* CSS cho các label và input */
+        label {
+            display: block;
+            /* Hiển thị mỗi label trên một dòng */
+            margin-bottom: 10px;
+            /* Khoảng cách giữa các label */
+            font-weight: bold;
+            /* In đậm chữ của label */
+        }
+
+        input[type="text"] {
+            width: 100%;
+            /* Đặt chiều rộng của input là 100% của form */
+            padding: 10px;
+            /* Khoảng cách bên trong input */
+            margin-bottom: 15px;
+            /* Khoảng cách giữa các input */
+            border: 1px solid #ccc;
+            /* Đường viền input */
+            border-radius: 3px;
+            /* Bo tròn góc của input */
+        }
+
+        /* CSS cho nút Save và Cancel */
+        button[name="btnSave"],
+        button[name="btnCancel"] {
+            width: 50%;
+            /* Đặt chiều rộng của nút là 50% của form */
+            padding: 10px;
+            /* Khoảng cách bên trong nút */
+            border: none;
+            /* Loại bỏ đường viền */
+            border-radius: 3px;
+            /* Bo tròn góc của nút */
+            cursor: pointer;
+            /* Biểu tượng chuột khi di chuyển qua nút */
+        }
+
+        button[name="btnSave"] {
+            background-color: #4CAF50;
+            /* Màu nền cho nút Save */
+            color: white;
+            /* Màu chữ trắng */
+        }
+
+        button[name="btnCancel"] {
+            background-color: #f44336;
+            /* Màu nền cho nút Cancel */
+            color: white;
+            /* Màu chữ trắng */
+        }
+    </style>
 </head>
+
 <body>
+    <form action="sanPham-update-post.php" method="POST">
+        <h3>Update Sản phẩm</h3>
 
-    <h1>Update Sản phẩm</h1>
+        <input type="hidden" value="<?php echo $row['Id_sanPham']; ?>" name="sid" >ID :<?php echo $row['Id_sanPham']; ?></input> <br><br>
+        
+        <label>Id danh mục: <input type="text" name="id_danhMuc" value="<?php echo $row['id_danhMuc']; ?>"></label><br>
+        <label>Tên sản phẩm: <input type="text" name="ten_sp" value="<?php echo $row['ten_sp']; ?>"></label><br>
+        <label>Anh sản phẩm: <input type="text" name="anhSanPham" value="<?php echo $row['anhSanPham']; ?>"></label><br>
+        <label>Giá: <input type="text" name="giaSanPham" value="<?php echo $row['giaSanPham']; ?>"></label><br>
+        <label>Giới thiêu: <input type="text" name="gioiThieu" value="<?php echo $row['gioiThieu']; ?>"></label><br>
+        <label>Kích cỡ: <input type="text" name="size" value="<?php echo $row['size']; ?>"></label><br>
+        <label>Ghi chú: <input type="text" name="note" value="<?php echo $row['note']; ?>"></label><br>
 
-    <form action="sanPham-update.php" method="POST">
-        <label>id sản phẩm: <input type="text" name="Id_sanPham"></label><br>
-        <label>ten_sp: <input type="text" name="ten_sp"></label><br>
-        <label>giaSanPham: <input type="text" name="giaSanPham"></label><br>
-        <label>size: <input type="text" name="size"></label><br>
-        <label>anhSanPham: <input type="text" name="anhSanPham"></label><br>
-        <label>gioiThieu: <input type="text" name="gioiThieu"></label><br>
-        <label>id_danhMuc: <input type="text" name="id_danhMuc"></label><br>
-        <label>id_giamGia: <input type="text" name="id_giamGia"></label><br>
-        <input type="submit" value="Update Sản phẩm">
+        <button type="submit" name="btnSave">Save Update</button>
+        <button type="submit" name="btnCancel">Cancel</button>
     </form>
 
 </body>
+
 </html>

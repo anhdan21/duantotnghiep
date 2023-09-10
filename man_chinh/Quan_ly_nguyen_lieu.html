@@ -129,28 +129,27 @@
       </section>
 
       <section class="thoigian">
-        <a href="../CoffeOder/nguyenLieu-add.php" class="themDS"><button
-            class="">Thêm Nguyên Liệu</button></a>
+        <a href="../CoffeOder/nguyenLieu-add.php" class="themDS"><button class="">Thêm Nguyên Liệu</button></a>
       </section>
 
       <section>
         <table id="customers">
-         
+
         </table>
       </section>
 
       <script>
         var xhr = new XMLHttpRequest();
-           xhr.open("GET", "../CoffeOder/nguyenLieu-show.php", true);
-           
-           xhr.onreadystatechange = function() {
-               if (xhr.readyState == 4 && xhr.status == 200) {
-                   document.getElementById("customers").innerHTML = xhr.responseText;
-               }
-           };
-           
-           xhr.send();
-       </script>
+        xhr.open("GET", "../CoffeOder/nguyenLieu-show.php", true);
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById("customers").innerHTML = xhr.responseText;
+          }
+        };
+
+        xhr.send();
+      </script>
     </main>
   </div>
 </body>

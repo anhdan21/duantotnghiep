@@ -1,67 +1,53 @@
 <?php
+session_start();
 
-include 'API.php';
+require_once '../CoffeOder/API.php';
 
-// Kiểm tra xem người dùng đã gửi yêu cầu POST hay chưa
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Kiểm tra xem ID sản phẩm cần xóa đã được cung cấp hay chưa
-    if (isset($_POST['id_giamGia'])) {
-        $id_giamGia = $_POST['id_giamGia'];
-
-        // Thực hiện kết nối CSDL
-        try {
-            $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-            $objConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            die('Lỗi kết nối CSDL: ' . $e->getMessage());
-        }
-
-        // Kiểm tra xem sản phẩm có tồn tại trong CSDL hay không
-        $sql_check_product = "SELECT * FROM `giamgia` WHERE `id_giamGia` = :id_giamGia";
-        $stmt_check_product = $objConn->prepare($sql_check_product);
-        $stmt_check_product->bindParam(':id_giamGia', $id_giamGia);
-        $stmt_check_product->execute();
-        $product = $stmt_check_product->fetch(PDO::FETCH_ASSOC);
-
-        if (!$product) {
-            echo "Nguyên liệu không tồn tại.";
-            exit;
-        }
-
-        // Thực hiện truy vấn để xóa sản phẩm khỏi CSDL
-        try {
-            $sql_delete = "DELETE FROM `giamgia` WHERE `id_giamGia` = :id_giamGia";
-            $stmt_delete = $objConn->prepare($sql_delete);
-            $stmt_delete->bindParam(':id_giamGia', $id_giamGia);
-
-            if ($stmt_delete->execute() && $stmt_delete->rowCount() > 0) {
-                echo "Giảm giá đã được xóa thành công.";
-            } else {
-                echo "Không thể xóa giảm giá.";
-            }
-        } catch (PDOException $e) {
-            die('Lỗi xóa giảm giá: ' . $e->getMessage());
-        }
-    } else {
-        echo "Vui lòng nhập ID giảm giá cần xóa.";
-    }
+if (isset($_GET['id_giamGia']) && is_numeric($_GET['id_giamGia'])) {
+    $id = intval($_GET['id_giamGia']);
+} else {
+    header("Location:../man_chinh/Khuyen_mai.html");
 }
 
-?>
+try {
+    $stmt = $conn->prepare("SELECT * FROM giamgia WHERE id_giamGia = $id ");
+    $stmt->execute();
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $row = $stmt->fetch();
+    if (empty($row)) {
+        $_SESSION['err'] = 'Không tồn tại Role cần xóa. Bạn vừa yêu cầu xóa Role ' .  $id;
+        header("Location:../man_chinh/Khuyen_mai.html");
+    }
+} catch (PDOException $e) {
+    echo "<br>Loi truy van CSDL: " . $e->getMessage();
+}
 
+// Thực hiện truy vấn để xóa sản phẩm khỏi CSDL
+if (isset($_POST['id_giamGia'])) {
+    try {
+        $stmt = $conn->prepare("DELETE FROM giamgia WHERE id_giamGia = $id ");
+        $stmt->execute();
+
+        header("Location:../man_chinh/Khuyen_mai.html");
+    } catch (PDOException $e) {
+        echo "<br>Loi truy van CSDL: " . $e->getMessage();
+    }
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Xóa giảm giá</title>
+    <title>Xóa Sản phẩm</title>
+    <link rel="stylesheet" type="text/css" href="../man_chinh/delete.css">
 </head>
 <body>
+    <h3>Xóa nguyên liệu</h3>
+    <form action="" method="POST">
+        Bạn muốn xóa : Id  <?php echo $row['id_giamGia'] ?> với khuyến mãi <?php echo $row['giam'] ?>% <br><br>
 
-    <h1>Xóa giảm giá</h1>
-
-    <form action="sale-delete.php" method="POST">
-        <label>id sản phẩm: <input type="text" name="id_giamGia"></label><br>
-        <input type="submit" value="Xóa Sản phẩm">
+        <button name='Id'>Đồng ý xóa</button>
+        <a href="../man_chinh/Khuyen_mai.html">Không xóa</a>
     </form>
-
 </body>
+
 </html>

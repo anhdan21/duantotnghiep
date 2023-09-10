@@ -30,4 +30,3 @@ try {
 
 // Đóng kết nối database
 //$conn = null;
-?>
