@@ -2,57 +2,81 @@
 
 include 'API.php';
 
+$id = $_GET['id'];
+
+$Cons = mysqli_connect("localhost", "root", "" , "coffeoder");
+$edit_sql= "SELECT * FROM `table` WHERE Id_Table = $id";
+
+$result = mysqli_query($Cons,$edit_sql);
+$row = mysqli_fetch_assoc($result);
+
 // Kiểm tra xem người dùng đã gửi yêu cầu POST hay chưa
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Kiểm tra xem tất cả các tham số cần thiết đã được cung cấp hay chưa
-    if (isset($_POST['ten_danhMuc'])) {
-        $ten_danhMuc = $_POST['ten_danhMuc'];
-       
-       
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//     // Kiểm tra xem tất cả các tham số cần thiết đã được cung cấp hay chưa
+//     if (isset($_POST['username'], $_POST['image'], $_POST['passwd'], $_POST['phone_Number'] , $_POST['chucNang'], $_POST['fullname'])) {
+//         $username = $_POST['username'];
+//         $passwd = $_POST['passwd'];
+//         $phone_Number = $_POST['phone_Number'];
+//         $fullname = $_POST['fullname'];
+//         $chucNang = $_POST['chucNang'];
+//         $image = $_POST['image'];
 
-        // Thực hiện kết nối CSDL
-        try {
-            $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-            $objConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            die('Lỗi kết nối CSDL: ' . $e->getMessage());
-        }
+//         // Thực hiện kết nối CSDL
+//         try {
+//             $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+//             $objConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//         } catch (PDOException $e) {
+//             die('Lỗi kết nối CSDL: ' . $e->getMessage());
+//         }
 
-        try {
-            $sql_str = "INSERT INTO `danhmuc` (`ten_danhMuc`) VALUES (:ten_danhMuc)";
-            $stmt = $objConn->prepare($sql_str);
-            $stmt->bindParam(':ten_danhMuc', $ten_danhMuc);
-           
+//         // Kiểm tra và xử lý giá trị nhập liệu hợp lệ
+//         // (Bạn nên thực hiện kiểm tra hợp lệ và xử lý nhập liệu dựa trên yêu cầu cụ thể của ứng dụng)
+//         // Ví dụ: Xử lý giá trị rỗng, kiểm tra định dạng email, v.v.
 
-            if ($stmt->execute() && $stmt->rowCount() > 0) {
-                echo "Thêm danh mục thành công.";
-                
-            } else {
-                echo "Failed to add user.";
-            }
-        } catch (PDOException $e) {
-            die('Lỗi thêm user vào CSDL: ' . $e->getMessage());
-        }
-    } else {
-        echo "";
-    }
-}
+//         // Thực hiện truy vấn để thêm người dùng vào CSDL
+//         try {
+//             $sql_str = "INSERT INTO `user` (`username`, `image`, `passwd`, `phone_Number`,`chucNang`, `fullname`) VALUES (:username, :image, :passwd, :phone_Number,:chucNang, :fullname)";
+//             $stmt = $objConn->prepare($sql_str);
+//             $stmt->bindParam(':username', $username);
+//             $stmt->bindParam(':image', $image);
+//             $stmt->bindParam(':passwd', $passwd);
+//             $stmt->bindParam(':phone_Number', $phone_Number);
+//             $stmt->bindParam(':chucNang', $chucNang);
+//             $stmt->bindParam(':fullname', $fullname);
+
+//             if ($stmt->execute() && $stmt->rowCount() > 0) {
+//                 echo "User added successfully.";
+//                 header("Location:http://127.0.0.1:5500/duantotnghiep/man_chinh/Tai_khoan_nhan_vien.html");
+//             } else {
+//                 echo "Failed to add user.";
+//             }
+//         } catch (PDOException $e) {
+//             die('Lỗi thêm user vào CSDL: ' . $e->getMessage());
+//         }
+//     } else {
+//         echo "";
+//     }
+// }
 
 ?>
 
-<!-- <!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
 <head>
-    <title>Add Danh Mục</title>
+    <title>Add User</title>
 </head>
 <body>
 
-    <h1>Add Danh Mục</h1>
+    <h1>Add User</h1>
 
-    <form action="danhMuc-add.php" method="POST">
-        <label>Tên danh mục: <input type="text" name="ten_danhMuc"></label><br>
-      
-        <input type="submit" value="Add Tầng">
+    <form action="user-add.php" method="POST">
+        <label>Username: <input type="text" name="username"></label><br>
+        <label>Password: <input type="password" name="passwd"></label><br>
+        <label>Image: <input type="text" name="image"></label><br>
+        <label>phone_Number: <input type="phone_Number" name="phone_Number"></label><br>
+        <label>chucNang: <input type="text" name="chucNang"></label><br>
+        <label>Full Name: <input type="text" name="fullname"></label><br>
+        <input type="submit" value="Add User">
     </form>
 
 </body>
@@ -65,11 +89,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thêm Danh Sách</title>
-    <link rel="stylesheet" href="ThemDanhSach.css">
+    <title>Sửa Thông Tin Bàn</title>
     <script src="https://kit.fontawesome.com/e123c1a84c.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="oclock.js">
 </head>
+
 <style>
     body{
     margin: auto;
@@ -241,7 +264,7 @@ main{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 .thongtinMK label{
     margin-left: -100px;
@@ -266,23 +289,14 @@ main{
     background-color: #2A3F53;
     color: white;
 }
-/**/
+/**************************************************/
 .oclock{
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
 }
-.dulieubtn{
-    border: 1px solid #000000;
-    padding: 10px;
-    color:black;
-    text-decoration: none;
-    margin-left: 20%;
-}
-.dulieubtn:hover{
-    background-color: #2A3F53;
-    color: #ffffff  ;
-}
+/***************************/
+
 </style>
 <body>
     <div class="div-all">
@@ -321,10 +335,12 @@ main{
                         <span class="dropdown_selected"> Administrator</span>
                         <i class="fas fa-sort-down"></i>
                         <ul class="dropdown_list">
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/Doi_mat_khau.html"><li class="dropdown_item">
-                                <span class="dropdown_test"> Đổi Mật Khẩu</span>
-                                <i class="fas fa-key"></i>
-                            </li></a>
+                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/Doi_mat_khau.html">
+                                <li class="dropdown_item">
+                                    <span class="dropdown_test"> Đổi Mật Khẩu</span>
+                                    <i class="fas fa-key"></i>
+                                </li>
+                            </a>
                             <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/dang_nhap.html" type=" color: #000">
                                 <li class="dropdown_item">
                                     <span class="dropdown_test">Đăng Xuất</span>
@@ -338,64 +354,67 @@ main{
                 </section>
             </section>
             <section class="tenQL">
-                <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Do_ban_chay.html"><span>Đồ bán chạy</span></a>
-                <a href=""><span>/ Thêm danh sách</span></a>
-                
+                <a href="#"><span>Sửa Thông Tin Bàn</span></a>
+
             </section>
 
-            <form action="danhMuc-add.php" method="POST">
+            <form action="ban-update.php" method="POST">
             <section class="thongtinMK">
-                <label for="">Tên loại:<input type="text" name="ten_danhMuc" placeholder="Nhập tên loại" required></label> <br>
-                <label for="">Chi tiết:<input type="text" placeholder="Thông tin chi tiết loại" required></label> <br>
+                <input type="hidden" name="sid" value="<?php echo $row['Id_Table'];?>" id="">
+                <label for="">Trạng Thái:<input type="text" name="trangThai" value="<?php echo $row['trangThai']?>"></label> <br>
+                <label for="">Số Bàn:<input type="phone_Number" name="soBan" value="<?php echo $row['soBan']?>"></label> <br>
+                <label for="">Tầng:<input type="text" name="id_tang" value="<?php echo $row['id_tang']?>"> 
+                </label> <br>
                 <div class="oclock">
-                    <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span> 
-                    <span >Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
+                    <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span>
+                    <span>Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
                 </div><br>
-               
-                <button type="submit">Thêm danh sách</button>                
+                <button type="submit">Lưu Thông Tin</button>                
             </section>
         </form>
+
         </main>
     </div>
 </body>
 <script>
     function getCurrentTime() {
-            // Tạo đối tượng Date đại diện cho thời gian hiện tại
-            const now = new Date();
+        // Tạo đối tượng Date đại diện cho thời gian hiện tại
+        const now = new Date();
 
-            // Lấy thông tin về giờ, phút và giây
-            const hour = now.getHours();
-            const minute = now.getMinutes();
-            const second = now.getSeconds();
+        // Lấy thông tin về giờ, phút và giây
+        const hour = now.getHours();
+        const minute = now.getMinutes();
+        const second = now.getSeconds();
 
-            // Định dạng lại chuỗi để hiển thị đẹp hơn (nếu muốn)
-            const formattedTime = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`;
+        // Định dạng lại chuỗi để hiển thị đẹp hơn (nếu muốn)
+        const formattedTime = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`;
 
-            // Hiển thị giờ hiện tại trong thẻ p có id="current-time"
-            document.getElementById('current-time').textContent = formattedTime;
-        }
+        // Hiển thị giờ hiện tại trong thẻ p có id="current-time"
+        document.getElementById('current-time').textContent = formattedTime;
+        
+    }
 
-        // Gọi hàm getCurrentTime mỗi giây một lần để cập nhật giờ hiện tại
-        setInterval(getCurrentTime, 1000);
-        function getCurrentDate() {
-            // Tạo đối tượng Date đại diện cho thời gian hiện tại
-            const now = new Date();
+    // Gọi hàm getCurrentTime mỗi giây một lần để cập nhật giờ hiện tại
+    setInterval(getCurrentTime, 1000);
+    function getCurrentDate() {
+        // Tạo đối tượng Date đại diện cho thời gian hiện tại
+        const now = new Date();
 
-            // Lấy thông tin về ngày, tháng và năm
-            const day = now.getDate();
-            const month = now.getMonth() + 1; // Tháng trong JavaScript bắt đầu từ 0 (0 -> Tháng 1)
-            const year = now.getFullYear();
+        // Lấy thông tin về ngày, tháng và năm
+        const day = now.getDate();
+        const month = now.getMonth() + 1; // Tháng trong JavaScript bắt đầu từ 0 (0 -> Tháng 1)
+        const year = now.getFullYear();
 
-            // Định dạng lại chuỗi để hiển thị đẹp hơn (nếu muốn)
-            const formattedDate = `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
+        // Định dạng lại chuỗi để hiển thị đẹp hơn (nếu muốn)
+        const formattedDate = `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
 
-            // Hiển thị ngày hiện tại trong thẻ p có id="current-date"
-            document.getElementById('current-date').textContent = formattedDate;
-        }
+        // Hiển thị ngày hiện tại trong thẻ p có id="current-date"
+        document.getElementById('current-date').textContent = formattedDate;
+    }
 
-        // Gọi hàm getCurrentDate khi trang được tải và sau đó mỗi ngày một lần để cập nhật ngày hiện tại
-        getCurrentDate();
+    // Gọi hàm getCurrentDate khi trang được tải và sau đó mỗi ngày một lần để cập nhật ngày hiện tại
+    getCurrentDate();
+    
 </script>
 
 </html>
-

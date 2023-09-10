@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute() && $stmt->rowCount() > 0) {
                 echo "User added successfully.";
-                header("Location:http://127.0.0.1:5500/duantotnghiep/man_chinh/Tai_khoan_nhan_vien.html");
+                header("Location: user-get.php");
             } else {
                 echo "Failed to add user.";
             }
@@ -163,9 +163,7 @@ main{
     flex: 5;
 }
 /****************************************************/
-main i{
 
-}
 .canhan {
     background-color: #D9D9D9;
     padding: 25px;
@@ -198,9 +196,6 @@ main i{
 }
 .dropdown:hover .dropdown_list{
     display: block;
-}
-.dropdown_selected {
-   
 }
 .dropdown_list{
     width: 135px;
@@ -359,7 +354,7 @@ main i{
 
             <form action="user-add.php" method="POST">
             <section class="thongtinMK">
-                <label for="">Ảnh NV:<input type="file" name="image"></label> <br>
+                <label for="">Ảnh NV:<input type="text" name="image" placeholder="Link anh"></label> <br>
                 <label for="">Tên NV:<input type="text" name="username" placeholder="Nhập tên nhân viên" required></label> <br>
                 <label for="">Họ NV:<input type="text" name="fullname" placeholder="Nhập họ nhân viên" required></label> <br>
                 <label for="">Password:<input type="text" name="passwd" placeholder="Nhập password" required></label> <br>

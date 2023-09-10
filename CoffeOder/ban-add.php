@@ -33,9 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $row_count = $stmt_check->fetchColumn();
 
-    if ($row_count > 0) {
-        echo "Số bàn đã tồn tại trong CSDL.";
-    } else {
+    
             $sql_str = "INSERT INTO `table` (`id_tang`, `trangThai`, `soBan`) VALUES (:id_tang, :trangThai, :soBan)";
             $stmt = $objConn->prepare($sql_str);
             $stmt->bindParam(':id_tang', $id_tang);
@@ -46,10 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute() && $stmt->rowCount() > 0) {
                 echo "User added successfully.";
+                header("Location: ban-get.php");
+                
             } else {
                 echo "Failed to add user.";
             }
-        }
+        
         } catch (PDOException $e) {
             die('Lỗi thêm user vào CSDL: ' . $e->getMessage());
         }

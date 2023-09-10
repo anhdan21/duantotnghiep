@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute() && $stmt->rowCount() > 0) {
                 echo "Thêm tầng thành công.";
+                header("Location: tang-get.php");
             } else {
                 echo "Failed to add user.";
             }
