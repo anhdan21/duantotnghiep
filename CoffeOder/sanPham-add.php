@@ -5,14 +5,14 @@ include 'API.php';
 // Kiểm tra xem người dùng đã gửi yêu cầu POST hay chưa
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Kiểm tra xem tất cả các tham số cần thiết đã được cung cấp hay chưa
-    if (isset($_POST['ten_sp'], $_POST['giaSanPham'], $_POST['size'], $_POST['anhSanPham'] , $_POST['giaSanPham'], $_POST['gioiThieu'], $_POST['id_danhMuc'], $_POST['id_giamGia'])) {
+    if (isset($_POST['ten_sp'], $_POST['giaSanPham'], $_POST['size'], $_POST['anhSanPham'] , $_POST['giaSanPham'], $_POST['gioiThieu'], $_POST['id_danhMuc'])) {
         $ten_sp = $_POST['ten_sp'];
         $giaSanPham = $_POST['giaSanPham'];
         $size = $_POST['size'];
         $anhSanPham = $_POST['anhSanPham'];
         $gioiThieu = $_POST['gioiThieu'];
         $id_danhMuc = $_POST['id_danhMuc'];
-        $id_giamGia = $_POST['id_giamGia'];
+    
 
         // Thực hiện kết nối CSDL
         try {
@@ -28,14 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Thực hiện truy vấn để thêm người dùng vào CSDL
         try {
-            $sql_str = "INSERT INTO `sanpham` (`id_danhMuc`,`giaSanPham`,`gioiThieu`,`anhSanPham`,   `id_giamGia`,`ten_sp`,  `size`) 
-                                        VALUES ( :id_danhMuc, :giaSanPham, :gioiThieu,:anhSanPham,:id_giamGia,:ten_sp, :size)";
+            $sql_str = "INSERT INTO `sanpham` (`id_danhMuc`,`giaSanPham`,`gioiThieu`,`anhSanPham`, `ten_sp`,  `size`) 
+                                        VALUES ( :id_danhMuc, :giaSanPham, :gioiThieu,:anhSanPham,:ten_sp, :size)";
             $stmt = $objConn->prepare($sql_str);
             $stmt->bindParam(':id_danhMuc', $id_danhMuc);
             $stmt->bindParam(':giaSanPham', $giaSanPham);
             $stmt->bindParam(':gioiThieu', $gioiThieu);
             $stmt->bindParam(':anhSanPham', $anhSanPham);
-            $stmt->bindParam(':id_giamGia', $id_giamGia);
             $stmt->bindParam(':ten_sp', $ten_sp);
             $stmt->bindParam(':size', $size);
 
@@ -159,7 +158,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </input>-->
             </label> 
                     <br>
-                    <label for="">Giảm giá:<input type="text" name="id_giamGia" placeholder="Giảm giá" required></label> <br>
                     <label for="">Giới thiệu:<input type="text" name="gioiThieu"
                             placeholder="Thông tin sản phẩm" required></label> <br>
                     <div class="oclock">

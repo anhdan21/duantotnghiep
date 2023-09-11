@@ -5,17 +5,17 @@ include 'API.php';
 $userName = $_POST['userName'];
 $image = $_POST['image'];
 $phone_Number = $_POST['phone_Number'];
-$chucNang = $_POST['chucNang'];
 $fullName = $_POST['fullName'];
-$passwd = $_POST['passwd'];
+$chucNang = $_POST['chucNang'];
 $id = $_POST['sid'];
 
 $Cons = mysqli_connect("localhost", "root", "" , "coffeoder");
  
-$update = "UPDATE user SET userName= '$userName', image= '$image',phone_Number=$phone_Number ,passwd= '$passwd',fullName='$fullName' WHERE Id_User= $id";
+$update = "UPDATE user SET userName='$userName',image = '$image',phone_Number ='$phone_Number', fullName = '$fullName',chucNang = '$chucNang' WHERE Id_User= $id";
 // echo $update;exit;
 if(mysqli_query($Cons,$update)){
     header("Location: user-get.php");
+    // echo "hello";
 }   
 // Kiểm tra xem người dùng đã gửi yêu cầu POST hay chưa
 // if ($_SERVER["REQUEST_METHOD"] == "POST") {

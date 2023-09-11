@@ -25,11 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Thực hiện truy vấn để thêm người dùng vào CSDL
         try {
-            $sql_str = "INSERT INTO `giamgia` (`time_Start`, `time_End`, `giam`) VALUES (:time_Start, :time_End, :giam)";
+            $sql_str = "INSERT INTO `giamgia` (`time_Start`, `time_End`) VALUES (:time_Start, :time_End)";
             $stmt = $objConn->prepare($sql_str);
             $stmt->bindParam(':time_Start', $time_Start);
             $stmt->bindParam(':time_End', $time_End);
-            $stmt->bindParam(':giam', $giam);
           
 
             if ($stmt->execute() && $stmt->rowCount() > 0) {
@@ -333,7 +332,6 @@ main i{
             <section class="thongtinMK">
                 <label for="">Time Start:<input type="date" name="time_Start" required></label> <br>
                 <label for="">Time End:<input type="date" name="time_End"required></label> <br>
-                <label for="">Giảm:<input type="text" name="giam" placeholder="Phần trăm giảm" required></label> <br>
                 <div class="oclock">
                     <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span>
                     <span>Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>

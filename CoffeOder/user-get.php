@@ -357,7 +357,7 @@
                             }elseif($r['chucNang'] == 3){
                                 echo "Pha Chế";
                             }
-                               
+                            //    echo $r['chucNang'];
                              ?></td>
                             
                             <td><?php echo$r['phone_Number']?></td>
