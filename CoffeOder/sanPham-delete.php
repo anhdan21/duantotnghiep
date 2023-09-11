@@ -9,6 +9,20 @@ if (isset($_GET['Id_sanPham']) && is_numeric($_GET['Id_sanPham'])) {
     header("Location:../man_chinh/Quan_ly_do_uong.html");
 }
 
+$checkQuery = "SELECT COUNT(*) FROM hoadon_item WHERE Id_sanPham = :idSanPham"; 
+$stmt = $conn->prepare($checkQuery);
+$stmt->bindParam(':idSanPham', $id, PDO::PARAM_INT);
+$stmt->execute();
+
+$count = $stmt->fetchColumn();
+
+if ($count > 0) {
+    echo "<script>alert('Sản phẩm này đang được sử dụng và không thể xóa.')</script>";
+    echo "<script>window.location.href = '../man_chinh/Quan_ly_do_uong.html';</script>";
+    exit; 
+}
+
+
 try {
     $stmt = $conn->prepare("SELECT * FROM sanpham WHERE Id_sanPham = $id ");
     $stmt->execute();
@@ -16,13 +30,12 @@ try {
     $row = $stmt->fetch();
     if (empty($row)) {
         $_SESSION['err'] = 'Không tồn tại Role cần xóa. Bạn vừa yêu cầu xóa Role ' .  $id;
-        header("Location:../man_chinh/Quan_ly_nguyen_lieu.html");
+        header("Location:../man_chinh/Quan_ly_do_uong.html");
     }
 } catch (PDOException $e) {
     echo "<br>Loi truy van CSDL: " . $e->getMessage();
 }
 
-// Thực hiện truy vấn để xóa sản phẩm khỏi CSDL
 if (isset($_POST['Id'])) {
     try {
         $stmt = $conn->prepare("DELETE FROM sanpham WHERE Id_sanPham = $id ");
@@ -33,6 +46,7 @@ if (isset($_POST['Id'])) {
         echo "<br>Loi truy van CSDL: " . $e->getMessage();
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html>
