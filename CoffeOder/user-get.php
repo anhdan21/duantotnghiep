@@ -13,7 +13,7 @@
         #customers {
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
-            width: 80%;
+            width: 95%;
             margin: 20px;
         }
 
@@ -347,7 +347,18 @@
                     <tr>      
                     <td><?php echo $r['fullName']; ?></td>
                            <td ><img src="<?php echo $r['image']; ?>" alt="Loading" style="width: 100px;height: 100px;"> </td>
-                            <td><?php echo $r['chucNang']; ?></td>
+                            <td><?php
+                            if( $r['chucNang'] == 0){
+                                echo "Admin";
+                            }elseif($r['chucNang'] == 1){
+                                echo "Order";
+                            }elseif($r['chucNang'] == 2){
+                                echo "Thu Ngân";
+                            }elseif($r['chucNang'] == 3){
+                                echo "Pha Chế";
+                            }
+                               
+                             ?></td>
                             
                             <td><?php echo$r['phone_Number']?></td>
                             <td> <div  class="sua" >

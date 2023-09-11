@@ -309,14 +309,19 @@ main{
                         
                         //duyet qua result va in ra
                         while($r = mysqli_fetch_assoc($resultt)){
-                            
+                           
                             ?>
                            
                            <!-- echo  . " - ".$r['fullName']. " - ".$r['phone_Number'] ." - " .$r['chucNang'] . " - "; -->
                     <tr>      
-                            <td><?php echo $r['id_tang']; ?></td>
-                            <td ><?php echo $r['trangThai']; ?> </td>
-                            <td><?php echo $r['soBan']; ?></td>
+                            <td>Tầng <?php echo $r['id_tang']; ?></td>
+                            <td ><?php 
+                             if($r['trangThai'] == 0){    
+                                echo "Chưa hoạt động";
+                            }elseif($r['trangThai'] == 1){
+                                echo "Đang hoạt động";
+                            } ?> </td>
+                            <td>Số bàn <?php echo $r['soBan']; ?></td>
                             <td> <div  class="sua" >
                             
                                 <a  style="margin-right: 18px;" href="ban-edit.php?id=<?php echo $r['Id_Table'];?>">Sửa</a>
