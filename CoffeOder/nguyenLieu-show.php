@@ -8,19 +8,24 @@ require_once '../CoffeOder/API.php';
 
 try {
     $stmt = $conn->prepare("SELECT * FROM nguyenlieu ORDER BY Id_nguyenLieu ASC");
+    $stmt = $conn->prepare("SELECT nguyenlieu.*, user.fullName AS nameUser 
+    FROM nguyenlieu
+    INNER JOIN user ON nguyenlieu.id_User = user.id_User
+    ORDER BY nguyenlieu.id_User ASC");
     $stmt->execute();
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     echo "<table border='1'>
-            <tr> <th>ID</th> <th>Quantity</th> <th>Price</th> <th>id user</th> <th>Name</th> <th>Setup</th></tr> ";
+            <tr> <th>Tên nguyên liệu</th> <th>Ảnh</> <th>Số lượng</th> <th>Giá</th> <th>Người nhập</th> <th>Kiểu dạng</th> <th>Thao tác</th></tr> ";
     foreach ($stmt->fetchAll() as $row) {
         $link_delete = '../CoffeOder/nguyenLieu-delete.php?Id_nguyenLieu=' . $row['Id_nguyenLieu'];
         $link_edit = '../CoffeOder/nguyenLieu-update.php?Id_nguyenLieu=' . $row['Id_nguyenLieu'];
         echo "<tr>
-                        <td> {$row['Id_nguyenLieu']} </td>
+                        <td> {$row['ten_nguyenLieu']} </td>
+                        <td><img src='{$row['img_nguyenLieu']}' width='200' height='150' /></td>
                         <td> {$row['soLuong']}  </td>
                         <td> {$row['price']}   </td>
-                        <td> {$row['id_User']}   </td>
-                        <td> {$row['ten_nguyenLieu']} </td>
+                        <td> {$row['nameUser']}   </td>
+                        <td> {$row['kieuNguyenLieu']}   </td>
                         <td>
                         <a href='$link_edit'>Edit</a>
                         |
@@ -33,4 +38,3 @@ try {
 } catch (PDOException $e) {
     echo "<br>Loi truy van CSDL: " . $e->getMessage();
 }
-?>

@@ -28,27 +28,27 @@ if (isset($_POST['btnSave'])) {
     $price = $_POST['price'];
     $id_User = $_POST['id_User'];
     $ten_nguyenLieu = $_POST['ten_nguyenLieu'];
+    $img_nguyenLieu = $_POST['img_nguyenLieu'];
+    $kieuNguyenLieu = $_POST['kieuNguyenLieu'];
     // kiểm tra
-    if (empty($soLuong) || empty($price) || empty($id_User) || empty($ten_nguyenLieu)) {
+    if (empty($soLuong) || empty($price) || empty($id_User) || empty($ten_nguyenLieu)  || empty($img_nguyenLieu) || empty($kieuNguyenLieu) ) {
         $err[] = "Bạn chưa nhập đủ nội dung";
     }
 
     if (empty($err)) {
 
         try {
-            $stmt = $conn->prepare("UPDATE nguyenlieu SET soLuong=:post_soLuong ,price=:post_price , id_User=:post_id_User , ten_nguyenLieu=:post_ten_nguyenLieu  WHERE Id_nguyenLieu=:get_id");
+            $stmt = $conn->prepare("UPDATE nguyenlieu SET soLuong=:post_soLuong ,price=:post_price , id_User=:post_id_User , ten_nguyenLieu=:post_ten_nguyenLieu  , img_nguyenLieu=:post_img_nguyenLieu , kieuNguyenLieu=:post_kieuNguyenLieu WHERE Id_nguyenLieu=:get_id");
             // gắn dữ liệu vào tham số
             $stmt->bindParam(":post_soLuong", $soLuong);
             $stmt->bindParam(":post_price", $price);
             $stmt->bindParam(":post_id_User", $id_User);
             $stmt->bindParam(":post_ten_nguyenLieu",  $ten_nguyenLieu);
-
+            $stmt->bindParam(":post_img_nguyenLieu",  $img_nguyenLieu);
+            $stmt->bindParam(":post_kieuNguyenLieu",  $kieuNguyenLieu);
             $stmt->bindParam(":get_id", $id);
             // thực thi câu lệnh
             $stmt->execute();
-
-            $_SESSION['err'] = "Cập nhật thành công!";
-
             header("Location:../man_chinh/Quan_ly_nguyen_lieu.html");
         } catch (PDOException $e) {
             $err[] = "Loi truy van CSDL: " . $e->getMessage();
@@ -122,17 +122,23 @@ button[name="btnCancel"] {
         <form action="" method="post">
             <span>ID :<?php echo $row['Id_nguyenLieu']; ?></span>
 
-            <label for="soLuong">So luong</label>
+            <label for="id_User">Id người nhập</label>
+            <input type="text" name="id_User" value="<?php echo $row['id_User']; ?>">
+            
+            <label for="ten_nguyenLieu">Tên nguyên liệu</label>
+            <input type="text" name="ten_nguyenLieu" value="<?php echo $row['ten_nguyenLieu']; ?>">
+
+            <label for="soLuong">Số lượng</label>
             <input type="text" name="soLuong" value="<?php echo $row['soLuong']; ?>">
 
-            <label for="price">Price</label>
+            <label for="price">Giá</label>
             <input type="text" name="price" value="<?php echo $row['price']; ?>">
 
-            <label for="id_User">Id User</label>
-            <input type="text" name="id_User" value="<?php echo $row['id_User']; ?>">
+            <label for="img_nguyenLieu">Ảnh nguyên liệu</label>
+            <input type="text" name="img_nguyenLieu" value="<?php echo $row['img_nguyenLieu']; ?>">
 
-            <label for="ten_nguyenLieu">Ten nguyen lieu</label>
-            <input type="text" name="ten_nguyenLieu" value="<?php echo $row['ten_nguyenLieu']; ?>">
+            <label for="ten_nguyenLieu">Kiểu dạng</label>
+            <input type="text" name="kieuNguyenLieu" value="<?php echo $row['kieuNguyenLieu']; ?>">
 
             <button name="btnSave">Save Update</button>
             <button name="btnCancel">Cancel</button>

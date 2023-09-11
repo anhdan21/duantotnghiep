@@ -107,8 +107,8 @@ $row = mysqli_fetch_assoc($result);
         <label>Anh sản phẩm: <input type="text" name="anhSanPham" value="<?php echo $row['anhSanPham']; ?>"></label><br>
         <label>Giá: <input type="text" name="giaSanPham" value="<?php echo $row['giaSanPham']; ?>"></label><br>
         <label>Giới thiêu: <input type="text" name="gioiThieu" value="<?php echo $row['gioiThieu']; ?>"></label><br>
+        <label>Mã giảm: <input type="text" name="id_giamGia" value="<?php echo $row['id_giamGia']; ?>"></label><br>
         <label>Kích cỡ: <input type="text" name="size" value="<?php echo $row['size']; ?>"></label><br>
-        <label>Ghi chú: <input type="text" name="note" value="<?php echo $row['note']; ?>"></label><br>
 
         <button type="submit" name="btnSave">Save Update</button>
         <button type="submit" name="btnCancel">Cancel</button>
