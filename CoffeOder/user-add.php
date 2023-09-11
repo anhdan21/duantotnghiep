@@ -313,7 +313,7 @@ main{
           <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
           <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
           <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
-          <a href=""><li>Thống kê</li></a>
+          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoaDonct-get.php"><li>Hóa đơn</li></a>
           <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
       </ul>
             </section>

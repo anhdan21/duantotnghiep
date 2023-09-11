@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thống kê</title>
+    <title>Hóa Đơn</title>
     <link rel="stylesheet" href="Thong_ke.css">
     <script src="https://kit.fontawesome.com/e123c1a84c.js" crossorigin="anonymous"></script>
 </head>
@@ -281,7 +281,7 @@ main i{
           <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
           <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
           <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
-          <a href=""><li>Hóa đơn</li></a>
+          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoaDonct-get.php"><li>Hóa đơn</li></a>
           <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
       </ul>
             </section>

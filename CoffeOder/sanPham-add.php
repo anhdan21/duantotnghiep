@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
           <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
           <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
-          <a href=""><li>Thống kê</li></a>
+          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoaDonct-get.php"><li>Thống kê</li></a>
           <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
       </ul>
             </section>
@@ -135,7 +135,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="">Tên SP:<input type="text" name="ten_sp" placeholder="Nhập tên sản phẩm" required></label> <br>
                     <label for="">Giá SP:<input type="text" name="giaSanPham" placeholder="Nhập giá loại" required></label> <br>
                     <label for="">Size:<input type="text" name="size" placeholder="Nhạp size sản phẩm" required></label> <br>
-                    <label for="">Thể loại:<input type="text" name="id_danhMuc" placeholder="Nhập tên loại" required></label>
+                    <label for="">Thể loại:<input type="text" name="id_danhMuc" placeholder="Nhập tên loại" required>
+                            <!-- <div class="select-menu">
+                                <div class="select-btn">
+                                    <span class="sBtn-text">Thống Kê Tất Cả</span>
+                                    <i class="fas fa-sort-down"></i>
+                                </div>
+                        <ul class="options">
+                            <li class="option">
+                                <span class="option-text">Theo ngày</span>
+                            </li>
+                            <li class="option">
+                                <span class="option-text">Theo Tháng</span>
+                            </li>
+                            <li class="option">
+                                <span class="option-text">Theo Năm</span>
+                            </li>
+                        </ul>
+
+
+                    </div>
+                
+                </input>-->
+            </label> 
                     <br>
                     <label for="">Giảm giá:<input type="text" name="id_giamGia" placeholder="Giảm giá" required></label> <br>
                     <label for="">Giới thiệu:<input type="text" name="gioiThieu"
@@ -395,6 +417,47 @@ main i{
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
+}
+.select-menu{
+   width: 160px;
+   margin-top: -40px;
+   margin-left: 20px;
+}
+ .select-btn{
+    /* display: flex; */
+    background: #fff;
+    font-size: 18px;
+    align-items: center;
+    cursor: pointer;
+    /* justify-content: space-between; */
+}
+ .options{
+    position: relative;
+    width: 150px;
+    padding: 0;
+    border-radius: 8px;
+    display: none;
+    border: 1px solid #000;
+}
+.select-menu.active .options{
+   display: block;
+}
+ .option{
+    list-style-type: none;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 3px;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.2s linear;
+}
+.option:hover{
+    background-color: #2A3F53;
+    color: #fff;
+}
+.option-text{
+    font-size: 18px;
+    
 }
 </style>
 
