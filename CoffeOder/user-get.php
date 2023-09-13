@@ -258,13 +258,13 @@
                 
                 <section class="menu">
                 <ul>
-                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
-                        <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
-                        <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
-                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
-                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
-                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoaDonct-get.php"><li>Hóa đơn</li></a>
-                        <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
+                        <a href="../CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
+                        <a href="../man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
+                        <a href="../man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
+                        <a href="../CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
+                        <a href="../CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
+                        <a href="../CoffeOder/hoaDonct-get.php"><li>Hóa đơn</li></a>
+                        <a href="../man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
                     </ul>
                 </section>
             </nav>
@@ -299,7 +299,7 @@
             </section>
 
             <section class="thoigian">
-                <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-add.php" class="themDS"><button class="">Thêm Nhân Viên</button></a>
+                <a href="../CoffeOder/user-add.php" class="themDS"><button class="">Thêm Nhân Viên</button></a>
             </section>
 
             <section>

@@ -12,7 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Id_danhMuc = $_POST['Id_danhMuc'];
         $ten_danhMuc = $_POST['ten_danhMuc'];
 
-
         // Thực hiện kết nối CSDL
         try {
             $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
@@ -51,7 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Vui lòng điền đầy đủ thông tin cần cập nhật.";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -60,13 +58,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Update thông tin danh mục</title>
 </head>
 <body>
-
     <h1>Update thông tin danh mục</h1>
 
     <form action="danhMuc-update.php" method="POST">
         <label>Id_danhMuc: <input type="text" name="Id_danhMuc"></label><br>
         <label>ten_danhMuc: <input type="text" name="ten_danhMuc"></label><br>
-
 
         <input type="submit" value="Update thông tin danh mục">
     </form>

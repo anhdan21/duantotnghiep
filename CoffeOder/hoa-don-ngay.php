@@ -249,24 +249,29 @@
         width: 130px;
         margin-top: -14px;
     }
-    .themthang{
+
+    .themthang {
         position: absolute;
         right: 180px;
         width: 130px;
         margin-top: -14px;
     }
+
     .themthang button {
-       padding:5px;
+        padding: 5px;
     }
-    .themhoadon{
+
+    .themhoadon {
         position: absolute;
         right: 270px;
         width: 130px;
         margin-top: -14px;
     }
+
     .themhoadon button {
-       padding:5px;
+        padding: 5px;
     }
+
     .themDS button {
         padding: 5px;
     }
@@ -338,25 +343,25 @@
 
             <section class="menu">
                 <ul>
-                    <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/danhMuc-get.php">
+                    <a href="../CoffeOder/danhMuc-get.php">
                         <li><i class="fas fa-caravan"></i>Đồ bán chạy</li>
                     </a>
-                    <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_do_uong.html">
+                    <a href="../man_chinh/Quan_ly_do_uong.html">
                         <li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li>
                     </a>
-                    <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html">
+                    <a href="../man_chinh/Quan_ly_nguyen_lieu.html">
                         <li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li>
                     </a>
-                    <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/ban-get.php">
+                    <a href="../CoffeOder/ban-get.php">
                         <li>Quản lý bàn </li>
                     </a>
-                    <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-get.php">
+                    <a href="../CoffeOder/user-get.php">
                         <li>Tài khoản nhân viên</li>
                     </a>
-                    <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoaDonct-get.php">
+                    <a href="../CoffeOder/hoaDonct-get.php">
                         <li>Hóa đơn</li>
                     </a>
-                    <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Khuyen_mai.html">
+                    <a href="../man_chinh/Khuyen_mai.html">
                         <li>Khuyến mại</li>
                     </a>
                 </ul>
@@ -394,15 +399,15 @@
             </section>
 
             <section class="thoigian">
-                <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoa-don-ngay.php" class="themDS"><button class="">Tổng Đơn Ngày</button></a>
-                <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoa-don-thang.php" class="themthang"><button class="">Tổng Đơn Tháng</button></a>
-                <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoaDonct-get.php" class="themhoadon"><button class="">Hóa Đơn </button></a>
+                <a href="../CoffeOder/hoa-don-ngay.php" class="themDS"><button class="">Tổng Đơn Ngày</button></a>
+                <a href="../CoffeOder/hoa-don-thang.php" class="themthang"><button class="">Tổng Đơn Tháng</button></a>
+                <a href="../CoffeOder/hoaDonct-get.php" class="themhoadon"><button class="">Hóa Đơn </button></a>
 
             </section>
             <table id="customers">
                 <tr>
                     <th style="width: auto;">Ngày</th>
-                
+
                     <th style="width: auto;">Tổng tiền</th>
 
                 </tr>
@@ -436,69 +441,28 @@
                         // echo "<td>" . $date . "</td>";
                         // echo "<td>" . $total . "</td>";
                         // echo "</tr>";
-                        ?>
+                ?>
                         <tr>
                             <td>
                                 <?php echo $date ?>
                             </td>
-                           
+
                             <td>
                                 <?php echo $total ?>
                             </td>
 
                         </tr>
-
-                        <?php
+                <?php
                     }
                     echo "</table>";
                 } else {
                     echo "Không có dữ liệu hóa đơn.";
                 }
-
-                        
-
-                   
                 ?>
-
             </table>
             <div>
                 <?php
-               
 
-
-
-
-                // // Tạo một mảng để lưu trữ tổng hóa đơn theo tháng
-                // $totalByMonth = array();
-
-                // if ($result->num_rows > 0) {
-                //     while ($roww = $result->fetch_assoc()) {
-                //         $orderDate = $roww["time_Data"];
-                //         $totalAmount = $roww["tongTien"];
-
-                //         // Lấy tháng từ ngày đặt hàng
-                //         $month = date("Y-m", strtotime($orderDate));
-
-                //         // Tính tổng cho mỗi tháng
-                //         if (!isset($totalByMonth[$month])) {
-                //             $totalByMonth[$month] = 0;
-                //         }
-                //         $totalByMonth[$month] += $totalAmount;
-                //     }
-
-                //     // Hiển thị tổng hóa đơn theo tháng
-                //     echo "<table>";
-                //     echo "<tr><th>Tháng</th><th>Tổng Hóa Đơn</th></tr>";
-                //     foreach ($totalByMonth as $month => $totall) {
-                //         echo "<tr>";
-                //         echo "<td>" . $month . "</td>";
-                //         echo "<td>" . $totall . "</td>";
-                //         echo "</tr>";
-                //     }
-                //     echo "</table>";
-                // } else {
-                //     echo "Không có dữ liệu hóa đơn.";
-                // }
                 ?>
                 <p>
                     <?php ?>

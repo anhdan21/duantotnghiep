@@ -10,8 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $trangThai = $_POST['trangThai'];
         $soBan = $_POST['soBan'];
   
-     
-
         // Thực hiện kết nối CSDL
         try {
             $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
@@ -19,10 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } catch (PDOException $e) {
             die('Lỗi kết nối CSDL: ' . $e->getMessage());
         }
-
-        // Kiểm tra và xử lý giá trị nhập liệu hợp lệ
-        // (Bạn nên thực hiện kiểm tra hợp lệ và xử lý nhập liệu dựa trên yêu cầu cụ thể của ứng dụng)
-        // Ví dụ: Xử lý giá trị rỗng, kiểm tra định dạng email, v.v.
 
         // Thực hiện truy vấn để thêm người dùng vào CSDL
         try {
@@ -33,14 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $row_count = $stmt_check->fetchColumn();
 
-    
             $sql_str = "INSERT INTO `table` (`id_tang`, `trangThai`, `soBan`) VALUES (:id_tang, :trangThai, :soBan)";
             $stmt = $objConn->prepare($sql_str);
             $stmt->bindParam(':id_tang', $id_tang);
             $stmt->bindParam(':trangThai', $trangThai);
             $stmt->bindParam(':soBan', $soBan);
-
-          
 
             if ($stmt->execute() && $stmt->rowCount() > 0) {
                 echo "User added successfully.";
@@ -59,26 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Add Bàn</title>
-</head>
-<body>
-
-    <h1>Add bàn</h1>
-
-    <form action="ban-add.php" method="POST">
-        <label>id_tang: <input type="text" name="id_tang"></label><br>
-        <label>trangThai: <input type="text" name="trangThai"></label><br>
-        <label>soBan: <input type="text" name="soBan"></label><br>
-        <input type="submit" value="Add Bàn">
-    </form>
-
-</body>
-</html> -->
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -312,13 +283,13 @@ main{
 
             <section class="menu">
             <ul>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoaDonct-get.php"><li>Hóa đơn</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
+          <a href="../CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
+          <a href="../man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
+          <a href="../man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
+          <a href="../CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
+          <a href="../CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
+          <a href="../CoffeOder/hoaDonct-get.php"><li>Hóa đơn</li></a>
+          <a href="../man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
       </ul>
             </section>
         </nav>

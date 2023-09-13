@@ -8,9 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['ten_danhMuc'])) {
         $ten_danhMuc = $_POST['ten_danhMuc'];
        
-       
 
-        // Thực hiện kết nối CSDL
         try {
             $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
             $objConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -37,26 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "";
     }
 }
-
 ?>
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Add Danh Mục</title>
-</head>
-<body>
-
-    <h1>Add Danh Mục</h1>
-
-    <form action="danhMuc-add.php" method="POST">
-        <label>Tên danh mục: <input type="text" name="ten_danhMuc"></label><br>
-      
-        <input type="submit" value="Add Tầng">
-    </form>
-
-</body>
-</html> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -301,13 +280,13 @@ main{
 
             <section class="menu">
             <ul>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoaDonct-get.php"><li>Hóa đơn</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
+          <a href="../CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
+          <a href="../man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
+          <a href="../man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
+          <a href="../CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
+          <a href="../CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
+          <a href="../CoffeOder/hoaDonct-get.php"><li>Hóa đơn</li></a>
+          <a href="../man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
       </ul>
             </section>
         </nav>

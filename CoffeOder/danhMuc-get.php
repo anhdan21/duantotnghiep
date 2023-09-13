@@ -1,33 +1,4 @@
 <?php
-// // Thông tin kết nối database
-// $db_host = "localhost";
-// $db_name = "coffeoder";
-// $db_user = "root";
-// $db_pass = "";
-
-// try {
-//     // Kết nối tới database sử dụng PDO
-//     $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-    
-//     // Truy vấn dữ liệu từ bảng employee_data
-//     $stmt = $conn->query("SELECT * FROM danhmuc");
-
-//     // Lấy tất cả các bản ghi và chuyển thành mảng kết quả JSON
-//     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-//     // Thiết lập header để trả về JSON
-//     header('Content-Type: application/json');
-        
-//     // Hiển thị kết quả JSON hoặc trả về mã lỗi HTTP 404 Not Found nếu không có bản ghi nào được tìm thấy
-//     echo ($stmt->rowCount() > 0) ? json_encode($result) : http_response_code(404);
-// } catch(PDOException $e) {
-//     // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
-//     http_response_code(500);
-//     echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
-// }
-
-// // Đóng kết nối database
-// $conn = null;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +33,7 @@
 
     .div-all {
         display: flex;
-        
+
     }
 
     nav {
@@ -80,7 +51,7 @@
         margin-left: 60px;
         margin-bottom: 40px;
         text-align: center;
-        
+
     }
 
     .img {
@@ -166,7 +137,7 @@
 
     .canhan .dropdown {
         position: absolute;
-right: 60px;
+        right: 60px;
         margin-top: -20px;
     }
 
@@ -244,9 +215,9 @@ right: 60px;
         padding: 5px;
     }
 
-    
-        
-       
+
+
+
 
     /* ===================================================== */
     #container {
@@ -272,7 +243,8 @@ right: 60px;
         padding: 10px;
 
     }
-/* 
+
+    /* 
 
     #slider-container #slider {
         display: flex;
@@ -308,21 +280,35 @@ right: 60px;
                     <section>
                         <span>Xin chào,</span> <br>
                         <span>Administrator</span>
-</section>
+                    </section>
                 </section>
                 <span>GENERAL</span>
             </section>
 
             <section class="menu">
-            <ul>
-                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
-                        <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
-                        <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
-                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
-                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
-                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoaDonct-get.php"><li>Hóa đơn</li></a>
-                        <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
-                    </ul>
+                <ul>
+                    <a href="../CoffeOder/danhMuc-get.php">
+                        <li><i class="fas fa-caravan"></i>Đồ bán chạy</li>
+                    </a>
+                    <a href="../man_chinh/Quan_ly_do_uong.html">
+                        <li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li>
+                    </a>
+                    <a href="../man_chinh/Quan_ly_nguyen_lieu.html">
+                        <li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li>
+                    </a>
+                    <a href="../CoffeOder/ban-get.php">
+                        <li>Quản lý bàn </li>
+                    </a>
+                    <a href="../CoffeOder/user-get.php">
+                        <li>Tài khoản nhân viên</li>
+                    </a>
+                    <a href="../CoffeOder/hoaDonct-get.php">
+                        <li>Hóa đơn</li>
+                    </a>
+                    <a href="../man_chinh/Khuyen_mai.html">
+                        <li>Khuyến mại</li>
+                    </a>
+                </ul>
             </section>
         </nav>
         <main>
@@ -349,7 +335,7 @@ right: 60px;
                             </a>
 
                         </ul>
-</section>
+                    </section>
 
                 </section>
             </section>
@@ -358,7 +344,7 @@ right: 60px;
             </section>
             <section class="thoigian">
                 <input type="date"> -- <input type="date" name="" id="">
-                <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/danhMuc-add.php" class="themDS"><button class="">Thêm danh sách</button></a>
+                <a href="../CoffeOder/danhMuc-add.php" class="themDS"><button class="">Thêm danh sách</button></a>
             </section>
 
             <?php
@@ -367,20 +353,6 @@ right: 60px;
             $conn = mysqli_connect("localhost", "root", "", "coffeoder");
 
             try {
-                // // Kết nối tới database sử dụng PDO
-                // $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-
-                // // Truy vấn dữ liệu từ bảng employee_data
-                // $stmt = $conn->query("SELECT * FROM sanpham");
-
-                // // Lấy tất cả các bản ghi và chuyển thành mảng kết quả JSON
-                // $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                // // Thiết lập header để trả về JSON
-                // header('Content-Type: application/json');
-
-                // // Hiển thị kết quả JSON hoặc trả về mã lỗi HTTP 404 Not Found nếu không có bản ghi nào được tìm thấy
-                // echo ($stmt->rowCount() > 0) ? json_encode($result) : http_response_code(404);
 
                 $set_danh_muc = "SELECT * FROM danhmuc order by ten_danhMuc";
                 $result = mysqli_query($conn, $set_danh_muc);
@@ -401,20 +373,6 @@ right: 60px;
                                         $conn = mysqli_connect("localhost", "root", "", "coffeoder");
 
                                         try {
-                                            // // Kết nối tới database sử dụng PDO
-                                            // $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-
-                                            // // Truy vấn dữ liệu từ bảng employee_data
-                                            // $stmt = $conn->query("SELECT * FROM sanpham");
-// // Lấy tất cả các bản ghi và chuyển thành mảng kết quả JSON
-                                            // $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                                            // // Thiết lập header để trả về JSON
-                                            // header('Content-Type: application/json');
-
-                                            // // Hiển thị kết quả JSON hoặc trả về mã lỗi HTTP 404 Not Found nếu không có bản ghi nào được tìm thấy
-                                            // echo ($stmt->rowCount() > 0) ? json_encode($result) : http_response_code(404);
-
                                             $set_san_pham = "SELECT * FROM sanpham order by anhSanPham,giaSanPham,ten_sp";
                                             $results = mysqli_query($conn, $set_san_pham);
 
@@ -453,38 +411,15 @@ right: 60px;
             } catch (PDOException $e) {
                 // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
                 http_response_code(500);
-echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
+                echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
             }
 
-            // Đóng kết nối database
             $conn = null;
                 ?>
-
-                <!-- <h3 style="margin-left: 20px;">Đồ uống</h3> -->
-
-            </div>
-
-            <!-- 
-                <h2 style="margin-left: 20px; margin-top: 20px;">Đồ ăn</h2>
-
-
-                <div id="container">
-                    <div id="slider-container">
-                        <span onclick="Right2()" class="btn btn2"></span>
-
-                        <span onclick="Left2()" class="btn btn2"></span>
-                    </div>
-                </div> -->
-
-
-
-        </main>
+    </div>
+    </main>
 
     </div>
-
 </body>
 
-
-
 </html>
-
