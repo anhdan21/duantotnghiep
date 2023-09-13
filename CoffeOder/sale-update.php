@@ -85,7 +85,7 @@ if (isset($_POST['btnSave'])) {
         /* Định dạng input */
         input[type="date"],
         input[type="text"] {
-            width: 100%;
+            width: 80%;
             /* Độ rộng 100% của input */
             padding: 10px;
             /* Khoảng cách bên trong input */
@@ -133,12 +133,12 @@ if (isset($_POST['btnSave'])) {
 
 <body>
 
-    <h1>Update thông tin bàn</h1>
+    <h1>Update thông tin khuyễn mãi</h1>
 
     <form action="" method="POST">
         <label>Thời gian bắt đầu: <input type="date" name="time_Start" value="<?php echo $row['time_Start']; ?>"></label><br>
-        <label>Thời gian kết thúc: <input type="date" name="time_End" value="<?php echo $row['time_End']; ?>"></label><br>
-        <label>Khuyễn mãi: <input type="text" name="giam" value="<?php echo $row['giam']; ?>"></label><br>
+        <label>Thời gian kết thúc:<input type="date" name="time_End" value="<?php echo $row['time_End']; ?>"></label><br>
+        <label>Khuyễn mãi         :<input type="text" name="giam" value="<?php echo $row['giam']; ?>"></label><br>
 
         <button name="btnSave">Save Update</button>
         <button name="btnCancel">Cancel</button>

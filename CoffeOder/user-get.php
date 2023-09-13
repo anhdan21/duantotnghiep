@@ -316,24 +316,7 @@
                     include 'API.php';
                     $Cons = mysqli_connect("localhost", "root", "", "coffeoder");
                     try {
-                        // // Kết nối tới database sử dụng PDO
-                        // $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-
-                        // // Truy vấn dữ liệu từ bảng employee_data
-                        // $stmt = $conn->query("SELECT * FROM user");
-
-                        // // Lấy tất cả các bản ghi và chuyển thành mảng kết quả JSON
-                        // $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                        // // Thiết lập header để trả về JSON
-                        // header('Content-Type: application/json');
-
-                        // // Hiển thị kết quả JSON hoặc trả về mã lỗi HTTP 404 Not Found nếu không có bản ghi nào được tìm thấy
-                        // echo ($stmt->rowCount() > 0) ? json_encode($result) : http_response_code(404);
-
-                        // thuc thi cau lenh
-
-
+ 
                         // cau lenh
                         $set_user_sql = "SELECT * FROM user  order by userName , chucNang";
                         $resultt = mysqli_query($Cons, $set_user_sql);

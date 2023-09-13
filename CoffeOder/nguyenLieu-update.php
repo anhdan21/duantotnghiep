@@ -9,6 +9,7 @@ if (!isset($_GET['Id_nguyenLieu'])) {
 $id = intval($_GET['Id_nguyenLieu']);
 try {
     $stmt = $conn->prepare("SELECT * FROM nguyenlieu WHERE Id_nguyenLieu = $id ");
+    
     $stmt->execute();
 
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -28,11 +29,54 @@ if (isset($_POST['btnSave'])) {
     $price = $_POST['price'];
     $id_User = $_POST['id_User'];
     $ten_nguyenLieu = $_POST['ten_nguyenLieu'];
-    $img_nguyenLieu = $_POST['img_nguyenLieu'];
+    // $img_nguyenLieu = $_POST['img_nguyenLieu'];
     $kieuNguyenLieu = $_POST['kieuNguyenLieu'];
     // kiểm tra
-    if (empty($soLuong) || empty($price) || empty($id_User) || empty($ten_nguyenLieu)  || empty($img_nguyenLieu) || empty($kieuNguyenLieu) ) {
+    if (empty($soLuong) || empty($price) || empty($id_User) || empty($ten_nguyenLieu)  ||  empty($kieuNguyenLieu) ) {
         $err[] = "Bạn chưa nhập đủ nội dung";
+    }
+
+    $target_dir = '../CoffeOder/uploads/';
+    $target_file = $target_dir . basename($_FILES["img_nguyenLieu"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    if (isset($_POST["submit"])) {
+        $check = getimagesize($_FILES["img_nguyenLieu"]["tmp_name"]);
+        if ($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+    }
+    // if (file_exists($target_file)) {
+    //     echo "Sorry, file already exists.";
+    //     $uploadOk = 0;
+    // }
+    if (
+        $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif"
+    ) {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+    }
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+    } else {
+        if (move_uploaded_file($_FILES["img_nguyenLieu"]["tmp_name"], $target_file)) {
+            echo "The file " . htmlspecialchars(basename($_FILES["img_nguyenLieu"]["name"])) . " has been uploaded.";
+            $img_nguyenLieu = $target_file;
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
+
+    try {
+        $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+        $objConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        die('Lỗi kết nối CSDL: ' . $e->getMessage());
     }
 
     if (empty($err)) {
@@ -119,7 +163,7 @@ button[name="btnCancel"] {
     <div id="container">
         <p><?php echo implode('<br>', $err); ?></p>
 
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             <span>ID :<?php echo $row['Id_nguyenLieu']; ?></span>
 
             <label for="id_User">Id người nhập</label>
@@ -134,8 +178,8 @@ button[name="btnCancel"] {
             <label for="price">Giá</label>
             <input type="text" name="price" value="<?php echo $row['price']; ?>">
 
-            <label for="img_nguyenLieu">Ảnh nguyên liệu</label>
-            <input type="text" name="img_nguyenLieu" value="<?php echo $row['img_nguyenLieu']; ?>">
+            Select image to upload:
+                    <input type="file" name="img_nguyenLieu" id="img_nguyenLieu"><br>
 
             <label for="ten_nguyenLieu">Kiểu dạng</label>
             <input type="text" name="kieuNguyenLieu" value="<?php echo $row['kieuNguyenLieu']; ?>">
