@@ -9,78 +9,7 @@ $edit_sql= "SELECT * FROM user WHERE Id_User = $id";
 
 $result = mysqli_query($Cons,$edit_sql);
 $row = mysqli_fetch_assoc($result);
-
-// Kiểm tra xem người dùng đã gửi yêu cầu POST hay chưa
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     // Kiểm tra xem tất cả các tham số cần thiết đã được cung cấp hay chưa
-//     if (isset($_POST['username'], $_POST['image'], $_POST['passwd'], $_POST['phone_Number'] , $_POST['chucNang'], $_POST['fullname'])) {
-//         $username = $_POST['username'];
-//         $passwd = $_POST['passwd'];
-//         $phone_Number = $_POST['phone_Number'];
-//         $fullname = $_POST['fullname'];
-//         $chucNang = $_POST['chucNang'];
-//         $image = $_POST['image'];
-
-//         // Thực hiện kết nối CSDL
-//         try {
-//             $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-//             $objConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//         } catch (PDOException $e) {
-//             die('Lỗi kết nối CSDL: ' . $e->getMessage());
-//         }
-
-//         // Kiểm tra và xử lý giá trị nhập liệu hợp lệ
-//         // (Bạn nên thực hiện kiểm tra hợp lệ và xử lý nhập liệu dựa trên yêu cầu cụ thể của ứng dụng)
-//         // Ví dụ: Xử lý giá trị rỗng, kiểm tra định dạng email, v.v.
-
-//         // Thực hiện truy vấn để thêm người dùng vào CSDL
-//         try {
-//             $sql_str = "INSERT INTO `user` (`username`, `image`, `passwd`, `phone_Number`,`chucNang`, `fullname`) VALUES (:username, :image, :passwd, :phone_Number,:chucNang, :fullname)";
-//             $stmt = $objConn->prepare($sql_str);
-//             $stmt->bindParam(':username', $username);
-//             $stmt->bindParam(':image', $image);
-//             $stmt->bindParam(':passwd', $passwd);
-//             $stmt->bindParam(':phone_Number', $phone_Number);
-//             $stmt->bindParam(':chucNang', $chucNang);
-//             $stmt->bindParam(':fullname', $fullname);
-
-//             if ($stmt->execute() && $stmt->rowCount() > 0) {
-//                 echo "User added successfully.";
-//                 header("Location:http://127.0.0.1:5500/duantotnghiep/man_chinh/Tai_khoan_nhan_vien.html");
-//             } else {
-//                 echo "Failed to add user.";
-//             }
-//         } catch (PDOException $e) {
-//             die('Lỗi thêm user vào CSDL: ' . $e->getMessage());
-//         }
-//     } else {
-//         echo "";
-//     }
-// }
-
 ?>
-
-<!--<!DOCTYPE html>
-<html>
-<head>
-    <title>Add User</title>
-</head>
-<body>
-
-    <h1>Add User</h1>
-
-    <form action="user-add.php" method="POST">
-        <label>Username: <input type="text" name="username"></label><br>
-        <label>Password: <input type="password" name="passwd"></label><br>
-        <label>Image: <input type="text" name="image"></label><br>
-        <label>phone_Number: <input type="phone_Number" name="phone_Number"></label><br>
-        <label>chucNang: <input type="text" name="chucNang"></label><br>
-        <label>Full Name: <input type="text" name="fullname"></label><br>
-        <input type="submit" value="Add User">
-    </form>
-
-</body>
-</html> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -316,13 +245,13 @@ main{
 
             <section class="menu">
             <ul>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
+          <a href="../CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
+          <a href="../man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
+          <a href="../man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
+          <a href="../CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
+          <a href="../CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
           <a href=""><li>Thống kê</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
+          <a href="../man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
       </ul>
             </section>
         </nav>
@@ -359,15 +288,17 @@ main{
 
             </section>
 
-            <form action="user-update.php" method="POST">
+            <form action="user-update.php" method="POST" enctype="multipart/form-data">
             <section class="thongtinMK">
                 <input type="hidden" name="sid" value="<?php echo $row['Id_User'];?>" id="">
-                <label for="">Ảnh NV:<input type="text" name="image" value="<?php echo $row['image']?>"></label> <br>
                 <label for="">Tên NV:<input type="text" name="userName" value="<?php echo $row['userName']?>"></label> <br>
                 <label for="">Họ NV:<input type="text" name="fullName" value="<?php echo $row['fullName']?>"></label> <br>
                 <label for="">SDT:<input type="phone_Number" name="phone_Number" value="<?php echo $row['phone_Number']?>"></label> <br>
                 <label for="">Vị trí:<input type="text" name="chucNang" value="<?php echo $row['chucNang']?>"> 
                 </label> <br>
+
+                Select image to upload:<br>
+                    <input type="file" name="image" id="image"><br>
                 <div class="oclock">
                     <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span>
                     <span>Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>

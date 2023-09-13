@@ -9,9 +9,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $price = $_POST['price'];
         $ten_nguyenLieu = $_POST['ten_nguyenLieu'];
         $id_User = $_POST['id_User'];
-        $img_nguyenLieu = $_POST['img_nguyenLieu']; 
+        //$img_nguyenLieu = $_POST['img_nguyenLieu']; 
         $kieuNguyenLieu = $_POST['kieuNguyenLieu'];
        
+        $target_dir = '../CoffeOder/uploads/';
+        $target_file = $target_dir . basename($_FILES["img_nguyenLieu"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        if (isset($_POST["submit"])) {
+            $check = getimagesize($_FILES["img_nguyenLieu"]["tmp_name"]);
+            if ($check !== false) {
+                echo "File is an image - " . $check["mime"] . ".";
+                $uploadOk = 1;
+            } else {
+                echo "File is not an image.";
+                $uploadOk = 0;
+            }
+        }
+        // if (file_exists($target_file)) {
+        //     echo "Sorry, file already exists.";
+        //     $uploadOk = 0;
+        // }
+        if (
+            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif"
+        ) {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+        } else {
+            if (move_uploaded_file($_FILES["img_nguyenLieu"]["tmp_name"], $target_file)) {
+                echo "The file " . htmlspecialchars(basename($_FILES["img_nguyenLieu"]["name"])) . " has been uploaded.";
+                $img_nguyenLieu = $target_file;
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
 
         try {
             $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
@@ -30,9 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(':id_User', $id_User);
             $stmt->bindParam(':img_nguyenLieu', $img_nguyenLieu);
             $stmt->bindParam(':kieuNguyenLieu', $kieuNguyenLieu);
-            
-            
-
 
             if ($stmt->execute() && $stmt->rowCount() > 0) {
                 echo "User added successfully.";
@@ -287,13 +319,13 @@ main i{
 
             <section class="menu">
             <ul>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoaDonct-get.php"><li>Hóa đơn</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
+          <a href="../CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
+          <a href="../man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
+          <a href="../man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
+          <a href="../CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
+          <a href="../CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
+          <a href="../CoffeOder/hoaDonct-get.php"><li>Hóa đơn</li></a>
+          <a href="../man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
       </ul>
             
             </section>
@@ -330,21 +362,21 @@ main i{
                 
             </section>
 
-            <form action="nguyenLieu-add.php" method="POST">
+            <form action="nguyenLieu-add.php" method="POST" enctype="multipart/form-data">
             <section class="thongtinMK">
                 <label for="">Tên NL:<input type="text" name="ten_nguyenLieu" placeholder="Nhập tên Nguyên Liệu" required></label> <br>
                 <label for="">Giá :<input type="text" name="price" placeholder="Nhập giá " required></label> <br>
                 <label for="">Số lượng:<input type="number" name="soLuong" required ></label> <br>
                 <label for="">User:<input type="text" name="id_User" required></label> <br>
-                <label for="">Image:<input type="text" name="img_nguyenLieu" required></label> <br>
+                <!-- <label for="">Image:<input type="text" name="img_nguyenLieu" required></label> <br> -->
                 <label for="">Kiểu:<input type="text" name="kieuNguyenLieu" required></label> <br>
-
-
+                Select image to upload:
+                    <input type="file" name="img_nguyenLieu" id="img_nguyenLieu"><br>
                 <div class="oclock">
                     <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span> 
                     <span >Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
                 </div><br>
-                <button type="submit">Thêm nguyên liệu</button>
+                <button type="submit" name="submit">Thêm nguyên liệu</button>
             </section>
         </form>
         </main>
