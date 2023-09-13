@@ -249,13 +249,23 @@
         width: 130px;
         margin-top: -14px;
     }
+
     .themthang{
         position: absolute;
-        right: 200px;
+        right: 180px;
         width: 130px;
         margin-top: -14px;
     }
     .themthang button {
+       padding:5px;
+    }
+    .themhoadon{
+        position: absolute;
+        right: 270px;
+        width: 130px;
+        margin-top: -14px;
+    }
+    .themhoadon button {
        padding:5px;
     }
     .themDS button {
@@ -387,201 +397,87 @@
             <section class="thoigian">
                 <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoa-don-ngay.php" class="themDS"><button class="">Tổng Đơn Ngày</button></a>
                 <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoa-don-thang.php" class="themthang"><button class="">Tổng Đơn Tháng</button></a>
+                <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoaDonct-get.php" class="themhoadon"><button class="">Hóa Đơn </button></a>
+           
             </section>
             <table id="customers">
                 <tr>
-                    <th style="width: auto;">Ngày</th>
-                    <th style="width: auto;">Tầng & Bàn</th>
-                    <th style="width: auto;">Thời gian vào</th>
-                    <th style="width: auto;">Thời gian ra</th>
-                    <th style="width: auto;">Giảm</th>
+                    <th style="width: auto;">Tháng</th>
+                
                     <th style="width: auto;">Tổng tiền</th>
 
                 </tr>
                 <?php
-                // Thông tin kết nối database
+
                 include 'API.php';
                 $Cons = mysqli_connect("localhost", "root", "", "coffeoder");
-                try {
+                $sql = "SELECT time_Data, tongTien FROM hoadonct";
+                $result = mysqli_query($Cons, $sql);
+                 // Tạo một mảng để lưu trữ tổng hóa đơn theo tháng
+                 $totalByMonth = array();
 
-                    // thuc thi cau lenh
-                
-
-                    // cau lenh
-                    $set_hoadonct_sql = "SELECT * FROM hoadonct  order by time_in , time_out";
-                    $resultt = mysqli_query($Cons, $set_hoadonct_sql);
-                    $r = mysqli_fetch_assoc($resultt);
-
-                    //câu lệnh khóa ngoại table
-                    $set_Table = "SELECT hoadonct.* , table.soBan
-                        FROM  hoadonct 
-                        INNER JOIN  `table` ON hoadonct.Id_Table = table.soBan
-                        order by hoadonct.Id_Table ASC";
-                    $resultl = mysqli_query($Cons, $set_Table);
-                    $T = mysqli_fetch_assoc($resultl);
-
-
-                    $set_Tang = "SELECT `table`.* , tang.soTang
-                    FROM  `table` 
-                    INNER JOIN  `tang` ON `table`.id_tang= tang.id_tang
-                    order by table.id_tang ASC";
-                    $resultltang = mysqli_query($Cons, $set_Tang);
-                    $Ta = mysqli_fetch_assoc($resultltang);
-
-
-
-                    // khóa ngoại giam gia
-                    $set_Table = "SELECT hoadonct.* , giamgia.giam ,hoadonct.id_giamGia
-                        
-                        FROM  hoadonct 
-                        INNER JOIN  giamgia ON hoadonct.id_giamGia = giamgia.giam
-                        order by hoadonct.id_giamGia ASC ";
-                    $resultlt = mysqli_query($Cons, $set_Table);
-
-                    $G = mysqli_fetch_assoc($resultlt);
-
-
-                    // echo $G['giam'];
-                    //duyet qua result va in ra
-                    while ($r = mysqli_fetch_assoc($resultt)) {
-                        // echo $r['Id_hoaDonCT'];
-                        // echo '</br>'. $r['Id_Table'];
-                        // $T = mysqli_fetch_assoc($resultl); 
-                        // while($T = mysqli_fetch_assoc($resultl) ){
-                        //     // echo $T['soBan'];
-                        //     while($G = mysqli_fetch_assoc($resultlt) ){
-                
-
-
+                 if ($result->num_rows > 0) {
+                     while ($roww = $result->fetch_assoc()) {
+                         $orderDate = $roww["time_Data"];
+                         $totalAmount = $roww["tongTien"];
+ 
+                         // Lấy tháng từ ngày đặt hàng
+                         $month = date("Y-m", strtotime($orderDate));
+ 
+                         // Tính tổng cho mỗi tháng
+                         if (!isset($totalByMonth[$month])) {
+                             $totalByMonth[$month] = 0;
+                         }
+                         $totalByMonth[$month] += $totalAmount;
+                     }
+ 
+                     // Hiển thị tổng hóa đơn theo tháng
+                    //  echo "<table>";
+                    //  echo "<tr><th>Tháng</th><th>Tổng Hóa Đơn</th></tr>";
+                     foreach ($totalByMonth as $month => $total) {
+                        //  echo "<tr>";
+                        //  echo "<td>" . $month . "</td>";
+                        //  echo "<td>" . $totall . "</td>";
+                        //  echo "</tr>";
+                     
                         ?>
                         <tr>
                             <td>
-                                <?php echo $r['time_Data'] ?>
+                                <?php echo $month ?>
                             </td>
+                           
                             <td>
-                            <?php echo $Ta['soTang'] ?> - <?php echo $r['Id_Table'] ?>
-                            </td>
-                            <td>
-                                <?php echo $r['time_in'] ?>
-                            </td>
-                            <td>
-                                <?php echo $r['time_out'] ?>
-                            </td>
-                            <td>
-                                <?php echo $r['id_giamGia'] ?>%
-                            </td>
-                            <td>
-                                <?php echo $r['tongTien'] ?>
+                                <?php echo $total ?>
                             </td>
 
                         </tr>
 
                         <?php
-
                     }
-                } catch (PDOException $e) {
-                    // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
-                    http_response_code(500);
-                    echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
+                    echo "</table>";
+                } else {
+                    echo "Không có dữ liệu hóa đơn.";
                 }
 
-                // Đóng kết nối database
-                // $conn = null;
+                        
+
+                   
                 ?>
 
             </table>
             <div>
                 <?php
-                // $sql = "SELECT time_Data, tongTien FROM hoadonct";
-                // $result = mysqli_query($Cons, $sql);
-
-                // // Tạo một mảng để lưu trữ tổng hóa đơn theo ngày
-                // $totalByDate = array();
-
-                // if ($result->num_rows > 0) {
-                //     while ($row = $result->fetch_assoc()) {
-                //         $orderDate = $row["time_Data"];
-                //         $totalAmount = $row["tongTien"];
-
-                //         // Tính tổng cho mỗi ngày
-                //         if (!isset($totalByDate[$orderDate])) {
-                //             $totalByDate[$orderDate] = 0;
-                //         }
-                //         $totalByDate[$orderDate] += $totalAmount;
-                //     }
-
-                //     // Hiển thị tổng hóa đơn theo ngày
-                //     echo "<table>";
-                //     echo "<tr><th>Ngày</th><th>Tổng Hóa Đơn</th></tr>";
-                //     foreach ($totalByDate as $date => $total) {
-                //         echo "<tr>";
-                //         echo "<td>" . $date . "</td>";
-                //         echo "<td>" . $total . "</td>";
-                //         echo "</tr>";
-                //     }
-                //     echo "</table>";
-                // } else {
-                //     echo "Không có dữ liệu hóa đơn.";
-                // }
+               
 
 
 
 
-                // // Tạo một mảng để lưu trữ tổng hóa đơn theo tháng
-                // $totalByMonth = array();
-
-                // if ($result->num_rows > 0) {
-                //     while ($roww = $result->fetch_assoc()) {
-                //         $orderDate = $roww["time_Data"];
-                //         $totalAmount = $roww["tongTien"];
-
-                //         // Lấy tháng từ ngày đặt hàng
-                //         $month = date("Y-m", strtotime($orderDate));
-
-                //         // Tính tổng cho mỗi tháng
-                //         if (!isset($totalByMonth[$month])) {
-                //             $totalByMonth[$month] = 0;
-                //         }
-                //         $totalByMonth[$month] += $totalAmount;
-                //     }
-
-                //     // Hiển thị tổng hóa đơn theo tháng
-                //     echo "<table>";
-                //     echo "<tr><th>Tháng</th><th>Tổng Hóa Đơn</th></tr>";
-                //     foreach ($totalByMonth as $month => $totall) {
-                //         echo "<tr>";
-                //         echo "<td>" . $month . "</td>";
-                //         echo "<td>" . $totall . "</td>";
-                //         echo "</tr>";
-                //     }
-                //     echo "</table>";
-                // } else {
-                //     echo "Không có dữ liệu hóa đơn.";
-                // }
+              
                 ?>
                 <p>
                     <?php ?>
                 </p>
             </div>
-            <!-- <div class="select-menu">
-                <div class="select-btn">
-                    <span class="sBtn-text">Thống Kê Tất Cả</span>
-                    <i class="fas fa-sort-down"></i>
-                </div>
-                <ul class="options">
-                    <li class="option">
-                        <span class="option-text">Theo ngày</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-text">Theo Tháng</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-text">Theo Năm</span>
-                    </li>
-                </ul>
-
-
-            </div> -->
         </main>
     </div>
     <script src="/duantotnghiep/Them/menu.js"></script>
