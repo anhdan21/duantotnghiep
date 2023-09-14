@@ -6,7 +6,7 @@ include 'API.php';
 
 // Kiểm tra xem người dùng đã gửi yêu cầu POST hay chưa
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+
     // Kiểm tra xem tất cả các tham số cần thiết đã được cung cấp hay chưa
     if (isset($_POST['id_tang'], $_POST['trangThai'], $_POST['soBan'])) {
         $id_tang = $_POST['id_tang'];
@@ -20,16 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } catch (PDOException $e) {
             die('Lỗi kết nối CSDL: ' . $e->getMessage());
         }
-       
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error = array();
-            $data= array();
+            $data = array();
             # code...
             $data['id_tang'] = isset($_POST['id_tang']) ? $_POST['id_tang'] : '';
             $data['soBan'] = isset($_POST['soBan']) ? $_POST['soBan'] : '';
             $data['trangThai'] = isset($_POST['trangThai']) ? $_POST['trangThai'] : '';
 
-            
+
             // Kiểm tra định dạng dữ liệu
             require('./validate.php');
             if (empty($data['id_tang'])) {
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (empty($data['soBan'])) {
                 $error['soBan'] = 'Bạn chưa số bàn';
-            } 
+            }
             // else if (!is_email($data['email'])) {
             //     $error['email'] = 'Email không đúng định dạng';
             // }
@@ -57,26 +57,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt_check = $objConn->prepare($sql_check);
                     $stmt_check->bindParam(':soBan', $soBan);
                     $stmt_check->execute();
-        
+
                     $row_count = $stmt_check->fetchColumn();
-        
+
                     $sql_str = "INSERT INTO `table` (`id_tang`, `trangThai`, `soBan`) VALUES (:id_tang, :trangThai, :soBan)";
                     $stmt = $objConn->prepare($sql_str);
                     $stmt->bindParam(':id_tang', $id_tang);
                     $stmt->bindParam(':trangThai', $trangThai);
                     $stmt->bindParam(':soBan', $soBan);
-        
+
                     if ($stmt->execute() && $stmt->rowCount() > 0) {
                         // echo "da xong";
                         header("Location: ban-get.php");
                     } else {
                         echo "Failed to add user.";
                     }
-        
                 } catch (PDOException $e) {
-        
+
                     die('Lỗi thêm user vào CSDL: ' . $e->getMessage());
-        
                 }
                 // header("Location: ban_set.php");
             } else {
@@ -84,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         // Thực hiện truy vấn để thêm người dùng vào CSDL
-        
+
     } else {
         echo " ";
     }
@@ -425,21 +423,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <form action="ban-add.php" method="POST">
                 <section class="thongtinMK">
-                    <label for="">Tâng:<input type="text" name="id_tang" id="id_tang" value="<?php echo isset ($data['id_tang'])? $data['id_tang'] : '';?>"></label> <br>
-                    <?php 
-                    echo isset($error['id_tang']) ? $error['id_tang'] : '' ;
-                   ?>
+                    <!-- <label for="">Tâng:<input type="text" name="id_tang" id="id_tang" value="<?php echo isset($data['id_tang']) ? $data['id_tang'] : ''; ?>"></label> <br> -->
+                    <h4 for="id_tang" style="margin-right: 350px;">Tầng:
+                        <select name="id_tang" style="height: 40px; width:100px">
+                            <?php
+                            include 'API.php';
+                            $sql = "SELECT id_tang, soTang FROM tang";
+                            $stmt = $conn->query($sql);
 
-                    <label for="">Tên bàn:<input type="text" name="soBan" placeholder="Nhập tên bàn" value="<?php echo isset ($data['soBan'])? $data['soBan'] : '';?>"></label>
+                            // Lặp qua danh sách người dùng và tạo các tùy chọn trong dropdown menu
+                            while ($rowea = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                echo "<option value='" . $rowea['id_tang'] . "'>" . $rowea['soTang'] . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </h4>
+                    <?php
+                    echo isset($error['id_tang']) ? $error['id_tang'] : '';
+                    ?>
+
+                    <label for="">Tên bàn:<input type="text" name="soBan" placeholder="Nhập tên bàn" value="<?php echo isset($data['soBan']) ? $data['soBan'] : ''; ?>"></label>
                     <br>
-                    <?php 
-                    echo isset($error['soBan']) ? $error['soBan'] : '' ;
-                   ?>
+                    <?php
+                    echo isset($error['soBan']) ? $error['soBan'] : '';
+                    ?>
 
-                    <label for="">Trạng thái:<input type="text" name="trangThai" placeholder="Trạng thái bàn" value="<?php echo isset ($data['trangThai'])? $data['trangThai'] : '';?>"></label>
-                    <?php 
-                    echo isset($error['trangThai']) ? $error['trangThai'] : '' ;
-                   ?>
+                    <!-- <label for="">Trạng thái:<input type="text" name="trangThai" placeholder="Trạng thái bàn" value="<?php echo isset($data['trangThai']) ? $data['trangThai'] : ''; ?>"></label> -->
+                    <h4 for="myDropdown">Trạng thái:
+                        <select name="trangThai" id="trangThai" style="height: 40px; width:100px">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                        </select>
+                    </h4><br>
+                    <?php
+                    echo isset($error['trangThai']) ? $error['trangThai'] : '';
+                    ?>
 
                     <div class="oclock">
                         <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span>
@@ -471,6 +489,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Gọi hàm getCurrentTime mỗi giây một lần để cập nhật giờ hiện tại
     setInterval(getCurrentTime, 1000);
+
     function getCurrentDate() {
         // Tạo đối tượng Date đại diện cho thời gian hiện tại
         const now = new Date();
