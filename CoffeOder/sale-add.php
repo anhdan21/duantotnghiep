@@ -24,22 +24,69 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Ví dụ: Xử lý giá trị rỗng, kiểm tra định dạng email, v.v.
 
         // Thực hiện truy vấn để thêm người dùng vào CSDL
-        try {
-            $sql_str = "INSERT INTO `giamgia` (`time_Start`, `time_End`) VALUES (:time_Start, :time_End)";
-            $stmt = $objConn->prepare($sql_str);
-            $stmt->bindParam(':time_Start', $time_Start);
-            $stmt->bindParam(':time_End', $time_End);
-          
 
-            if ($stmt->execute() && $stmt->rowCount() > 0) {
-                echo "User added successfully.";
-                header("Location:../man_chinh/Khuyen_mai.html");
-            } else {
-                echo "Failed to add user.";
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $error = array();
+            $data= array();
+            # code...
+            $data['time_Start'] = isset($_POST['time_Start']) ? $_POST['time_Start'] : '';
+            $data['time_End'] = isset($_POST['time_End']) ? $_POST['time_End'] : '';
+            $data['giam'] = isset($_POST['giam']) ? $_POST['giam'] : '';
+
+            
+            // Kiểm tra định dạng dữ liệu
+            require('./validate.php');
+            if (empty($data['time_Start'])) {
+                $error['time_Start'] = 'Bạn chưa nhập thời gian bắt đầu';
             }
-        } catch (PDOException $e) {
-            die('Lỗi thêm user vào CSDL: ' . $e->getMessage());
+            elseif(empty($data['time_Start']) > empty($data['time_End'])){
+                $error['time_End'] = 'nhập lại thời gian';
+            }
+
+            if (empty($data['time_End'])) {
+                $error['time_End'] = 'Bạn chưa nhập thời gian kết thúc';
+            } 
+            // elseif(empty($data['time_Start']) == empty($data['time_End'])){
+            //     $error['time_End'] = 'Chọn lại thời giam';
+            // }
+            
+            // else if (!is_email($data['email'])) {
+            //     $error['email'] = 'Email không đúng định dạng';
+            // }
+
+            if (empty($data['giam'])) {
+                $error['giam'] = 'Bạn chưa nhập % giảm';
+            }
+
+            // Lưu dữ liệu
+            if (!$error) {
+                // echo 'Dữ liệu có thể lưu trữ';
+                // Code lưu dữ liệu tại đây
+                // ...
+                try {
+                    $sql_str = "INSERT INTO `giamgia` (`time_Start`, `time_End`, `giam`) VALUES (:time_Start, :time_End, :giam)";
+                    $stmt = $objConn->prepare($sql_str);
+                    $stmt->bindParam(':time_Start', $time_Start);
+                    $stmt->bindParam(':time_End', $time_End);
+                    $stmt->bindParam(':giam',$giam);
+                  
+        
+                    if ($stmt->execute() && $stmt->rowCount() > 0) {
+                        // echo "User added successfully.";exit;
+                        header("Location:../man_chinh/Khuyen_mai.html");
+                    } else {
+                        echo "Failed to add user.";
+                    }
+        
+                    } catch (PDOException $e) {
+                    die('Lỗi thêm user vào CSDL: ' . $e->getMessage());
+                }
+                // header("Location: ban_set.php");
+            } else {
+                // echo 'Dữ liệu bị lỗi, không thể lưu trữ';
+            }
         }
+        
     } else {
         echo "";
     }
@@ -284,13 +331,13 @@ main i{
 
             <section class="menu">
             <ul>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoaDonct-get.php"><li>Hóa đơn</li></a>
-          <a href="http://localhost/Coffebe/duantotnghiep/man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
+          <a href="../CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
+          <a href="../man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
+          <a href="../man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
+          <a href="../CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
+          <a href="../CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
+          <a href="../CoffeOder/hoaDonct-get.php"><li>Hóa đơn</li></a>
+          <a href="../man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
       </ul>
             </section>
         </nav>
@@ -330,8 +377,28 @@ main i{
 
             <form action="sale-add.php" method="POST">
             <section class="thongtinMK">
-                <label for="">Time Start:<input type="date" name="time_Start" required></label> <br>
-                <label for="">Time End:<input type="date" name="time_End"required></label> <br>
+                <label for="">Time Start:<input type="date" name="time_Start" id="time_Start"
+                value="<?php echo isset ($data['time_Start'])? $data['time_Start'] : '';?>"
+                ></label> 
+                <?php 
+                    echo isset($error['time_Start']) ? $error['time_Start'] : '' ;
+                   ?>
+
+                <label for="">Time End:<input type="date" name="time_End" id="time_End"
+                value="<?php echo isset ($data['time_End'])? $data['time_End'] : '';?>"
+                
+                ></label> 
+                <?php 
+                    echo isset($error['time_End']) ? $error['time_End'] : '' ;
+                   ?>
+
+                <label for="">Giảm % :<input type="text" name="giam" id="giam"
+                value="<?php echo isset ($data['giam'])? $data['giam'] : '';?>"
+                ></label> 
+                <?php 
+                    echo isset($error['giam']) ? $error['giam'] : '' ;
+                   ?>
+
                 <div class="oclock">
                     <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span>
                     <span>Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>

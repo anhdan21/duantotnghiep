@@ -410,15 +410,26 @@
                     // cau lenh
                     $set_hoadonct_sql = "SELECT * FROM hoadonct  order by time_in , time_out";
                     $resultt = mysqli_query($Cons, $set_hoadonct_sql);
-                    $r = mysqli_fetch_assoc($resultt);
+                    // $r = mysqli_fetch_assoc($resultt);
 
                     //câu lệnh khóa ngoại table
-                    $set_Table = "SELECT hoadonct.* , table.soBan
+                    $set_Table = "SELECT * FROM hoadonct ORDER BY Id_hoaDonCT ASC;";
+
+                    $set_Table1 = "SELECT hoadonct.* , table.soBan AS soban
                         FROM  hoadonct 
-                        INNER JOIN  `table` ON hoadonct.Id_Table = table.soBan
-                        order by hoadonct.Id_Table ASC";
+                        INNER JOIN  `table` ON hoadonct.Id_Table = table.Id_Table
+                        order by hoadonct.Id_hoaDonCT ASC";
+
+                    $set_Table = "SELECT hoadonct.* , giamgia.giam AS Giam
+                        
+                        FROM  hoadonct 
+                        INNER JOIN  giamgia  ON hoadonct.id_giamGia = giamgia.id_giamGia
+                        order by hoadonct.Id_hoaDonCT ASC ";
+
                     $resultl = mysqli_query($Cons, $set_Table);
-                    $T = mysqli_fetch_assoc($resultl);
+
+                    // $T = mysqli_fetch_assoc($resultl);
+                    // echo $T ['soban'];
 
 
                     $set_Tang = "SELECT `table`.* , tang.soTang
@@ -426,24 +437,20 @@
                     INNER JOIN  `tang` ON `table`.id_tang= tang.id_tang
                     order by table.id_tang ASC";
                     $resultltang = mysqli_query($Cons, $set_Tang);
-                    $Ta = mysqli_fetch_assoc($resultltang);
+                    // $Ta = mysqli_fetch_assoc($resultltang);
 
 
 
                     // khóa ngoại giam gia
-                    $set_Table = "SELECT hoadonct.* , giamgia.giam ,hoadonct.id_giamGia
-                        
-                        FROM  hoadonct 
-                        INNER JOIN  giamgia ON hoadonct.id_giamGia = giamgia.giam
-                        order by hoadonct.id_giamGia ASC ";
+                    
                     $resultlt = mysqli_query($Cons, $set_Table);
 
-                    $G = mysqli_fetch_assoc($resultlt);
+                    // $G = mysqli_fetch_assoc($resultlt);
 
 
                     // echo $G['giam'];
                     //duyet qua result va in ra
-                    while ($r = mysqli_fetch_assoc($resultt)) {
+                    while ($T = mysqli_fetch_assoc($resultl)) {
                         // echo $r['Id_hoaDonCT'];
                         // echo '</br>'. $r['Id_Table'];
                         // $T = mysqli_fetch_assoc($resultl); 
@@ -456,22 +463,22 @@
                         ?>
                         <tr>
                             <td>
-                                <?php echo $r['time_Data'] ?>
+                                <?php echo $T['time_Data'] ?>
                             </td>
                             <td>
-                            <?php echo $Ta['soTang'] ?> - <?php echo $r['Id_Table'] ?>
+                            <?php echo $T['Id_Table'] ?>
                             </td>
                             <td>
-                                <?php echo $r['time_in'] ?>
+                                <?php echo $T['time_in'] ?>
                             </td>
                             <td>
-                                <?php echo $r['time_out'] ?>
+                                <?php echo $T['time_out'] ?>
                             </td>
                             <td>
-                                <?php echo $r['id_giamGia'] ?>%
+                                <?php echo $T['Giam'] ?>%
                             </td>
                             <td>
-                                <?php echo $r['tongTien'] ?>
+                                <?php echo $T['tongTien'] ?>
                             </td>
 
                         </tr>

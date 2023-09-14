@@ -23,7 +23,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
            
 
             if ($stmt->execute() && $stmt->rowCount() > 0) {
-                echo "Thêm danh mục thành công.";
+                // echo "Thêm danh mục thành công.";
+                if($_SERVER['REQUEST_METHOD']== 'POST'){
+                    $error = [];
+                    if(empty(trim($_POST['ten_danhMuc']))){
+                        $error ['ten_danhMuc']['required'] = 'Không được để trống';
+                    }else{
+                        if(strlen(trim($_POST['ten_danhMuc']))<6){
+                            $error ['ten_danhMuc']['min'] = 'ky tu ngan';
+             
+                        }
+                    }
+                   }else{
+                    return header("Location: danhMuc-set.php");
+                   }
+                
                 
             } else {
                 echo "Failed to add user.";
@@ -324,8 +338,21 @@ main{
 
             <form action="danhMuc-add.php" method="POST">
             <section class="thongtinMK">
-                <label for="">Tên loại:<input type="text" name="ten_danhMuc" placeholder="Nhập tên loại" required></label> <br>
-                <label for="">Chi tiết:<input type="text" placeholder="Thông tin chi tiết loại" required></label> <br>
+            <?php
+                    // Code PHP xử lý validate
+                   
+                  
+        ?>
+                <label for="">Tên loại:<input type="text"  name="ten_danhMuc" id="ten_danhMuc" placeholder="Nhập tên loại" ><br>
+                <?php echo !empty($error ['ten_danhMuc']['required'])? `<p style="color: red">`.$error ['ten_danhMuc']['required'] .`</p>` :false ;
+                      echo !empty($error ['ten_danhMuc']['min'])? `<p style="color: red">`.$error ['ten_danhMuc']['min'] .`</p>` :false ;
+                ?>
+            
+            </label> <br>
+                
+                
+                
+                <label for="">Chi tiết:<input type="text" placeholder="Thông tin chi tiết loại" ></label> <br>
                 <div class="oclock">
                     <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span> 
                     <span >Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>

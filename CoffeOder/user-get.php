@@ -333,9 +333,9 @@
                             <td><?php
                             if( $r['chucNang'] == 0){
                                 echo "Admin";
-                            }elseif($r['chucNang'] == 1){
+                            }if($r['chucNang'] == 1){
                                 echo "Order";
-                            }elseif($r['chucNang'] == 2){
+                            }if($r['chucNang'] == 2){
                                 echo "Thu Ngân";
                             }elseif($r['chucNang'] == 3){
                                 echo "Pha Chế";

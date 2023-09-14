@@ -16,66 +16,102 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } catch (PDOException $e) {
             die('Lỗi kết nối CSDL: ' . $e->getMessage());
         }
-        $target_dir = '../CoffeOder/uploads/';
-        $target_file = $target_dir . basename($_FILES["anhSanPham"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        if (isset($_POST["submit"])) {
-            $check = getimagesize($_FILES["anhSanPham"]["tmp_name"]);
-            if ($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
-                $uploadOk = 1;
-            } else {
-                echo "File is not an image.";
+       
+        //validate
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $error = array();
+            $data= array();
+            # code...
+            $data['ten_sp'] = isset($_POST['ten_sp']) ? $_POST['ten_sp'] : '';
+            $data['giaSanPham'] = isset($_POST['giaSanPham']) ? $_POST['giaSanPham'] : '';
+            $data['size'] = isset($_POST['size']) ? $_POST['size'] : '';
+            $data['gioiThieu'] = isset($_POST['gioiThieu']) ? $_POST['gioiThieu'] : '';
+
+        if (empty(trim($data['ten_sp']))) {
+            $error['ten_sp'] = 'Bạn chưa nhập tên sản phẩm.';
+        }if (empty(trim($data['giaSanPham']))) {
+            $error['giaSanPham']['required'] = 'Bạn chưa nhập tên sản phẩm.';
+        }else{
+            if(!filter_var(trim($_POST['giaSanPham']),FILTER_VALIDATE_INT,['options' => ['min_range' => 1]])){
+                $error['giaSanPham']['invaild'] = 'Giá sản phẩm không hợp lệ.';
+            }
+        }
+        if (empty($data['size'])) {
+            $error['size'] = 'Bạn chưa nhập size.';
+        }
+        if (empty($data['gioiThieu'])) {
+            $error['gioiThieu'] = 'Bạn chưa nhập giới thiệu.';
+        }
+        // Lưu dữ liệu
+        if (!$error) {
+            // echo 'Dữ liệu có thể lưu trữ';
+            // Code lưu dữ liệu tại đây
+            // ...
+            $target_dir = '../CoffeOder/uploads/';
+            $target_file = $target_dir . basename($_FILES["anhSanPham"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+            if (isset($_POST["submit"])) {
+                $check = getimagesize($_FILES["anhSanPham"]["tmp_name"]);
+                if ($check !== false) {
+                    echo "File is an image - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    echo "File is not an image.";
+                    $uploadOk = 0;
+                }
+            }
+            // if (file_exists($target_file)) {
+            //     echo "Sorry, file already exists.";
+            //     $uploadOk = 0;
+            // }
+            if (
+                $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif"
+            ) {
+                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                 $uploadOk = 0;
             }
-        }
-        // if (file_exists($target_file)) {
-        //     echo "Sorry, file already exists.";
-        //     $uploadOk = 0;
-        // }
-        if (
-            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-            && $imageFileType != "gif"
-        ) {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            $uploadOk = 0;
-        }
-        if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
+            if ($uploadOk == 0) {
+                echo "Sorry, your file was not uploaded.";
+            } else {
+                if (move_uploaded_file($_FILES["anhSanPham"]["tmp_name"], $target_file)) {
+                    echo "The file " . htmlspecialchars(basename($_FILES["anhSanPham"]["name"])) . " has been uploaded.";
+                    $anhSanPham = $target_file;
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
+            }
+            try {
+                $sql_str = "INSERT INTO `sanpham` (`id_danhMuc`,`giaSanPham`,`gioiThieu`,`anhSanPham`, `ten_sp`,  `size`) 
+                                            VALUES ( :id_danhMuc, :giaSanPham, :gioiThieu,:anhSanPham,:ten_sp, :size)";
+                $stmt = $objConn->prepare($sql_str);
+                $stmt->bindParam(':id_danhMuc', $id_danhMuc);
+                $stmt->bindParam(':giaSanPham', $giaSanPham);
+                $stmt->bindParam(':gioiThieu', $gioiThieu);
+                $stmt->bindParam(':anhSanPham', $anhSanPham);
+                $stmt->bindParam(':ten_sp', $ten_sp);
+                $stmt->bindParam(':size', $size);
+    
+                if ($stmt->execute() && $stmt->rowCount() > 0) {
+                    header("Location:../man_chinh/Quan_ly_do_uong.html");
+                } else {
+                    echo "Failed to add user.";
+                }
+            } catch (PDOException $e) {
+                die('Lỗi thêm user vào CSDL: ' . $e->getMessage());
+            }
+            // header("Location: ban_set.php");
         } else {
-            if (move_uploaded_file($_FILES["anhSanPham"]["tmp_name"], $target_file)) {
-                echo "The file " . htmlspecialchars(basename($_FILES["anhSanPham"]["name"])) . " has been uploaded.";
-                $anhSanPham = $target_file;
-            } else {
-                echo "Sorry, there was an error uploading your file.";
-            }
+            // echo 'Dữ liệu bị lỗi, không thể lưu trữ';
         }
-        try {
-            $sql_str = "INSERT INTO `sanpham` (`id_danhMuc`,`giaSanPham`,`gioiThieu`,`anhSanPham`, `ten_sp`,  `size`) 
-                                        VALUES ( :id_danhMuc, :giaSanPham, :gioiThieu,:anhSanPham,:ten_sp, :size)";
-            $stmt = $objConn->prepare($sql_str);
-            $stmt->bindParam(':id_danhMuc', $id_danhMuc);
-            $stmt->bindParam(':giaSanPham', $giaSanPham);
-            $stmt->bindParam(':gioiThieu', $gioiThieu);
-            $stmt->bindParam(':anhSanPham', $anhSanPham);
-            $stmt->bindParam(':ten_sp', $ten_sp);
-            $stmt->bindParam(':size', $size);
-
-            if ($stmt->execute() && $stmt->rowCount() > 0) {
-                header("Location:../man_chinh/Quan_ly_do_uong.html");
-            } else {
-                echo "Failed to add user.";
-            }
-        } catch (PDOException $e) {
-            die('Lỗi thêm user vào CSDL: ' . $e->getMessage());
-        }
+    } 
     } else {
         echo "";
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -164,11 +200,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <form action="sanPham-add.php" method="POST" enctype="multipart/form-data">
                 <section class="thongtinMK">
-                    <label for="">Tên SP:<input type="text" name="ten_sp" placeholder="Nhập tên sản phẩm" required></label> <br>
-                    <label for="">Giá SP:<input type="text" name="giaSanPham" placeholder="Nhập giá loại" required></label> <br>
-                    <label for="">Size:<input type="text" name="size" placeholder="Nhập size sản phẩm" required></label> <br>
-                    <label for="">Thể loại:<input type="text" name="id_danhMuc" placeholder="Nhập tên loại" required></label><br>
-                    <label for="">Giới thiệu:<input type="text" name="gioiThieu" placeholder="Thông tin sản phẩm" required></label> <br>
+                    <label for="">Tên SP:<input type="text" name="ten_sp" id="ten_sp" placeholder="Nhập tên sản phẩm" 
+                    value="<?php echo isset ($data['ten_sp'])? $data['ten_sp'] : '';?>"
+                    ></label> 
+                    <?php 
+                    echo isset($error['ten_sp']) ? $error['ten_sp'] : '' ;
+                    ?>
+                    
+                    <label for="">Giá SP:<input type="text" name="giaSanPham" id="giaSanPham" placeholder="Nhập giá loại" 
+                    value="<?php echo isset ($data['giaSanPham'])? $data['giaSanPham'] : '';?>"
+                    ></label> 
+                    <?php 
+                    echo isset($error['giaSanPham']['required']) ? $error['giaSanPham']['required'] : '' ;
+                    echo isset($error['giaSanPham']['invaild']) ? $error['giaSanPham']['invaild'] : '' ;
+                    ?>
+                    <label for="">Size:<input type="text" name="size" id="size" placeholder="Nhập size sản phẩm" 
+                    value="<?php echo isset ($data['size'])? $data['size'] : '';?>"
+                    ></label> 
+                    <?php 
+                    echo isset($error['size']) ? $error['size'] : '' ;
+                    ?>
+                    <label for="">Thể loại:<input type="text" name="id_danhMuc" placeholder="Nhập tên loại" ></label><br>
+                    <label for="">Giới thiệu:<input type="text" name="gioiThieu" id="gioiThieu" placeholder="Thông tin sản phẩm" 
+                    value="<?php echo isset ($data['gioiThieu'])? $data['gioiThieu'] : '';?>"
+                    ></label> 
+                    <?php 
+                    echo isset($error['gioiThieu']) ? $error['gioiThieu'] : '' ;
+                    ?><br>
                     Select image to upload:
                     <input type="file" name="anhSanPham" id="anhSanPham"><br>
                     <input type="submit" value="Thêm Sản phẩm" name="submit">
