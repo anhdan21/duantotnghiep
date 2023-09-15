@@ -33,7 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // echo json_encode($result);
                 header("Location: danhMuc-get.php");
             } else {
-               echo '<p style="color:red ;">Sai thông tin tài khoản mật khẩu</p>';
+                
+                $thon= " <p style='color : red; magrin-left:20%;'> Sai thong tin tai khoa mat khau </p>";
+                echo $thon;
             }
             $showForm = false;
         } catch(PDOException $e) {
@@ -151,7 +153,8 @@ h1{
                                             
                                             <a class="a" href="">Quên mật khẩu ?</a>
                                         </div>
-                                        <button type="submit" > ĐĂNG NHẬP</button>
+                                        
+                                        <button type="submit"  value=""> ĐĂNG NHẬP</button>
                                     </form>
                             <?php
                    } catch (PDOException $e) {

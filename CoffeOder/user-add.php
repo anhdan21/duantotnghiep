@@ -499,9 +499,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php
                     echo isset($error['chucNang']) ? $error['chucNang'] : '';
                     ?> <br>
-                    Select image to upload:
-                    <input type="file" name="image" id="image"><br>
+                    <span style="margin-right: 380px;">Chọn ảnh :</span>
+                    <input style="margin-top: -1.99%;" type="file" name="image" id="image">
                     <div class="oclock">
+                        
                         <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span>
                         <span>Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
                     </div><br>

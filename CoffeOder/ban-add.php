@@ -424,8 +424,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form action="ban-add.php" method="POST">
                 <section class="thongtinMK">
                     <!-- <label for="">Tâng:<input type="text" name="id_tang" id="id_tang" value="<?php echo isset($data['id_tang']) ? $data['id_tang'] : ''; ?>"></label> <br> -->
-                    <h4 for="id_tang" style="margin-right: 350px;">Tầng:
-                        <select name="id_tang" style="height: 40px; width:100px">
+                    <h4 for="id_tang" style="margin-right: 500px;">Tầng:
+                        <select name="id_tang" style="height: 40px; width:100px ; margin-left: 12px;">
                             <?php
                             include 'API.php';
                             $sql = "SELECT id_tang, soTang FROM tang";
@@ -449,8 +449,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
 
                     <!-- <label for="">Trạng thái:<input type="text" name="trangThai" placeholder="Trạng thái bàn" value="<?php echo isset($data['trangThai']) ? $data['trangThai'] : ''; ?>"></label> -->
-                    <h4 for="myDropdown">Trạng thái:
-                        <select name="trangThai" id="trangThai" style="height: 40px; width:100px">
+                    <h4 for="myDropdown" style="margin-right: 500px;">Trạng thái:
+                        <select name="trangThai" id="trangThai" style="height: 40px; width:120px; margin-left: 10px;">
                             <option value="0">0</option>
                             <option value="1">1</option>
                         </select>

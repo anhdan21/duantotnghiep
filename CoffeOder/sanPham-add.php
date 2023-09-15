@@ -215,7 +215,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php
                     echo isset($error['size']) ? $error['size'] : '';
                     ?>
-                    <h4 for="id_danhMuc" style="margin-right: 350px;">Danh mục :
+                    <h4 for="id_danhMuc" style="margin-right: 450px;">Danh mục :
                         <select name="id_danhMuc" style="height: 40px; width:200px">
                             <?php
                             include 'API.php';
@@ -233,7 +233,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php
                     echo isset($error['gioiThieu']) ? $error['gioiThieu'] : '';
                     ?><br>
-                    <h4>Chọn ảnh --
+                    <h4 style="margin-right: 130px;">Chọn ảnh
                         <input type="file" name="anhSanPham" id="anhSanPham">
                     </h4><br><br>
                     <input type="submit" value="Thêm Sản phẩm" name="submit">
