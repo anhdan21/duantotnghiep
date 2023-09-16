@@ -43,9 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //     $error['email'] = 'Email không đúng định dạng';
             // }
 
-            if (empty($data['trangThai'])) {
-                $error['trangThai'] = 'Bạn chưa nhập trạng thái hoạt động';
-            }
+            // if (empty($data['trangThai'])) {
+            //     $error['trangThai'] = 'Bạn chưa nhập trạng thái hoạt động';
+            // }
 
             // Lưu dữ liệu
             if (!$error) {
@@ -449,14 +449,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
 
                     <!-- <label for="">Trạng thái:<input type="text" name="trangThai" placeholder="Trạng thái bàn" value="<?php echo isset($data['trangThai']) ? $data['trangThai'] : ''; ?>"></label> -->
-                    <h4 for="myDropdown" style="margin-right: 500px;">Trạng thái:
+                    <!-- <h4 for="myDropdown" style="margin-right: 500px;">Trạng thái:
                         <select name="trangThai" id="trangThai" style="height: 40px; width:120px; margin-left: 10px;">
                             <option value="0">0</option>
                             <option value="1">1</option>
+                            
                         </select>
-                    </h4><br>
+                    </h4><br> -->
+                    <input type="hidden" value="0" name="trangThai" id="trangThai">
                     <?php
-                    echo isset($error['trangThai']) ? $error['trangThai'] : '';
+                    // echo isset($error['trangThai']) ? $error['trangThai'] : '';
                     ?>
 
                     <div class="oclock">

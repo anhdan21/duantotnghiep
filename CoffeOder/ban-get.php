@@ -321,7 +321,7 @@ main{
                             }elseif($r['trangThai'] == 1){
                                 echo "Đang hoạt động";
                             } ?> </td>
-                            <td>Số bàn <?php echo $r['soBan']; ?></td>
+                            <td>Bàn số <?php echo $r['soBan']; ?></td>
                             <td> <div  class="sua" >
                             
                                 <a  style="margin-right: 18px;" href="ban-edit.php?id=<?php echo $r['Id_Table'];?>">Sửa</a>
