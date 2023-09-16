@@ -64,69 +64,70 @@
              </section>
          </nav>
          <main>
+             <div class="box">
+                 <div class="header1">
+                     <section class="canhan">
+                         <i class="fas fa-bars"></i>
+                         <img src="anh_manhinh/use.png" alt="">
+                         <section class="dropdown">
+                             <section class="dropdwon_select">
+                                 <span class="dropdown_selected"> Administrator</span>
+                                 <i class="fas fa-sort-down"></i>
+                                 <ul class="dropdown_list">
+                                     <a href="#">
+                                         <li class="dropdown_item">
+                                             <span class="dropdown_test"> Đổi Mật Khẩu</span>
+                                             <i class="fas fa-key"></i>
+                                         </li>
+                                     </a>
+                                     <a href="../CoffeOder/login.php" type=" color: #000">
+                                         <li class="dropdown_item">
+                                             <span class="dropdown_test">Đăng Xuất</span>
+                                             <i class="fas fa-sign-out-alt"></i>
+                                         </li>
+                                     </a>
 
-             <section class="canhan">
-                 <i class="fas fa-bars"></i>
-                 <img src="./anh/use.png" alt="">
-                 <section class="dropdown">
-                     <section class="dropdwon_select">
-                         <span class="dropdown_selected"> Administrator</span>
-                         <i class="fas fa-sort-down"></i>
-                         <ul class="dropdown_list">
-                             <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/Doi_mat_khau.html">
-                                 <li class="dropdown_item">
-                                     <span class="dropdown_test"> Đổi Mật Khẩu</span>
-                                     <i class="fas fa-key"></i>
-                                 </li>
-                             </a>
-                             <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/dang_nhap.html" type=" color: #000">
-                                 <li class="dropdown_item">
-                                     <span class="dropdown_test">Đăng Xuất</span>
-                                     <i class="fas fa-sign-out-alt"></i>
-                                 </li>
-                             </a>
-
-                         </ul>
+                                 </ul>
+                             </section>
+                         </section>
                      </section>
+                     <section class="tenQL">
+                        <span>Cập nhật sản phẩm</span>
+                    </section>
+                 </div>
+                 <div class="Header2">
+                     <form action="sanPham-update-post.php" method="POST" enctype="multipart/form-data">
+                         <h3>Update Sản phẩm</h3>
 
-                 </section>
-             </section>
-             <section class="tenQL">
-                 <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_ban.html"><span>Quản lý bàn</span></a>
-                 <a href="http://127.0.0.1:5500/duantotnghiep/Them/ThemBan.html"><span>/ Thêm bàn</span></a>
+                         <input type="hidden" value="<?php echo $row['Id_sanPham']; ?>" name="sid">ID :<?php echo $row['Id_sanPham']; ?></input> <br><br>
 
-             </section>
+                         <!-- <label>Id danh mục: <input type="text" name="id_danhMuc" value="<?php echo $row['id_danhMuc']; ?>"></label><br> -->
+                         <h4 for="id_danhMuc" style="margin-right: 350px;">Danh mục :
+                             <select name="id_danhMuc" style="height: 40px; width:200px">
+                                 <?php
+                                    include 'API.php';
+                                    $sql = "SELECT id_danhMuc, ten_danhMuc FROM danhmuc";
+                                    $stmt = $conn->query($sql);
 
-             <form action="sanPham-update-post.php" method="POST" enctype="multipart/form-data">
-                 <h3>Update Sản phẩm</h3>
-
-                 <input type="hidden" value="<?php echo $row['Id_sanPham']; ?>" name="sid">ID :<?php echo $row['Id_sanPham']; ?></input> <br><br>
-
-                 <!-- <label>Id danh mục: <input type="text" name="id_danhMuc" value="<?php echo $row['id_danhMuc']; ?>"></label><br> -->
-                 <h4 for="id_danhMuc" style="margin-right: 350px;">Danh mục :
-                     <select name="id_danhMuc" style="height: 40px; width:200px">
-                         <?php
-                            include 'API.php';
-                            $sql = "SELECT id_danhMuc, ten_danhMuc FROM danhmuc";
-                            $stmt = $conn->query($sql);
-
-                            // Lặp qua danh sách người dùng và tạo các tùy chọn trong dropdown menu
-                            while ($rowea = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                echo "<option value='" . $rowea['id_danhMuc'] . "'>" . $rowea['ten_danhMuc'] . "</option>";
-                            }
-                            ?>
-                     </select>
-                 </h4><br>
-                 <label>Tên sản phẩm: <input type="text" name="ten_sp" value="<?php echo $row['ten_sp']; ?>"></label><br>
-                 <label>Giá: <input type="text" name="giaSanPham" value="<?php echo $row['giaSanPham']; ?>"></label><br>
-                 <label>Giới thiêu: <input type="text" name="gioiThieu" value="<?php echo $row['gioiThieu']; ?>"></label><br>
-                 <label>Kích cỡ: <input type="text" name="size" value="<?php echo $row['size']; ?>"></label><br>
-                 <h4>Chọn ảnh --
-                     <input type="file" name="anhSanPham" id="anhSanPham">
-                 </h4><br>
-                 <button type="submit" name="btnSave">Save Update</button>
-                 <button type="submit" name="btnCancel">Cancel</button>
-             </form>
+                                    // Lặp qua danh sách người dùng và tạo các tùy chọn trong dropdown menu
+                                    while ($rowea = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                        echo "<option value='" . $rowea['id_danhMuc'] . "'>" . $rowea['ten_danhMuc'] . "</option>";
+                                    }
+                                    ?>
+                             </select>
+                         </h4><br>
+                         <label>Tên sản phẩm: <input type="text" name="ten_sp" value="<?php echo $row['ten_sp']; ?>"></label><br>
+                         <label>Giá: <input type="text" name="giaSanPham" value="<?php echo $row['giaSanPham']; ?>"></label><br>
+                         <label>Giới thiêu: <input type="text" name="gioiThieu" value="<?php echo $row['gioiThieu']; ?>"></label><br>
+                         <label>Kích cỡ: <input type="text" name="size" value="<?php echo $row['size']; ?>"></label><br>
+                         <h4>Chọn ảnh --
+                             <input type="file" name="anhSanPham" id="anhSanPham">
+                         </h4><br>
+                         <button type="submit" name="btnSave">Save Update</button>
+                         <button type="submit" name="btnCancel">Cancel</button>
+                     </form>
+                 </div>
+             </div>
          </main>
      </div>
 
@@ -250,11 +251,10 @@
      }
 
      body {
-         margin: auto;
+         margin: 0;
          padding: 0;
+         box-sizing: border-box;
          font-family: 'Inter', sans-serif;
-         width: 1900px;
-         height: 1080px;
      }
 
      @font-face {
@@ -270,6 +270,7 @@
 
      .div-all {
          display: flex;
+
      }
 
      nav {
@@ -277,12 +278,18 @@
          background-color: #2A3F53;
          color: aliceblue;
          padding: 20px;
+         position: fixed;
+         height: 1000px;
+         z-index: 1;
+
 
      }
 
      .head h2 {
          margin-left: 60px;
          margin-bottom: 40px;
+         text-align: center;
+
      }
 
      .img {
@@ -338,37 +345,34 @@
      }
 
      main {
-
          flex: 5;
      }
 
-     /****************************************************/
-     main i {}
 
+     /* ========================= */
      .canhan {
          background-color: #D9D9D9;
          padding: 25px;
          position: relative;
+         border-bottom: 1px solid #fff;
 
      }
 
      .canhan img {
          position: absolute;
-         right: 190px;
+         right: 200px;
          margin-top: -12px;
          border: 1px solid #ffffff;
          border-radius: 50%;
          padding: 15px;
          background-color: white;
          flex-shrink: 0;
-         /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
-         width: 15px;
-         /* Đặt chiều rộng ảnh là 200px */
+         width: 30px;
          height: auto;
      }
 
      .canhan .dropdown {
-         position: absolute;
+         position: fixed;
          right: 60px;
          margin-top: -20px;
      }
@@ -379,17 +383,14 @@
 
      .dropdown_select {
          cursor: pointer;
-
      }
 
      .dropdown:hover .dropdown_list {
          display: block;
      }
 
-     .dropdown_selected {}
-
      .dropdown_list {
-         width: 135px;
+         width: 150px;
          border-radius: 4px;
          background-color: #D9D9D9;
          position: absolute;
@@ -401,7 +402,7 @@
 
      .dropdown_list::before {
          content: "";
-         height: 20px;
+         height: 25px;
          position: absolute;
          left: 0;
          right: 0;
@@ -410,7 +411,6 @@
      }
 
      .dropdown_item {
-
          text-align: center;
          margin-top: -5px;
          margin-left: -40px;
@@ -424,27 +424,44 @@
          background-color: #2A3F53;
      }
 
-     /****************************************************/
-     .tenQL {
-         margin-top: 10px;
-         padding: 25px;
-         border-bottom: 1px solid #D9D9D9;
+     /* ==================================================== */
+
+
+     .box {
+         position: absolute;
+         margin-left: 300px;
+         width: 1599px;
      }
 
-     .tenQL a {
-         text-decoration: none;
-         color: black;
+     .header1 {
+         width: 1599px;
+         position: fixed;
+         z-index: 1;
+     }
+
+     .Header2 {
+         width: 1599px;
+         margin-top: 130px;
+     }
+
+     .tenQL {
+         padding: 25px;
+         border-bottom: 1px solid #D9D9D9;
+         padding-left: 50px;
+         background-color: #fff;
      }
 
      .thoigian {
          padding: 20px;
          border-bottom: 2px solid #D9D9D9;
+         padding-left: 50px;
+         background-color: #fff;
      }
 
      .themDS {
          position: absolute;
-         right: 50px;
-         width: 100px;
+         right: 30px;
+         width: 150px;
      }
 
      .themDS button {

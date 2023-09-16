@@ -4,10 +4,10 @@ include 'API.php';
 
 $id = $_GET['id'];
 
-$Cons = mysqli_connect("localhost", "root", "" , "coffeoder");
-$edit_sql= "SELECT * FROM user WHERE Id_User = $id";
+$Cons = mysqli_connect("localhost", "root", "", "coffeoder");
+$edit_sql = "SELECT * FROM user WHERE Id_User = $id";
 
-$result = mysqli_query($Cons,$edit_sql);
+$result = mysqli_query($Cons, $edit_sql);
 $row = mysqli_fetch_assoc($result);
 ?>
 
@@ -24,210 +24,271 @@ $row = mysqli_fetch_assoc($result);
 </head>
 
 <style>
-    body{
-    margin: auto;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-    width: 1900px;
-    height: 1080px;
-}
-@font-face {
-    font-family: 'Inter';
-    src: url('đường_dẫn_đến_tệp_font/inter.woff2') format('woff2'),
-         url('đường_dẫn_đến_tệp_font/inter.woff') format('woff');
-    /* Nếu muốn hỗ trợ thêm các định dạng font khác, bạn có thể thêm vào đây */
-    font-weight: normal; /* Trọng lượng phông chữ */
-    font-style: normal; /* Kiểu phông chữ */
-  }
- 
-.div-all{
-    display: flex;
-}
-nav{
-    flex: 1;
-    background-color: #2A3F53;
-    color: aliceblue;
-    padding: 20px;
+    body {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Inter', sans-serif;
+     }
 
-}
-.head h2{
-    margin-left: 60px;
-    margin-bottom: 40px;
-}
-.img{
-    border: 1px solid #ffffff;
-    border-radius: 50%;
-    padding: 20px;
-    background-color: white;
-    flex-shrink: 0; /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
-    width: 25px; /* Đặt chiều rộng ảnh là 200px */
-    height: auto;
-}
-.use{
-    display: flex;
-    row-gap: 1fr;
-    margin-bottom: 20px;
-    
-}
-/**/
-/*xin chao */
-.use section{
-    margin-left: 40px;
-    margin-top: 15px;
-}
-/*menu list danh sach */
-.menu {
-    margin-top: 40px;
-    border-top:  1px solid white;
-    padding-bottom: 90px;
-}
-.menu ul{
-    list-style-type: none;
-}
-ul li i{
-     margin-right: 20px;
-     width: 20px;
-     height: 10px;
-}
-ul li{
-    margin-top: 70px;
-}
-ul a{
-    color: white;
-        text-decoration: none;
-}
-main{
+     @font-face {
+         font-family: 'Inter';
+         src: url('đường_dẫn_đến_tệp_font/inter.woff2') format('woff2'),
+             url('đường_dẫn_đến_tệp_font/inter.woff') format('woff');
+         /* Nếu muốn hỗ trợ thêm các định dạng font khác, bạn có thể thêm vào đây */
+         font-weight: normal;
+         /* Trọng lượng phông chữ */
+         font-style: normal;
+         /* Kiểu phông chữ */
+     }
 
-    flex: 5;
-}
-/****************************************************/
-.canhan {
-    background-color: #D9D9D9;
-    padding: 25px;
-    position: relative;
-    
-}
-.canhan img{
-    position: absolute;
-    right: 190px;
-    margin-top: -12px;
-    border: 1px solid #ffffff;
-    border-radius: 50%;
-    padding: 15px;
-    background-color: white;
-    flex-shrink: 0; /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
-    width: 15px; /* Đặt chiều rộng ảnh là 200px */
-    height: auto;
-}
-.canhan .dropdown{
-    position: absolute;
-    right: 60px;
-    margin-top: -20px;
-}
-.dropdown{
-   position: relative;
-}
-.dropdown_select{
-    cursor: pointer;
-   
-}
-.dropdown:hover .dropdown_list{
-    display: block;
-}
-.dropdown_list{
-    width: 135px;
-    border-radius:  4px;
-    background-color: #D9D9D9;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    display: none;
-}
-.dropdown_list::before{
-    content: "";
-    height: 20px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    background-color: transparent;
-    transform: translateY(-100%);
-}
-.dropdown_item{
-   
-    text-align: center;
-    margin-top: -5px;
-    margin-left: -40px;
-    padding: 15px;
-    cursor: pointer;
-    transition: background-color 0.2s linear;
-    list-style-type: none;
-}
-.dropdown_item:hover{
-    background-color: #2A3F53;
-}
-/****************************************************/
-.tenQL{
-    margin-top: 10px;
-    padding: 25px;
-    border-bottom:1px solid #D9D9D9 ;
-}
-.tenQL a{
-    text-decoration: none;
-    color: black;
-}
-.thoigian{
-    padding: 20px;
-    border-bottom: 2px solid #D9D9D9;
-}
-.themDS{
-    position: absolute;
-    right: 50px;
-    width: 100px;
-}
-.themDS button{
-    padding: 5px;
-}
-/****************************************************/
-.thongtinMK{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 50px;
-}
-.thongtinMK label{
-    margin-left: -100px;
-    padding: 10px;
+     .div-all {
+         display: flex;
 
-}
-.thongtinMK input{
-    margin-left: 30px;
-    width: 500px;
-    padding: 10px;
-}
-.thongtinMK span{
-    margin-top: 20px;
-    margin-left: -300px;
-}
-.thongtinMK button{
-    padding: 10px;
-    margin: 50px 0 0 500px;
-    border-radius: 5px;
-}
-.thongtinMK button:hover{
-    background-color: #2A3F53;
-    color: white;
-}
-/**************************************************/
-.oclock{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-}
-/***************************/
+     }
 
+     nav {
+         flex: 1;
+         background-color: #2A3F53;
+         color: aliceblue;
+         padding: 20px;
+         position: fixed;
+         height: 1000px;
+         z-index: 1;
+
+
+     }
+
+     .head h2 {
+         margin-left: 60px;
+         margin-bottom: 40px;
+         text-align: center;
+
+     }
+
+     .img {
+         border: 1px solid #ffffff;
+         border-radius: 50%;
+         padding: 20px;
+         background-color: white;
+         flex-shrink: 0;
+         /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
+         width: 25px;
+         /* Đặt chiều rộng ảnh là 200px */
+         height: auto;
+     }
+
+     .use {
+         display: flex;
+         row-gap: 1fr;
+         margin-bottom: 20px;
+
+     }
+
+     /**/
+     /*xin chao */
+     .use section {
+         margin-left: 40px;
+         margin-top: 15px;
+     }
+
+     /*menu list danh sach */
+     .menu {
+         margin-top: 40px;
+         border-top: 1px solid white;
+         padding-bottom: 90px;
+     }
+
+     .menu ul {
+         list-style-type: none;
+     }
+
+     ul li i {
+         margin-right: 20px;
+         width: 20px;
+         height: 10px;
+     }
+
+     ul li {
+         margin-top: 70px;
+     }
+
+     ul a {
+         color: white;
+         text-decoration: none;
+     }
+
+     main {
+         flex: 5;
+     }
+
+
+     /* ========================= */
+     .canhan {
+         background-color: #D9D9D9;
+         padding: 25px;
+         position: relative;
+         border-bottom: 1px solid #fff;
+
+     }
+
+     .canhan img {
+         position: absolute;
+         right: 200px;
+         margin-top: -12px;
+         border: 1px solid #ffffff;
+         border-radius: 50%;
+         padding: 15px;
+         background-color: white;
+         flex-shrink: 0;
+         width: 30px;
+         height: auto;
+     }
+
+     .canhan .dropdown {
+         position: fixed;
+         right: 60px;
+         margin-top: -20px;
+     }
+
+     .dropdown {
+         position: relative;
+     }
+
+     .dropdown_select {
+         cursor: pointer;
+     }
+
+     .dropdown:hover .dropdown_list {
+         display: block;
+     }
+
+     .dropdown_list {
+         width: 150px;
+         border-radius: 4px;
+         background-color: #D9D9D9;
+         position: absolute;
+         top: 100%;
+         left: 0;
+         right: 0;
+         display: none;
+     }
+
+     .dropdown_list::before {
+         content: "";
+         height: 25px;
+         position: absolute;
+         left: 0;
+         right: 0;
+         background-color: transparent;
+         transform: translateY(-100%);
+     }
+
+     .dropdown_item {
+         text-align: center;
+         margin-top: -5px;
+         margin-left: -40px;
+         padding: 15px;
+         cursor: pointer;
+         transition: background-color 0.2s linear;
+         list-style-type: none;
+     }
+
+     .dropdown_item:hover {
+         background-color: #2A3F53;
+     }
+
+     /* ==================================================== */
+
+
+     .box {
+         position: absolute;
+         margin-left: 300px;
+         width: 1599px;
+     }
+
+     .header1 {
+         width: 1599px;
+         position: fixed;
+         z-index: 1;
+     }
+
+     .Header2 {
+         width: 1599px;
+         margin-top: 190px;
+     }
+
+     .tenQL {
+         padding: 25px;
+         border-bottom: 1px solid #D9D9D9;
+         padding-left: 50px;
+         background-color: #fff;
+     }
+
+     .thoigian {
+         padding: 20px;
+         border-bottom: 2px solid #D9D9D9;
+         padding-left: 50px;
+         background-color: #fff;
+     }
+
+     .themDS {
+         position: absolute;
+         right: 30px;
+         width: 150px;
+     }
+
+     .themDS button {
+         padding: 5px;
+     }
+
+    /****************************************************/
+    .thongtinMK {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    .thongtinMK label {
+        margin-left: -100px;
+        padding: 10px;
+
+    }
+
+    .thongtinMK input {
+        margin-left: 30px;
+        width: 500px;
+        padding: 10px;
+    }
+
+    .thongtinMK span {
+        margin-top: 20px;
+        margin-left: -300px;
+    }
+
+    .thongtinMK button {
+        padding: 10px;
+        margin: 50px 0 0 500px;
+        border-radius: 5px;
+    }
+
+    .thongtinMK button:hover {
+        background-color: #2A3F53;
+        color: white;
+    }
+
+    /**************************************************/
+    .oclock {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+    }
+
+    /***************************/
 </style>
+
 <body>
     <div class="div-all">
         <nav>
@@ -244,68 +305,87 @@ main{
             </section>
 
             <section class="menu">
-            <ul>
-          <a href="../CoffeOder/danhMuc-get.php"><li><i class="fas fa-caravan"></i>Đồ bán chạy</li></a>
-          <a href="../man_chinh/Quan_ly_do_uong.html"><li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li></a>
-          <a href="../man_chinh/Quan_ly_nguyen_lieu.html"><li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li></a>
-          <a href="../CoffeOder/ban-get.php"><li>Quản lý bàn </li></a>
-          <a href="../CoffeOder/user-get.php"><li>Tài khoản nhân viên</li></a>
-          <a href=""><li>Thống kê</li></a>
-          <a href="../man_chinh/Khuyen_mai.html"><li>Khuyến mại</li></a> 
-      </ul>
+                <ul>
+                    <a href="../CoffeOder/danhMuc-get.php">
+                        <li><i class="fas fa-caravan"></i>Đồ bán chạy</li>
+                    </a>
+                    <a href="../man_chinh/Quan_ly_do_uong.html">
+                        <li><i class="fas fa-wine-glass-alt"></i>Quản lý đồ uống</li>
+                    </a>
+                    <a href="../man_chinh/Quan_ly_nguyen_lieu.html">
+                        <li><i class="fas fa-seedling"></i>Quản lý nguyên liệu</li>
+                    </a>
+                    <a href="../CoffeOder/ban-get.php">
+                        <li>Quản lý bàn </li>
+                    </a>
+                    <a href="../CoffeOder/user-get.php">
+                        <li>Tài khoản nhân viên</li>
+                    </a>
+                    <a href="../CoffeOder/hoaDonct-get.php">
+                        <li>Hóa đơn</li>
+                    </a>
+                    <a href="../man_chinh/Khuyen_mai.html">
+                        <li>Khuyến mại</li>
+                    </a>
+                </ul>
             </section>
         </nav>
         <main>
 
-            <section class="canhan">
-                <i class="fas fa-bars"></i>
-                <img src="./anh/use.png" alt="">
-                <section class="dropdown">
-                    <section class="dropdwon_select">
-                        <span class="dropdown_selected"> Administrator</span>
-                        <i class="fas fa-sort-down"></i>
-                        <ul class="dropdown_list">
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/Doi_mat_khau.html">
-                                <li class="dropdown_item">
-                                    <span class="dropdown_test"> Đổi Mật Khẩu</span>
-                                    <i class="fas fa-key"></i>
-                                </li>
-                            </a>
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/dang_nhap.html" type=" color: #000">
-                                <li class="dropdown_item">
-                                    <span class="dropdown_test">Đăng Xuất</span>
-                                    <i class="fas fa-sign-out-alt"></i>
-                                </li>
-                            </a>
+            <div class="box">
+                <div class="header1">
+                    <section class="canhan">
+                        <i class="fas fa-bars"></i>
+                        <img src="anh_manhinh/use.png" alt="">
+                        <section class="dropdown">
+                            <section class="dropdwon_select">
+                                <span class="dropdown_selected"> Administrator</span>
+                                <i class="fas fa-sort-down"></i>
+                                <ul class="dropdown_list">
+                                    <a href="#">
+                                        <li class="dropdown_item">
+                                            <span class="dropdown_test"> Đổi Mật Khẩu</span>
+                                            <i class="fas fa-key"></i>
+                                        </li>
+                                    </a>
+                                    <a href="../CoffeOder/login.php" type=" color: #000">
+                                        <li class="dropdown_item">
+                                            <span class="dropdown_test">Đăng Xuất</span>
+                                            <i class="fas fa-sign-out-alt"></i>
+                                        </li>
+                                    </a>
 
-                        </ul>
+                                </ul>
+                            </section>
+
+                        </section>
                     </section>
+                    <section class="tenQL">
+                        <span>Cập nhật thông tin nhân viên</span>
+                    </section>
+                </div>
 
-                </section>
-            </section>
-            <section class="tenQL">
-                <a href="#"><span>Sửa Thông Tin Nhân Viên</span></a>
+                <div class="Header2">
+                    <form action="user-update.php" method="POST" enctype="multipart/form-data">
+                        <section class="thongtinMK">
+                            <input type="hidden" name="sid" value="<?php echo $row['Id_User']; ?>" id="">
+                            <label for="">Tên NV:<input type="text" name="userName" value="<?php echo $row['userName'] ?>"></label> <br>
+                            <label for="">Họ NV:<input type="text" name="fullName" value="<?php echo $row['fullName'] ?>"></label> <br>
+                            <label for="">SDT:<input type="phone_Number" name="phone_Number" value="<?php echo $row['phone_Number'] ?>"></label> <br>
+                            <label for="">Vị trí:<input type="text" name="chucNang" value="<?php echo $row['chucNang'] ?>">
+                            </label> <br>
 
-            </section>
-
-            <form action="user-update.php" method="POST" enctype="multipart/form-data">
-            <section class="thongtinMK">
-                <input type="hidden" name="sid" value="<?php echo $row['Id_User'];?>" id="">
-                <label for="">Tên NV:<input type="text" name="userName" value="<?php echo $row['userName']?>"></label> <br>
-                <label for="">Họ NV:<input type="text" name="fullName" value="<?php echo $row['fullName']?>"></label> <br>
-                <label for="">SDT:<input type="phone_Number" name="phone_Number" value="<?php echo $row['phone_Number']?>"></label> <br>
-                <label for="">Vị trí:<input type="text" name="chucNang" value="<?php echo $row['chucNang']?>"> 
-                </label> <br>
-
-                Select image to upload:<br>
-                    <input type="file" name="image" id="image"><br>
-                <div class="oclock">
-                    <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span>
-                    <span>Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
-                </div><br>
-                <button type="submit">Lưu Thông Tin</button>                
-            </section>
-        </form>
+                            Select image to upload:<br>
+                            <input type="file" name="image" id="image"><br>
+                            <div class="oclock">
+                                <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span>
+                                <span>Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
+                            </div><br>
+                            <button type="submit">Lưu Thông Tin</button>
+                        </section>
+                    </form>
+                </div>
+            </div>
 
         </main>
     </div>
@@ -325,11 +405,12 @@ main{
 
         // Hiển thị giờ hiện tại trong thẻ p có id="current-time"
         document.getElementById('current-time').textContent = formattedTime;
-        
+
     }
 
     // Gọi hàm getCurrentTime mỗi giây một lần để cập nhật giờ hiện tại
     setInterval(getCurrentTime, 1000);
+
     function getCurrentDate() {
         // Tạo đối tượng Date đại diện cho thời gian hiện tại
         const now = new Date();
@@ -348,7 +429,6 @@ main{
 
     // Gọi hàm getCurrentDate khi trang được tải và sau đó mỗi ngày một lần để cập nhật ngày hiện tại
     getCurrentDate();
-    
 </script>
 
 </html>

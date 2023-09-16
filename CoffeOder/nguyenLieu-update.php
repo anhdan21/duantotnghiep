@@ -157,81 +157,84 @@ if (isset($_POST['btnSave'])) {
             </section>
         </nav>
         <main>
+            <div class="box">
+                <div class="header1">
+                    <section class="canhan">
+                        <i class="fas fa-bars"></i>
+                        <img src="anh_manhinh/use.png" alt="">
+                        <section class="dropdown">
+                            <section class="dropdwon_select">
+                                <span class="dropdown_selected"> Administrator</span>
+                                <i class="fas fa-sort-down"></i>
+                                <ul class="dropdown_list">
+                                    <a href="#">
+                                        <li class="dropdown_item">
+                                            <span class="dropdown_test"> Đổi Mật Khẩu</span>
+                                            <i class="fas fa-key"></i>
+                                        </li>
+                                    </a>
+                                    <a href="../CoffeOder/login.php" type=" color: #000">
+                                        <li class="dropdown_item">
+                                            <span class="dropdown_test">Đăng Xuất</span>
+                                            <i class="fas fa-sign-out-alt"></i>
+                                        </li>
+                                    </a>
 
-            <section class="canhan">
-                <i class="fas fa-bars"></i>
-                <img src="./anh/use.png" alt="">
-                <section class="dropdown">
-                    <section class="dropdwon_select">
-                        <span class="dropdown_selected"> Administrator</span>
-                        <i class="fas fa-sort-down"></i>
-                        <ul class="dropdown_list">
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/Doi_mat_khau.html">
-                                <li class="dropdown_item">
-                                    <span class="dropdown_test"> Đổi Mật Khẩu</span>
-                                    <i class="fas fa-key"></i>
-                                </li>
-                            </a>
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/dang_nhap.html" type=" color: #000">
-                                <li class="dropdown_item">
-                                    <span class="dropdown_test">Đăng Xuất</span>
-                                    <i class="fas fa-sign-out-alt"></i>
-                                </li>
-                            </a>
+                                </ul>
+                            </section>
 
-                        </ul>
+                        </section>
                     </section>
+                    <section class="tenQL">
+                        <span>Cập nhật nguyên liệu</span>
+                    </section>
+                </div>
+                <div class="Header2">
+                    <div id="container">
+                        <p><?php echo implode('<br>', $err); ?></p>
 
-                </section>
-            </section>
-            <section class="tenQL">
-                <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Quan_ly_ban.html"><span>Quản lý bàn</span></a>
-                <a href="http://127.0.0.1:5500/duantotnghiep/Them/ThemBan.html"><span>/ Thêm bàn</span></a>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            <span>ID :<?php echo $row['Id_nguyenLieu']; ?></span>
+                            <!-- <label for="id_User">Id người nhập</label>
+                        <input type="text" name="id_User" value="<?php echo $row['id_User']; ?>"> -->
+                            <label for="ten_nguyenLieu">Tên nguyên liệu</label>
+                            <input type="text" name="ten_nguyenLieu" value="<?php echo $row['ten_nguyenLieu']; ?>">
 
-            </section>
-            <div id="container">
-                <p><?php echo implode('<br>', $err); ?></p>
+                            <label for="soLuong">Số lượng</label>
+                            <input type="text" name="soLuong" value="<?php echo $row['soLuong']; ?>">
 
-                <form action="" method="post" enctype="multipart/form-data">
-                    <span>ID :<?php echo $row['Id_nguyenLieu']; ?></span>
-                    <!-- <label for="id_User">Id người nhập</label>
-                    <input type="text" name="id_User" value="<?php echo $row['id_User']; ?>"> -->
-                    <label for="ten_nguyenLieu">Tên nguyên liệu</label>
-                    <input type="text" name="ten_nguyenLieu" value="<?php echo $row['ten_nguyenLieu']; ?>">
+                            <label for="price">Giá</label>
+                            <input type="text" name="price" value="<?php echo $row['price']; ?>">
 
-                    <label for="soLuong">Số lượng</label>
-                    <input type="text" name="soLuong" value="<?php echo $row['soLuong']; ?>">
+                            <h4>Chọn ảnh --
+                                <input type="file" name="img_nguyenLieu" id="img_nguyenLieu">
+                            </h4>
+                            <br>
+                            <label for="ten_nguyenLieu">Kiểu dạng</label>
+                            <input type="text" name="kieuNguyenLieu" value="<?php echo $row['kieuNguyenLieu']; ?>">
 
-                    <label for="price">Giá</label>
-                    <input type="text" name="price" value="<?php echo $row['price']; ?>">
+                            <br>
+                            <label for="id_User" style="margin-right: 200px;">Chọn Người Nhập :
+                                <select name="id_User" style="height: 40px; width:200px">
+                                    <?php
+                                    include 'API.php';
 
-                    <h4>Chọn ảnh --
-                        <input type="file" name="img_nguyenLieu" id="img_nguyenLieu">
-                    </h4>
-                    <br>
-                    <label for="ten_nguyenLieu">Kiểu dạng</label>
-                    <input type="text" name="kieuNguyenLieu" value="<?php echo $row['kieuNguyenLieu']; ?>">
+                                    $sql = "SELECT id_User, fullName FROM user";
+                                    $stmt = $conn->query($sql);
 
-                    <br>
-                    <label for="id_User" style="margin-right: 200px;">Chọn Người Nhập :
-                        <select name="id_User" style="height: 40px; width:200px">
-                            <?php
-                            include 'API.php';
+                                    while ($roww = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                        echo "<option value='" . $roww['id_User'] . "'>" . $roww['fullName'] . "</option>";
+                                    }
 
-                            $sql = "SELECT id_User, fullName FROM user";
-                            $stmt = $conn->query($sql);
-
-                            while ($roww = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                echo "<option value='" . $roww['id_User'] . "'>" . $roww['fullName'] . "</option>";
-                            }
-
-                            ?>
-                        </select>
-                    </label>
-                    <br><br>
-                    <button name="btnSave">Save Update</button>
-                    <button name="btnCancel">Cancel</button>
-                </form>
+                                    ?>
+                                </select>
+                            </label>
+                            <br><br>
+                            <button name="btnSave">Save Update</button>
+                            <button name="btnCancel">Cancel</button>
+                        </form>
+                    </div>
+                </div>
             </div>
 
         </main>
@@ -330,206 +333,222 @@ if (isset($_POST['btnSave'])) {
     }
 
     body {
-        margin: auto;
-        padding: 0;
-        font-family: 'Inter', sans-serif;
-        width: 1900px;
-        height: 1080px;
-    }
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Inter', sans-serif;
+     }
 
-    @font-face {
-        font-family: 'Inter';
-        src: url('đường_dẫn_đến_tệp_font/inter.woff2') format('woff2'),
-            url('đường_dẫn_đến_tệp_font/inter.woff') format('woff');
-        /* Nếu muốn hỗ trợ thêm các định dạng font khác, bạn có thể thêm vào đây */
-        font-weight: normal;
-        /* Trọng lượng phông chữ */
-        font-style: normal;
-        /* Kiểu phông chữ */
-    }
+     @font-face {
+         font-family: 'Inter';
+         src: url('đường_dẫn_đến_tệp_font/inter.woff2') format('woff2'),
+             url('đường_dẫn_đến_tệp_font/inter.woff') format('woff');
+         /* Nếu muốn hỗ trợ thêm các định dạng font khác, bạn có thể thêm vào đây */
+         font-weight: normal;
+         /* Trọng lượng phông chữ */
+         font-style: normal;
+         /* Kiểu phông chữ */
+     }
 
-    .div-all {
-        display: flex;
-    }
+     .div-all {
+         display: flex;
 
-    nav {
-        flex: 1;
-        background-color: #2A3F53;
-        color: aliceblue;
-        padding: 20px;
+     }
 
-    }
+     nav {
+         flex: 1;
+         background-color: #2A3F53;
+         color: aliceblue;
+         padding: 20px;
+         position: fixed;
+         height: 1000px;
+         z-index: 1;
 
-    .head h2 {
-        margin-left: 60px;
-        margin-bottom: 40px;
-    }
 
-    .img {
-        border: 1px solid #ffffff;
-        border-radius: 50%;
-        padding: 20px;
-        background-color: white;
-        flex-shrink: 0;
-        /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
-        width: 25px;
-        /* Đặt chiều rộng ảnh là 200px */
-        height: auto;
-    }
+     }
 
-    .use {
-        display: flex;
-        row-gap: 1fr;
-        margin-bottom: 20px;
+     .head h2 {
+         margin-left: 60px;
+         margin-bottom: 40px;
+         text-align: center;
 
-    }
+     }
 
-    /**/
-    /*xin chao */
-    .use section {
-        margin-left: 40px;
-        margin-top: 15px;
-    }
+     .img {
+         border: 1px solid #ffffff;
+         border-radius: 50%;
+         padding: 20px;
+         background-color: white;
+         flex-shrink: 0;
+         /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
+         width: 25px;
+         /* Đặt chiều rộng ảnh là 200px */
+         height: auto;
+     }
 
-    /*menu list danh sach */
-    .menu {
-        margin-top: 40px;
-        border-top: 1px solid white;
-        padding-bottom: 90px;
-    }
+     .use {
+         display: flex;
+         row-gap: 1fr;
+         margin-bottom: 20px;
 
-    .menu ul {
-        list-style-type: none;
-    }
+     }
 
-    ul li i {
-        margin-right: 20px;
-        width: 20px;
-        height: 10px;
-    }
+     /**/
+     /*xin chao */
+     .use section {
+         margin-left: 40px;
+         margin-top: 15px;
+     }
 
-    ul li {
-        margin-top: 70px;
-    }
+     /*menu list danh sach */
+     .menu {
+         margin-top: 40px;
+         border-top: 1px solid white;
+         padding-bottom: 90px;
+     }
 
-    ul a {
-        color: white;
-        text-decoration: none;
-    }
+     .menu ul {
+         list-style-type: none;
+     }
 
-    main {
+     ul li i {
+         margin-right: 20px;
+         width: 20px;
+         height: 10px;
+     }
 
-        flex: 5;
-    }
+     ul li {
+         margin-top: 70px;
+     }
 
-    /****************************************************/
-    main i {}
+     ul a {
+         color: white;
+         text-decoration: none;
+     }
 
-    .canhan {
-        background-color: #D9D9D9;
-        padding: 25px;
-        position: relative;
+     main {
+         flex: 5;
+     }
 
-    }
 
-    .canhan img {
-        position: absolute;
-        right: 190px;
-        margin-top: -12px;
-        border: 1px solid #ffffff;
-        border-radius: 50%;
-        padding: 15px;
-        background-color: white;
-        flex-shrink: 0;
-        /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
-        width: 15px;
-        /* Đặt chiều rộng ảnh là 200px */
-        height: auto;
-    }
+     /* ========================= */
+     .canhan {
+         background-color: #D9D9D9;
+         padding: 25px;
+         position: relative;
+         border-bottom: 1px solid #fff;
 
-    .canhan .dropdown {
-        position: absolute;
-        right: 60px;
-        margin-top: -20px;
-    }
+     }
 
-    .dropdown {
-        position: relative;
-    }
+     .canhan img {
+         position: absolute;
+         right: 200px;
+         margin-top: -12px;
+         border: 1px solid #ffffff;
+         border-radius: 50%;
+         padding: 15px;
+         background-color: white;
+         flex-shrink: 0;
+         width: 30px;
+         height: auto;
+     }
 
-    .dropdown_select {
-        cursor: pointer;
+     .canhan .dropdown {
+         position: fixed;
+         right: 60px;
+         margin-top: -20px;
+     }
 
-    }
+     .dropdown {
+         position: relative;
+     }
 
-    .dropdown:hover .dropdown_list {
-        display: block;
-    }
+     .dropdown_select {
+         cursor: pointer;
+     }
 
-    .dropdown_selected {}
+     .dropdown:hover .dropdown_list {
+         display: block;
+     }
 
-    .dropdown_list {
-        width: 135px;
-        border-radius: 4px;
-        background-color: #D9D9D9;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        display: none;
-    }
+     .dropdown_list {
+         width: 150px;
+         border-radius: 4px;
+         background-color: #D9D9D9;
+         position: absolute;
+         top: 100%;
+         left: 0;
+         right: 0;
+         display: none;
+     }
 
-    .dropdown_list::before {
-        content: "";
-        height: 20px;
-        position: absolute;
-        left: 0;
-        right: 0;
-        background-color: transparent;
-        transform: translateY(-100%);
-    }
+     .dropdown_list::before {
+         content: "";
+         height: 25px;
+         position: absolute;
+         left: 0;
+         right: 0;
+         background-color: transparent;
+         transform: translateY(-100%);
+     }
 
-    .dropdown_item {
+     .dropdown_item {
+         text-align: center;
+         margin-top: -5px;
+         margin-left: -40px;
+         padding: 15px;
+         cursor: pointer;
+         transition: background-color 0.2s linear;
+         list-style-type: none;
+     }
 
-        text-align: center;
-        margin-top: -5px;
-        margin-left: -40px;
-        padding: 15px;
-        cursor: pointer;
-        transition: background-color 0.2s linear;
-        list-style-type: none;
-    }
+     .dropdown_item:hover {
+         background-color: #2A3F53;
+     }
 
-    .dropdown_item:hover {
-        background-color: #2A3F53;
-    }
+     /* ==================================================== */
 
-    /****************************************************/
-    .tenQL {
-        margin-top: 10px;
-        padding: 25px;
-        border-bottom: 1px solid #D9D9D9;
-    }
 
-    .tenQL a {
-        text-decoration: none;
-        color: black;
-    }
+     .box {
+         position: absolute;
+         margin-left: 300px;
+         width: 1599px;
+     }
 
-    .thoigian {
-        padding: 20px;
-        border-bottom: 2px solid #D9D9D9;
-    }
+     .header1 {
+         width: 1599px;
+         position: fixed;
+         z-index: 1;
+     }
 
-    .themDS {
-        position: absolute;
-        right: 50px;
-        width: 100px;
-    }
+     .Header2 {
+         width: 1599px;
+         margin-top: 190px;
+     }
 
-    .themDS button {
-        padding: 5px;
-    }
+     .tenQL {
+         padding: 25px;
+         border-bottom: 1px solid #D9D9D9;
+         padding-left: 50px;
+         background-color: #fff;
+     }
+
+     .thoigian {
+         padding: 20px;
+         border-bottom: 2px solid #D9D9D9;
+         padding-left: 50px;
+         background-color: #fff;
+     }
+
+     .themDS {
+         position: absolute;
+         right: 30px;
+         width: 150px;
+     }
+
+     .themDS button {
+         padding: 5px;
+     }
 
     /****************************************************/
     .thongtinMK {
