@@ -56,11 +56,10 @@
     }
 
     body {
-        margin: auto;
+        margin: 0;
         padding: 0;
+        box-sizing: border-box;
         font-family: 'Inter', sans-serif;
-        width: 1900px;
-        height: 1080px;
     }
 
     @font-face {
@@ -76,6 +75,7 @@
 
     .div-all {
         display: flex;
+
     }
 
     nav {
@@ -83,12 +83,18 @@
         background-color: #2A3F53;
         color: aliceblue;
         padding: 20px;
+        position: fixed;
+        height: 1000px;
+        z-index: 1;
+
 
     }
 
     .head h2 {
         margin-left: 60px;
         margin-bottom: 40px;
+        text-align: center;
+
     }
 
     .img {
@@ -144,37 +150,35 @@
     }
 
     main {
-
         flex: 5;
     }
 
-    /****************************************************/
-    main i {}
 
+    /* ========================= */
     .canhan {
         background-color: #D9D9D9;
         padding: 25px;
         position: relative;
+        border-bottom: 1px solid #fff;
+        height: 30px;
 
     }
 
     .canhan img {
         position: absolute;
-        right: 190px;
+        right: 200px;
         margin-top: -12px;
         border: 1px solid #ffffff;
         border-radius: 50%;
         padding: 15px;
         background-color: white;
         flex-shrink: 0;
-        /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
-        width: 15px;
-        /* Đặt chiều rộng ảnh là 200px */
+        width: 30px;
         height: auto;
     }
 
     .canhan .dropdown {
-        position: absolute;
+        position: fixed;
         right: 60px;
         margin-top: -20px;
     }
@@ -185,14 +189,11 @@
 
     .dropdown_select {
         cursor: pointer;
-
     }
 
     .dropdown:hover .dropdown_list {
         display: block;
     }
-
-    .dropdown_selected {}
 
     .dropdown_list {
         width: 150px;
@@ -207,7 +208,7 @@
 
     .dropdown_list::before {
         content: "";
-        height: 20px;
+        height: 25px;
         position: absolute;
         left: 0;
         right: 0;
@@ -216,7 +217,6 @@
     }
 
     .dropdown_item {
-
         text-align: center;
         margin-top: -5px;
         margin-left: -40px;
@@ -230,17 +230,39 @@
         background-color: #2A3F53;
     }
 
-    /****************************************************/
+    /* ==================================================== */
+
+
+    .box {
+        position: absolute;
+        margin-left: 300px;
+        width: 1599px;
+    }
+
+    .header1 {
+        width: 1599px;
+        position: fixed;
+        z-index: 1;
+    }
+
+    .Header2 {
+        width: 1599px;
+        margin-top: 200px;
+    }
+
     .tenQL {
-        margin-top: 10px;
         padding: 25px;
         border-bottom: 1px solid #D9D9D9;
-
+        padding-left: 50px;
+        background-color: #fff;
+        margin-top: -5px;
     }
 
     .thoigian {
-        padding: 30px;
+        padding: 20px;
         border-bottom: 2px solid #D9D9D9;
+        padding-left: 50px;
+        background-color: #fff;
     }
 
     .themDS {
@@ -249,15 +271,18 @@
         width: 130px;
         margin-top: -14px;
     }
-    .themthang{
+
+    .themthang {
         position: absolute;
         right: 200px;
         width: 130px;
         margin-top: -14px;
     }
+
     .themthang button {
-       padding:5px;
+        padding: 5px;
     }
+
     .themDS button {
         padding: 5px;
     }
@@ -355,67 +380,72 @@
         </nav>
         <main>
 
-            <section class="canhan">
-                <i class="fas fa-bars"></i>
-                <img src="anh_manhinh/use.png" alt="">
-                <section class="dropdown">
-                    <section class="dropdwon_select">
-                        <span class="dropdown_selected">Administrator</span>
-                        <i class="fas fa-sort-down"></i>
-                        <ul class="dropdown_list">
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/Doi_mat_khau.html">
-                                <li class="dropdown_item">
-                                    <span class="dropdown_test"> Đổi Mật Khẩu</span>
-                                    <i class="fas fa-key"></i>
-                                </li>
-                            </a>
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/dang_nhap.html" type=" color: #000">
-                                <li class="dropdown_item">
-                                    <span class="dropdown_test">Đăng Xuất</span>
-                                    <i class="fas fa-sign-out-alt"></i>
-                                </li>
-                            </a>
-                        </ul>
+            <div class="box">
+                <div class="header1">
+                    <section class="canhan">
+                        <i class="fas fa-bars"></i>
+                        <img src="anh_manhinh/use.png" alt="">
+                        <section class="dropdown">
+                            <section class="dropdwon_select">
+                                <span class="dropdown_selected"> Administrator</span>
+                                <i class="fas fa-sort-down"></i>
+                                <ul class="dropdown_list">
+                                    <a href="#">
+                                        <li class="dropdown_item">
+                                            <span class="dropdown_test"> Đổi Mật Khẩu</span>
+                                            <i class="fas fa-key"></i>
+                                        </li>
+                                    </a>
+                                    <a href="../CoffeOder/login.php" type=" color: #000">
+                                        <li class="dropdown_item">
+                                            <span class="dropdown_test">Đăng Xuất</span>
+                                            <i class="fas fa-sign-out-alt"></i>
+                                        </li>
+                                    </a>
+
+                                </ul>
+                            </section>
+
+                        </section>
+                    </section>
+                    <section class="tenQL">
+                        <span>Hóa Đơn</span>
                     </section>
 
-                </section>
-            </section>
-            <section class="tenQL">
-                <span>Hóa Đơn</span>
-            </section>
+                    <section class="thoigian">
+                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoa-don-ngay.php" class="themDS"><button class="">Tổng Đơn Ngày</button></a>
+                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoa-don-thang.php" class="themthang"><button class="">Tổng Đơn Tháng</button></a>
+                    </section>
+                </div>
+                <div class="Header2">
+                    <table id="customers">
+                        <tr>
+                            <th style="width: auto;">Ngày</th>
+                            <th style="width: auto;">Tầng & Bàn</th>
+                            <th style="width: auto;">Tên sản phẩm</th>
+                            <th style="width: auto;">Số lượng</th>
+                            <th style="width: auto;">Giá sản phẩm</th>
+                            <th style="width: auto;">Tổng tiền</th>
 
-            <section class="thoigian">
-                <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoa-don-ngay.php" class="themDS"><button class="">Tổng Đơn Ngày</button></a>
-                <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/hoa-don-thang.php" class="themthang"><button class="">Tổng Đơn Tháng</button></a>
-            </section>
-            <table id="customers">
-                <tr>
-                    <th style="width: auto;">Ngày</th>
-                    <th style="width: auto;">Tầng & Bàn</th>
-                    <th style="width: auto;">Tên sản phẩm</th>
-                    <th style="width: auto;">Số lượng</th>
-                    <th style="width: auto;">Giá sản phẩm</th>
-                    <th style="width: auto;">Tổng tiền</th>
+                        </tr>
+                        <?php
+                        // Thông tin kết nối database
+                        include 'API.php';
+                        $Cons = mysqli_connect("localhost", "root", "", "coffeoder");
+                        try {
 
-                </tr>
-                <?php
-                // Thông tin kết nối database
-                include 'API.php';
-                $Cons = mysqli_connect("localhost", "root", "", "coffeoder");
-                try {
+                            // thuc thi cau lenh
 
-                    // thuc thi cau lenh
-                
 
-                    // cau lenh
-                    $set_hoadonct_sql = "SELECT * FROM hoadonct  order by time_in , time_out";
-                    $resultt = mysqli_query($Cons, $set_hoadonct_sql);
-                    // $r = mysqli_fetch_assoc($resultt);
+                            // cau lenh
+                            $set_hoadonct_sql = "SELECT * FROM hoadonct  order by time_in , time_out";
+                            $resultt = mysqli_query($Cons, $set_hoadonct_sql);
+                            // $r = mysqli_fetch_assoc($resultt);
 
-                    //câu lệnh khóa ngoại table
-                    // $set_Table = "SELECT * FROM hoadon_item ORDER BY Id_hoaDonCT ASC;";
+                            //câu lệnh khóa ngoại table
+                            // $set_Table = "SELECT * FROM hoadon_item ORDER BY Id_hoaDonCT ASC;";
 
-                    $set_Table = "SELECT hoadon_item.* , hoadonct.time_Data AS time_data , hoadonct.tongTien AS tongtien, hoadonct.Id_Table AS id_table     
+                            $set_Table = "SELECT hoadon_item.* , hoadonct.time_Data AS time_data , hoadonct.tongTien AS tongtien, hoadonct.Id_Table AS id_table     
                                                         -- ,sanpham.ten_sp AS ten_Sp
                         
                         FROM  hoadon_item
@@ -426,169 +456,80 @@
                         -- order by hoadon_item.id_hd_item ASC 
                         ";
 
-                    $resultl = mysqli_query($Cons, $set_Table);
+                            $resultl = mysqli_query($Cons, $set_Table);
 
-                    // $T = mysqli_fetch_assoc($resultl);
-                    // echo $T ['soban'];
+                            // $T = mysqli_fetch_assoc($resultl);
+                            // echo $T ['soban'];
 
 
-                    $set_Tang = "SELECT `table`.* , tang.soTang
+                            $set_Tang = "SELECT `table`.* , tang.soTang
                     FROM  `table` 
                     INNER JOIN  `tang` ON `table`.id_tang= tang.id_tang
                     order by table.id_tang ASC";
-                    $resultltang = mysqli_query($Cons, $set_Tang);
-                    // $Ta = mysqli_fetch_assoc($resultltang);
+                            $resultltang = mysqli_query($Cons, $set_Tang);
+                            // $Ta = mysqli_fetch_assoc($resultltang);
 
 
 
-                    // khóa ngoại giam gia
-                    
-                    $resultlt = mysqli_query($Cons, $set_Table);
+                            // khóa ngoại giam gia
 
-                    // $G = mysqli_fetch_assoc($resultlt);
+                            $resultlt = mysqli_query($Cons, $set_Table);
+
+                            // $G = mysqli_fetch_assoc($resultlt);
 
 
-                    // echo $G['giam'];
-                    //duyet qua result va in ra
-                    while ($T = mysqli_fetch_assoc($resultl)) {
-                        // echo $r['Id_hoaDonCT'];
-                        // echo '</br>'. $r['Id_Table'];
-                        // $T = mysqli_fetch_assoc($resultl); 
-                        // while($T = mysqli_fetch_assoc($resultl) ){
-                        //     // echo $T['soBan'];
-                        //     while($G = mysqli_fetch_assoc($resultlt) ){
-                
+                            // echo $G['giam'];
+                            //duyet qua result va in ra
+                            while ($T = mysqli_fetch_assoc($resultl)) {
+                                // echo $r['Id_hoaDonCT'];
+                                // echo '</br>'. $r['Id_Table'];
+                                // $T = mysqli_fetch_assoc($resultl); 
+                                // while($T = mysqli_fetch_assoc($resultl) ){
+                                //     // echo $T['soBan'];
+                                //     while($G = mysqli_fetch_assoc($resultlt) ){
+
 
 
                         ?>
-                        <tr>
-                            <td>
-                                <?php echo $T['time_data'] ?>
-                            </td>
-                            <td>
-                            <?php echo $T['id_table'] ?>
-                            </td>
-                            <td>
-                                <?php echo $T['tenSp'] ?>
-                            </td>
-                            <td>
-                                <?php echo $T['soLuong'] ?>
-                            </td>
-                            <td>
-                                <?php echo $T['giaSp'] ?>
-                            </td>
-                            <td>
-                                <?php echo $T['tongtien'] ?>
-                            </td>
+                                <tr>
+                                    <td>
+                                        <?php echo $T['time_data'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $T['id_table'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $T['tenSp'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $T['soLuong'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $T['giaSp'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $T['tongtien'] ?>
+                                    </td>
 
-                        </tr>
+                                </tr>
 
                         <?php
 
-                    }
-                } catch (PDOException $e) {
-                    // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
-                    http_response_code(500);
-                    echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
-                }
+                            }
+                        } catch (PDOException $e) {
+                            // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
+                            http_response_code(500);
+                            echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
+                        }
 
-                // Đóng kết nối database
-                // $conn = null;
-                ?>
+                        // Đóng kết nối database
+                        // $conn = null;
+                        ?>
 
-            </table>
-            <div>
-                <?php
-                // $sql = "SELECT time_Data, tongTien FROM hoadonct";
-                // $result = mysqli_query($Cons, $sql);
-
-                // // Tạo một mảng để lưu trữ tổng hóa đơn theo ngày
-                // $totalByDate = array();
-
-                // if ($result->num_rows > 0) {
-                //     while ($row = $result->fetch_assoc()) {
-                //         $orderDate = $row["time_Data"];
-                //         $totalAmount = $row["tongTien"];
-
-                //         // Tính tổng cho mỗi ngày
-                //         if (!isset($totalByDate[$orderDate])) {
-                //             $totalByDate[$orderDate] = 0;
-                //         }
-                //         $totalByDate[$orderDate] += $totalAmount;
-                //     }
-
-                //     // Hiển thị tổng hóa đơn theo ngày
-                //     echo "<table>";
-                //     echo "<tr><th>Ngày</th><th>Tổng Hóa Đơn</th></tr>";
-                //     foreach ($totalByDate as $date => $total) {
-                //         echo "<tr>";
-                //         echo "<td>" . $date . "</td>";
-                //         echo "<td>" . $total . "</td>";
-                //         echo "</tr>";
-                //     }
-                //     echo "</table>";
-                // } else {
-                //     echo "Không có dữ liệu hóa đơn.";
-                // }
-
-
-
-
-                // // Tạo một mảng để lưu trữ tổng hóa đơn theo tháng
-                // $totalByMonth = array();
-
-                // if ($result->num_rows > 0) {
-                //     while ($roww = $result->fetch_assoc()) {
-                //         $orderDate = $roww["time_Data"];
-                //         $totalAmount = $roww["tongTien"];
-
-                //         // Lấy tháng từ ngày đặt hàng
-                //         $month = date("Y-m", strtotime($orderDate));
-
-                //         // Tính tổng cho mỗi tháng
-                //         if (!isset($totalByMonth[$month])) {
-                //             $totalByMonth[$month] = 0;
-                //         }
-                //         $totalByMonth[$month] += $totalAmount;
-                //     }
-
-                //     // Hiển thị tổng hóa đơn theo tháng
-                //     echo "<table>";
-                //     echo "<tr><th>Tháng</th><th>Tổng Hóa Đơn</th></tr>";
-                //     foreach ($totalByMonth as $month => $totall) {
-                //         echo "<tr>";
-                //         echo "<td>" . $month . "</td>";
-                //         echo "<td>" . $totall . "</td>";
-                //         echo "</tr>";
-                //     }
-                //     echo "</table>";
-                // } else {
-                //     echo "Không có dữ liệu hóa đơn.";
-                // }
-                ?>
-                <p>
-                    <?php ?>
-                </p>
-            </div>
-            <!-- <div class="select-menu">
-                <div class="select-btn">
-                    <span class="sBtn-text">Thống Kê Tất Cả</span>
-                    <i class="fas fa-sort-down"></i>
+                    </table>
                 </div>
-                <ul class="options">
-                    <li class="option">
-                        <span class="option-text">Theo ngày</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-text">Theo Tháng</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-text">Theo Năm</span>
-                    </li>
-                </ul>
-
-
-            </div> -->
+            </div>    
+                
         </main>
     </div>
     <script src="/duantotnghiep/Them/menu.js"></script>

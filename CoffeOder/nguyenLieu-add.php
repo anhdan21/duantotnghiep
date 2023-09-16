@@ -94,18 +94,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://kit.fontawesome.com/e123c1a84c.js" crossorigin="anonymous"></script>
 </head>
 <style>
-    body {
-        margin: auto;
+     body {
+        margin: 0;
         padding: 0;
+        box-sizing: border-box;
         font-family: 'Inter', sans-serif;
-        width: 1900px;
-        height: 1080px;
     }
 
     @font-face {
         font-family: 'Inter';
         src: url('đường_dẫn_đến_tệp_font/inter.woff2') format('woff2'),
             url('đường_dẫn_đến_tệp_font/inter.woff') format('woff');
+        /* Nếu muốn hỗ trợ thêm các định dạng font khác, bạn có thể thêm vào đây */
         font-weight: normal;
         /* Trọng lượng phông chữ */
         font-style: normal;
@@ -114,6 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     .div-all {
         display: flex;
+
     }
 
     nav {
@@ -121,12 +122,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         background-color: #2A3F53;
         color: aliceblue;
         padding: 20px;
+        position: fixed;
+        height: 1000px;
+        z-index: 1;
+
 
     }
 
     .head h2 {
         margin-left: 60px;
         margin-bottom: 40px;
+        text-align: center;
+
     }
 
     .img {
@@ -182,37 +189,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     main {
-
         flex: 5;
     }
 
-    /****************************************************/
-    main i {}
 
+    /* ========================= */
     .canhan {
         background-color: #D9D9D9;
         padding: 25px;
         position: relative;
+        border-bottom: 1px solid #fff;
 
     }
 
     .canhan img {
         position: absolute;
-        right: 190px;
+        right: 200px;
         margin-top: -12px;
         border: 1px solid #ffffff;
         border-radius: 50%;
         padding: 15px;
         background-color: white;
         flex-shrink: 0;
-        /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
-        width: 15px;
-        /* Đặt chiều rộng ảnh là 200px */
+        width: 30px;
         height: auto;
     }
 
     .canhan .dropdown {
-        position: absolute;
+        position: fixed;
         right: 60px;
         margin-top: -20px;
     }
@@ -223,17 +227,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     .dropdown_select {
         cursor: pointer;
-
     }
 
     .dropdown:hover .dropdown_list {
         display: block;
     }
 
-    .dropdown_selected {}
-
     .dropdown_list {
-        width: 135px;
+        width: 150px;
         border-radius: 4px;
         background-color: #D9D9D9;
         position: absolute;
@@ -245,7 +246,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     .dropdown_list::before {
         content: "";
-        height: 20px;
+        height: 25px;
         position: absolute;
         left: 0;
         right: 0;
@@ -254,7 +255,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     .dropdown_item {
-
         text-align: center;
         margin-top: -5px;
         margin-left: -40px;
@@ -268,11 +268,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         background-color: #2A3F53;
     }
 
-    /****************************************************/
+    /* ==================================================== */
+
+
+    .box {
+        position: absolute;
+        margin-left: 300px;
+        width: 1599px;
+    }
+
+    .header1 {
+        width: 1599px;
+        position: fixed;
+        z-index: 1;
+    }
+
+    .Header2 {
+        width: 1599px;
+        margin-top: 200px;
+    }
+
     .tenQL {
-        margin-top: 10px;
         padding: 25px;
         border-bottom: 1px solid #D9D9D9;
+        padding-left: 50px;
+        background-color: #fff;
+    }
+
+    .thoigian {
+        padding: 20px;
+        border-bottom: 2px solid #D9D9D9;
+        padding-left: 50px;
+        background-color: #fff;
+    }
+
+    .themDS {
+        position: absolute;
+        right: 30px;
+        width: 150px;
+    }
+
+    .themDS button {
+        padding: 5px;
     }
 
     .tenQL a {
@@ -294,6 +331,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     .themDS button {
         padding: 5px;
     }
+
 
     /****************************************************/
     .thongtinMK {
@@ -384,76 +422,81 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </nav>
         <main>
 
-            <section class="canhan">
-                <i class="fas fa-bars"></i>
-                <img src="./anh/use.png" alt="">
-                <section class="dropdown">
-                    <section class="dropdwon_select">
-                        <span class="dropdown_selected"> Administrator</span>
-                        <i class="fas fa-sort-down"></i>
-                        <ul class="dropdown_list">
-                            <a href="../Dang_nhap/Doi_mat_khau.html">
-                                <li class="dropdown_item">
-                                    <span class="dropdown_test"> Đổi Mật Khẩu</span>
-                                    <i class="fas fa-key"></i>
-                                </li>
-                            </a>
-                            <a href="../Dang_nhap/dang_nhap.html" type=" color: #000">
-                                <li class="dropdown_item">
-                                    <span class="dropdown_test">Đăng Xuất</span>
-                                    <i class="fas fa-sign-out-alt"></i>
-                                </li>
-                            </a>
+            <div class="box">
+                        <div class="header1">
+                            <section class="canhan">
+                                <i class="fas fa-bars"></i>
+                                <img src="anh_manhinh/use.png" alt="">
+                                <section class="dropdown">
+                                    <section class="dropdwon_select">
+                                        <span class="dropdown_selected"> Administrator</span>
+                                        <i class="fas fa-sort-down"></i>
+                                        <ul class="dropdown_list">
+                                            <a href="#">
+                                                <li class="dropdown_item">
+                                                    <span class="dropdown_test"> Đổi Mật Khẩu</span>
+                                                    <i class="fas fa-key"></i>
+                                                </li>
+                                            </a>
+                                            <a href="../CoffeOder/login.php" type=" color: #000">
+                                                <li class="dropdown_item">
+                                                    <span class="dropdown_test">Đăng Xuất</span>
+                                                    <i class="fas fa-sign-out-alt"></i>
+                                                </li>
+                                            </a>
 
-                        </ul>
-                    </section>
+                                        </ul>
+                                    </section>
 
-                </section>
-            </section>
-            <section class="tenQL">
-                <a href="../man_chinh/Quan_ly_nguyen_lieu.html"><span>Quản lý nguyên liệu</span></a>
-                <a href=""><span>/ Thêm nguyên liệu</span></a>
+                                </section>
+                            </section>
+                            <section class="tenQL">
+                                <a href=""><span> Thêm nguyên liệu</span></a>
 
-            </section>
+                            </section>
+                        </div>    
+                            
+                <div class="Header2">
+                    <form action="nguyenLieu-add.php" method="POST" enctype="multipart/form-data">
+                        <section class="thongtinMK">
+                            <label for="">Tên NL:<input type="text" name="ten_nguyenLieu" placeholder="Nhập tên Nguyên Liệu" required></label> <br>
+                            <label for="">Giá :<input type="text" name="price" placeholder="Nhập giá " required></label> <br>
+                            <label for="">Số lượng:<input type="number" name="soLuong" required></label> <br>
 
-            <form action="nguyenLieu-add.php" method="POST" enctype="multipart/form-data">
-                <section class="thongtinMK">
-                    <label for="">Tên NL:<input type="text" name="ten_nguyenLieu" placeholder="Nhập tên Nguyên Liệu" required></label> <br>
-                    <label for="">Giá :<input type="text" name="price" placeholder="Nhập giá " required></label> <br>
-                    <label for="">Số lượng:<input type="number" name="soLuong" required></label> <br>
+                            <!-- <label for="">User:<input type="text" name="id_User" required></label> <br> -->
+                            <h4 for="id_User" style="margin-right: 350px;">Chọn Người Nhập :
+                                <select name="id_User" style="height: 40px; width:200px">
+                                    <?php
+                                    include 'API.php';
+                                    try {
 
-                    <!-- <label for="">User:<input type="text" name="id_User" required></label> <br> -->
-                    <h4 for="id_User" style="margin-right: 350px;">Chọn Người Nhập :
-                        <select name="id_User" style="height: 40px; width:200px">
-                            <?php
-                            include 'API.php';
-                            try {
+                                        $sql = "SELECT id_User, fullName FROM user";
+                                        $stmt = $conn->query($sql);
 
-                                $sql = "SELECT id_User, fullName FROM user";
-                                $stmt = $conn->query($sql);
+                                        // Lặp qua danh sách người dùng và tạo các tùy chọn trong dropdown menu
+                                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                            echo "<option value='" . $row['id_User'] . "'>" . $row['fullName'] . "</option>";
+                                        }
+                                    } catch (PDOException $e) {
+                                        die('Lỗi kết nối CSDL: ' . $e->getMessage());
+                                    }
+                                    ?>
+                                </select>
+                            </h4>
 
-                                // Lặp qua danh sách người dùng và tạo các tùy chọn trong dropdown menu
-                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                    echo "<option value='" . $row['id_User'] . "'>" . $row['fullName'] . "</option>";
-                                }
-                            } catch (PDOException $e) {
-                                die('Lỗi kết nối CSDL: ' . $e->getMessage());
-                            }
-                            ?>
-                        </select>
-                    </h4>
-
-                    <label for="">Kiểu:<input type="text" name="kieuNguyenLieu" required></label> <br>
-                    <h4>Chọn ảnh --
-                        <input type="file" name="img_nguyenLieu" id="img_nguyenLieu">
-                    </h4><br>
-                    <div class="oclock">
-                        <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span>
-                        <span>Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
-                    </div><br>
-                    <button type="submit" name="submit">Thêm nguyên liệu</button>
-                </section>
-            </form>
+                            <label for="">Kiểu:<input type="text" name="kieuNguyenLieu" required></label> <br>
+                            <h4>Chọn ảnh --
+                                <input type="file" name="img_nguyenLieu" id="img_nguyenLieu">
+                            </h4><br>
+                            <div class="oclock">
+                                <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span>
+                                <span>Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
+                            </div><br>
+                            <button type="submit" name="submit">Thêm nguyên liệu</button>
+                        </section>
+                    </form>
+                    </div>  
+            </div>          
         </main>
     </div>
 </body>

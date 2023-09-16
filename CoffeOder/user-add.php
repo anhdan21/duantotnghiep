@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (empty(trim($data['username']))) {
                 $error['username'] = 'Bạn chưa nhập tên.';
-            } 
+            }
             if (empty(trim($data['fullname']))) {
                 $error['fullname'] = 'Bạn chưa nhập họ.';
             }
@@ -123,8 +123,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // echo 'Dữ liệu bị lỗi, không thể lưu trữ';
         }
     }
-
-
 } else {
     echo "";
 }
@@ -146,11 +144,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <style>
     body {
-        margin: auto;
+        margin: 0;
         padding: 0;
+        box-sizing: border-box;
         font-family: 'Inter', sans-serif;
-        width: 1900px;
-        height: 1080px;
     }
 
     @font-face {
@@ -166,6 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     .div-all {
         display: flex;
+
     }
 
     nav {
@@ -173,12 +171,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         background-color: #2A3F53;
         color: aliceblue;
         padding: 20px;
+        position: fixed;
+        height: 1000px;
+        z-index: 1;
+
 
     }
 
     .head h2 {
         margin-left: 60px;
         margin-bottom: 40px;
+        text-align: center;
+
     }
 
     .img {
@@ -234,36 +238,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     main {
-
         flex: 5;
     }
 
-    /****************************************************/
 
+    /* ========================= */
     .canhan {
         background-color: #D9D9D9;
         padding: 25px;
         position: relative;
+        border-bottom: 1px solid #fff;
 
     }
 
     .canhan img {
         position: absolute;
-        right: 190px;
+        right: 200px;
         margin-top: -12px;
         border: 1px solid #ffffff;
         border-radius: 50%;
         padding: 15px;
         background-color: white;
         flex-shrink: 0;
-        /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
-        width: 15px;
-        /* Đặt chiều rộng ảnh là 200px */
+        width: 30px;
         height: auto;
     }
 
     .canhan .dropdown {
-        position: absolute;
+        position: fixed;
         right: 60px;
         margin-top: -20px;
     }
@@ -274,7 +276,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     .dropdown_select {
         cursor: pointer;
-
     }
 
     .dropdown:hover .dropdown_list {
@@ -282,7 +283,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     .dropdown_list {
-        width: 135px;
+        width: 150px;
         border-radius: 4px;
         background-color: #D9D9D9;
         position: absolute;
@@ -294,7 +295,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     .dropdown_list::before {
         content: "";
-        height: 20px;
+        height: 25px;
         position: absolute;
         left: 0;
         right: 0;
@@ -303,7 +304,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     .dropdown_item {
-
         text-align: center;
         margin-top: -5px;
         margin-left: -40px;
@@ -317,11 +317,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         background-color: #2A3F53;
     }
 
-    /****************************************************/
+    /* ==================================================== */
+
+
+    .box {
+        position: absolute;
+        margin-left: 300px;
+        width: 1599px;
+    }
+
+    .header1 {
+        width: 1599px;
+        position: fixed;
+        z-index: 1;
+    }
+
+    .Header2 {
+        width: 1599px;
+        margin-top: 200px;
+    }
+
     .tenQL {
-        margin-top: 10px;
         padding: 25px;
         border-bottom: 1px solid #D9D9D9;
+        padding-left: 50px;
+        background-color: #fff;
+    }
+
+    .thoigian {
+        padding: 20px;
+        border-bottom: 2px solid #D9D9D9;
+        padding-left: 50px;
+        background-color: #fff;
+    }
+
+    .themDS {
+        position: absolute;
+        right: 30px;
+        width: 150px;
+    }
+
+    .themDS button {
+        padding: 5px;
     }
 
     .tenQL a {
@@ -434,81 +471,76 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </nav>
         <main>
 
-            <section class="canhan">
-                <i class="fas fa-bars"></i>
-                <img src="./anh/use.png" alt="">
-                <section class="dropdown">
-                    <section class="dropdwon_select">
-                        <span class="dropdown_selected"> Administrator</span>
-                        <i class="fas fa-sort-down"></i>
-                        <ul class="dropdown_list">
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/Doi_mat_khau.html">
-                                <li class="dropdown_item">
-                                    <span class="dropdown_test"> Đổi Mật Khẩu</span>
-                                    <i class="fas fa-key"></i>
-                                </li>
-                            </a>
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/dang_nhap.html" type=" color: #000">
-                                <li class="dropdown_item">
-                                    <span class="dropdown_test">Đăng Xuất</span>
-                                    <i class="fas fa-sign-out-alt"></i>
-                                </li>
-                            </a>
+            <div class="box">
+                <div class="header1">
+                    <section class="canhan">
+                        <i class="fas fa-bars"></i>
+                        <img src="anh_manhinh/use.png" alt="">
+                        <section class="dropdown">
+                            <section class="dropdwon_select">
+                                <span class="dropdown_selected"> Administrator</span>
+                                <i class="fas fa-sort-down"></i>
+                                <ul class="dropdown_list">
+                                    <a href="#">
+                                        <li class="dropdown_item">
+                                            <span class="dropdown_test"> Đổi Mật Khẩu</span>
+                                            <i class="fas fa-key"></i>
+                                        </li>
+                                    </a>
+                                    <a href="../CoffeOder/login.php" type=" color: #000">
+                                        <li class="dropdown_item">
+                                            <span class="dropdown_test">Đăng Xuất</span>
+                                            <i class="fas fa-sign-out-alt"></i>
+                                        </li>
+                                    </a>
 
-                        </ul>
+                                </ul>
+                            </section>
+
+                        </section>
                     </section>
+                    <section class="tenQL">
+                        <a href=""><span> Thêm nhân viên</span></a>
 
-                </section>
-            </section>
-            <section class="tenQL">
-                <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Tai_khoan_nhan_vien.html"><span>Tài khoản nhân
-                        viên</span></a>
-                <a href=""><span>/ Thêm nhân viên</span></a>
+                    </section>
+                </div>
+                <div class="Header2">
+                    <form action="user-add.php" method="POST" enctype="multipart/form-data">
+                        <section class="thongtinMK">
+                            <label for="">Tên NV:<input type="text" name="username" id="username" placeholder="Nhập tên nhân viên" value="<?php echo isset($data['username']) ? $data['username'] : ''; ?>"></label>
+                            <?php
+                            echo isset($error['username']) ? $error['username'] : '';
+                            ?>
+                            <label for="">Họ NV:<input type="text" name="fullname" id="fullname" placeholder="Nhập họ nhân viên" value="<?php echo isset($data['fullname']) ? $data['fullname'] : ''; ?>"></label>
+                            <?php
+                            echo isset($error['fullname']) ? $error['fullname'] : '';
+                            ?>
+                            <label for="">Password:<input type="text" name="passwd" id="passwd" placeholder="Nhập password" value="<?php echo isset($data['passwd']) ? $data['passwd'] : ''; ?>"></label>
+                            <?php
+                            echo isset($error['passwd']['required']) ? $error['passwd']['required'] : '';
+                            echo isset($error['passwd']['min']) ? $error['passwd']['min'] : '';
+                            ?>
+                            <label for="">SDT:<input type="phone_Number" name="phone_Number" id="phone_Number" placeholder="Nhập SDT" value="<?php echo isset($data['phone_Number']) ? $data['phone_Number'] : ''; ?>"></label>
+                            <?php
+                            echo isset($error['phone_Number']['required']) ? $error['phone_Number']['required'] : '';
+                            echo isset($error['phone_Number']['invaild']) ? $error['phone_Number']['invaild'] : '';
+                            ?>
+                            <label for="">Vị trí:<input type="text" name="chucNang" id="chucNang" placeholder="Nhập chức vị trí nhân viên" value="<?php echo isset($data['chucNang']) ? $data['chucNang'] : ''; ?>"></label>
+                            <?php
+                            echo isset($error['chucNang']) ? $error['chucNang'] : '';
+                            ?> <br>
+                            <span style="margin-right: 380px;">Chọn ảnh :</span>
+                            <input style="margin-top: -1.99%;" type="file" name="image" id="image">
+                            <div class="oclock">
 
-            </section>
-
-            <form action="user-add.php" method="POST" enctype="multipart/form-data">
-                <section class="thongtinMK">
-                    <label for="">Tên NV:<input type="text" name="username" id="username"
-                            placeholder="Nhập tên nhân viên"
-                            value="<?php echo isset($data['username']) ? $data['username'] : ''; ?>"></label>
-                    <?php
-                    echo isset($error['username']) ? $error['username'] : '';
-                    ?>
-                    <label for="">Họ NV:<input type="text" name="fullname" id="fullname" placeholder="Nhập họ nhân viên"
-                            value="<?php echo isset($data['fullname']) ? $data['fullname'] : ''; ?>"></label>
-                    <?php
-                    echo isset($error['fullname']) ? $error['fullname'] : '';
-                    ?>
-                    <label for="">Password:<input type="text" name="passwd" id="passwd" placeholder="Nhập password"
-                            value="<?php echo isset($data['passwd']) ? $data['passwd'] : ''; ?>"></label>
-                    <?php
-                    echo isset($error['passwd']['required']) ? $error['passwd']['required'] : '';
-                    echo isset($error['passwd']['min']) ? $error['passwd']['min'] : '';
-                    ?>
-                    <label for="">SDT:<input type="phone_Number" name="phone_Number" id="phone_Number"
-                            placeholder="Nhập SDT"
-                            value="<?php echo isset($data['phone_Number']) ? $data['phone_Number'] : ''; ?>"></label>
-                    <?php
-                    echo isset($error['phone_Number']['required']) ? $error['phone_Number']['required'] : '';
-                    echo isset($error['phone_Number']['invaild']) ? $error['phone_Number']['invaild'] : '';
-                    ?>
-                    <label for="">Vị trí:<input type="text" name="chucNang" id="chucNang"
-                            placeholder="Nhập chức vị trí nhân viên"
-                        value="<?php echo isset($data['chucNang']) ? $data['chucNang'] : ''; ?>"></label>
-                    <?php
-                    echo isset($error['chucNang']) ? $error['chucNang'] : '';
-                    ?> <br>
-                    <span style="margin-right: 380px;">Chọn ảnh :</span>
-                    <input style="margin-top: -1.99%;" type="file" name="image" id="image">
-                    <div class="oclock">
-                        
-                        <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span>
-                        <span>Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
-                    </div><br>
-                    <button type="submit">Thêm Nhân Viên</button>
-                </section>
-            </form>
+                                <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span>
+                                <span>Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
+                            </div><br>
+                            <button type="submit">Thêm Nhân Viên</button>
+                        </section>
+                    </form>
+                </div>
+            </div>    
 
         </main>
     </div>
@@ -533,6 +565,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Gọi hàm getCurrentTime mỗi giây một lần để cập nhật giờ hiện tại
     setInterval(getCurrentTime, 1000);
+
     function getCurrentDate() {
         // Tạo đối tượng Date đại diện cho thời gian hiện tại
         const now = new Date();
@@ -551,7 +584,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Gọi hàm getCurrentDate khi trang được tải và sau đó mỗi ngày một lần để cập nhật ngày hiện tại
     getCurrentDate();
-
 </script>
 
 </html>

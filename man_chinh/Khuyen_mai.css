@@ -1,3 +1,4 @@
+
 #sale {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -93,323 +94,222 @@
 
 
 
-body{
-    margin: auto;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-    width: 1900px;
-    height: 1080px;
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
+
 @font-face {
-    font-family: 'Inter';
-    src: url('đường_dẫn_đến_tệp_font/inter.woff2') format('woff2'),
-         url('đường_dẫn_đến_tệp_font/inter.woff') format('woff');
-    /* Nếu muốn hỗ trợ thêm các định dạng font khác, bạn có thể thêm vào đây */
-    font-weight: normal; /* Trọng lượng phông chữ */
-    font-style: normal; /* Kiểu phông chữ */
-  }
- 
-.div-all{
-    display: flex;
+  font-family: 'Inter';
+  src: url('đường_dẫn_đến_tệp_font/inter.woff2') format('woff2'),
+      url('đường_dẫn_đến_tệp_font/inter.woff') format('woff');
+  /* Nếu muốn hỗ trợ thêm các định dạng font khác, bạn có thể thêm vào đây */
+  font-weight: normal;
+  /* Trọng lượng phông chữ */
+  font-style: normal;
+  /* Kiểu phông chữ */
 }
-nav{
-    flex: 1;
-    background-color: #2A3F53;
-    color: aliceblue;
-    padding: 20px;
+
+.div-all {
+  display: flex;
 
 }
-.head h2{
-    margin-left: 60px;
-    margin-bottom: 40px;
+
+nav {
+  flex: 1;
+  background-color: #2A3F53;
+  color: aliceblue;
+  padding: 20px;
+  position: fixed;
+  height: 1000px;
+  z-index: 1;
+
+
 }
-.img{
-    border: 1px solid #ffffff;
-    border-radius: 50%;
-    padding: 20px;
-    background-color: white;
-    flex-shrink: 0; /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
-    width: 25px; /* Đặt chiều rộng ảnh là 200px */
-    height: auto;
+
+.head h2 {
+  margin-left: 60px;
+  margin-bottom: 40px;
+  text-align: center;
+
 }
-.use{
-    display: flex;
-    row-gap: 1fr;
-    margin-bottom: 20px;
-    
+
+.img {
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  padding: 20px;
+  background-color: white;
+  flex-shrink: 0;
+  /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
+  width: 25px;
+  /* Đặt chiều rộng ảnh là 200px */
+  height: auto;
 }
+
+.use {
+  display: flex;
+  row-gap: 1fr;
+  margin-bottom: 20px;
+
+}
+
 /**/
 /*xin chao */
-.use section{
-    margin-left: 40px;
-    margin-top: 15px;
+.use section {
+  margin-left: 40px;
+  margin-top: 15px;
 }
+
 /*menu list danh sach */
 .menu {
-    margin-top: 40px;
-    border-top:  1px solid white;
-    padding-bottom: 90px;
+  margin-top: 40px;
+  border-top: 1px solid white;
+  padding-bottom: 90px;
 }
-.menu ul{
-    list-style-type: none;
-}
-ul li i{
-     margin-right: 20px;
-     width: 20px;
-     height: 10px;
-}
-ul li{
-    margin-top: 70px;
-}
-ul a{
-    color: white;
-        text-decoration: none;
-}
-main{
 
-    flex: 5;
+.menu ul {
+  list-style-type: none;
 }
-/****************************************************/
-main i{
 
+ul li i {
+  margin-right: 20px;
+  width: 20px;
+  height: 10px;
 }
+
+ul li {
+  margin-top: 70px;
+}
+
+ul a {
+  color: white;
+  text-decoration: none;
+}
+
+main {
+  flex: 5;
+}
+
+
+/* ========================= */
 .canhan {
-    background-color: #D9D9D9;
-    padding: 25px;
-    position: relative;
-    
-}
-.canhan img{
-    position: absolute;
-    right: 190px;
-    margin-top: -12px;
-    border: 1px solid #ffffff;
-    border-radius: 50%;
-    padding: 15px;
-    background-color: white;
-    flex-shrink: 0; /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
-    width: 15px; /* Đặt chiều rộng ảnh là 200px */
-    height: auto;
-}
-.canhan .dropdown{
-    position: absolute;
-    right: 60px;
-    margin-top: -20px;
-}
-.dropdown{
-   position: relative;
-}
-.dropdown_select{
-    cursor: pointer;
-   
-}
-.dropdown:hover .dropdown_list{
-    display: block;
-}
-.dropdown_selected {
-   
-}
-.dropdown_list{
-    width: 150px;
-    border-radius:  4px;
-    background-color: #D9D9D9;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    display: none;
-}
-.dropdown_list::before{
-    content: "";
-    height: 20px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    background-color: transparent;
-    transform: translateY(-100%);
-}
-.dropdown_item{
-   
-    text-align: center;
-    margin-top: -5px;
-    margin-left: -40px;
-    padding: 15px;
-    cursor: pointer;
-    transition: background-color 0.2s linear;
-    list-style-type: none;
-}
-.dropdown_item:hover{
-    background-color: #2A3F53;
-}
-/****************************************************/
-.tenQL{
-    margin-top: 10px;
-    padding: 25px;
-    border-bottom:1px solid #D9D9D9 ;
-   
-}
-.thoigian{
-    padding: 20px;
-    border-bottom: 2px solid #D9D9D9;
-}
-.themDS{
-    position: absolute;
-    right: 50px;
-    width: 100px;
-}
-.themDS button{
-    padding: 5px;
+  background-color: #D9D9D9;
+  padding: 25px;
+  position: relative;
+  border-bottom: 1px solid #fff;
+  height: 30px;
+
 }
 
+.canhan img {
+  position: absolute;
+  right: 200px;
+  margin-top: -12px;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  padding: 15px;
+  background-color: white;
+  flex-shrink: 0;
+  width: 30px;
+  height: auto;
+}
+
+.canhan .dropdown {
+  position: fixed;
+  right: 60px;
+  margin-top: -20px;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown_select {
+  cursor: pointer;
+}
+
+.dropdown:hover .dropdown_list {
+  display: block;
+}
+
+.dropdown_list {
+  width: 150px;
+  border-radius: 4px;
+  background-color: #D9D9D9;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.dropdown_list::before {
+  content: "";
+  height: 25px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  transform: translateY(-100%);
+}
+
+.dropdown_item {
+  text-align: center;
+  margin-top: -5px;
+  margin-left: -40px;
+  padding: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s linear;
+  list-style-type: none;
+}
+
+.dropdown_item:hover {
+  background-color: #2A3F53;
+}
+
+/* ==================================================== */
 
 
-#container {
-    height: 300px;
-    width: 70vw;
-    margin-left: 20px;
-    padding: 0;
-    background: rgb(246, 247, 247);
-    display: grid ;
-    place-items: center
-  }
-  
-  #slider-container {
-    height: 300px;
-    width: 80vw;
-    /* width: 200px; */
-    max-width: 1400px;
-    background: white;
-    /* box-shadow: 5px 5px 8px gray inset; */
-    position: relative;
-    overflow: hidden;
-    padding: 10px;
-  }
-  
-  #slider-container .btn {
-    position: absolute;
-    top: calc(50% - 30px);
-    height: 30px;
-    width: 30px;
-    border-left: 8px solid rgb(36, 35, 35);
-    border-top: 8px solid rgb(36, 35, 35);
-  }
-  
-  #slider-container .btn:hover {
-    transform: scale(1.2);
-  }
-  
-  #slider-container .btn.inactive {
-    border-color: rgb(153, 121, 126)
-  }
-  
-  #slider-container .btn:first-of-type {
-    transform: rotate(-45deg);
-    left: 10px
-  }
-  
-  #slider-container .btn:last-of-type {
-    transform: rotate(135deg);
-    right: 10px;
-  }
-  
-  #slider-container #slider {
-    display: flex;
-    width: 1000%;
-    height: 90%; 
-    transition: all .5s;
-  }
-  
-  #slider-container #slider .slide {
-    height: 100%;
-    margin: auto 20px;
-    background-color: #eeeef3;
-    box-shadow: 2px 2px 4px 2px gray, -2px -2px 4px 2px gray;
-    display: grid;
-    place-items: center;
-  }
-  
-  #slider-container #slider .slide span {
-    
-    height: 300px;
-    width: 250px;
-  }
-  #slider-container #slider .slide span .tensp {
-    color: rgb(8, 8, 8);
-    font-size: 18px;
-    text-align: center;
-    margin: 0px;
-  }
-  #slider-container #slider .slide span .giasp {
-    color: rgb(244, 5, 5);
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    margin: 8px;
-  }
+.box {
+  position: absolute;
+  margin-left: 300px;
+  width: 1599px;
+}
 
-  #slider-container #slider2 {
-    display: flex;
-    width: 1000%;
-    height: 100%; 
-    transition: all .5s;
-  }
-  
-  #slider-container #slider2 .slide2 {
-    height: 90%;
-    margin: auto 20px;
-    background-color: #eeeef3;
-    box-shadow: 2px 2px 4px 2px black -2px -2px 4px 2px black;
-    display: grid;
-    place-items: center;
-  }
-  
-  #slider-container #slider2 .slide2 span {
-    height: 300px;
-    width: 250px;
-  }
+.header1 {
+  width: 1599px;
+  position: fixed;
+  z-index: 1;
+}
 
-  #slider-container #slider2 .slide2 span .tensp {
-    color: rgb(8, 8, 8);
-    font-size: 18px;
-    text-align: center;
-    margin: 0px;
-  }
-  #slider-container #slider2 .slide2 span .giasp {
-    color: rgb(244, 5, 5);
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    margin: 8px;
-  }
-  
-  @media only screen and (min-width: 1100px) {
-  
-    #slider-container #slider .slide2 {
-      width: calc(2.5% - 20px);
-    }
-  
-  }
-  
-  @media only screen and (max-width: 1100px) {
-  
-    #slider-container #slider .slide {
-      width: calc(3.3333333% - 20px);
-    }
-  
-  }
-  
-  @media only screen and (max-width: 900px) {
-  
-    #slider-container #slider .slide {
-      width: calc(5% - 20px);
-    }
-  
-  }
-  
-  @media only screen and (max-width: 550px) {
-  
-    #slider-container #slider .slide {
-      width: calc(10% - 20px);
-    }
-  
-  }
+.Header2 {
+  width: 1599px;
+  margin-top: 200px;
+}
+
+.tenQL {
+  padding: 25px;
+  border-bottom: 1px solid #D9D9D9;
+  padding-left: 50px;
+  background-color: #fff;
+  margin-top: -5px;
+}
+
+.thoigian {
+  padding: 20px;
+  border-bottom: 2px solid #D9D9D9;
+  padding-left: 50px;
+  background-color: #fff;
+}
+
+.themDS {
+  position: absolute;
+  right: 30px;
+  width: 150px;
+}
+
+.themDS button {
+  padding: 5px;
+}

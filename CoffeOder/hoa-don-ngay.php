@@ -56,11 +56,10 @@
     }
 
     body {
-        margin: auto;
+        margin: 0;
         padding: 0;
+        box-sizing: border-box;
         font-family: 'Inter', sans-serif;
-        width: 1900px;
-        height: 1080px;
     }
 
     @font-face {
@@ -76,6 +75,7 @@
 
     .div-all {
         display: flex;
+
     }
 
     nav {
@@ -83,12 +83,18 @@
         background-color: #2A3F53;
         color: aliceblue;
         padding: 20px;
+        position: fixed;
+        height: 1000px;
+        z-index: 1;
+
 
     }
 
     .head h2 {
         margin-left: 60px;
         margin-bottom: 40px;
+        text-align: center;
+
     }
 
     .img {
@@ -144,37 +150,34 @@
     }
 
     main {
-
         flex: 5;
     }
 
-    /****************************************************/
-    main i {}
 
+    /* ========================= */
     .canhan {
         background-color: #D9D9D9;
         padding: 25px;
         position: relative;
+        border-bottom: 1px solid #fff;
 
     }
 
     .canhan img {
         position: absolute;
-        right: 190px;
+        right: 200px;
         margin-top: -12px;
         border: 1px solid #ffffff;
         border-radius: 50%;
         padding: 15px;
         background-color: white;
         flex-shrink: 0;
-        /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
-        width: 15px;
-        /* Đặt chiều rộng ảnh là 200px */
+        width: 30px;
         height: auto;
     }
 
     .canhan .dropdown {
-        position: absolute;
+        position: fixed;
         right: 60px;
         margin-top: -20px;
     }
@@ -185,14 +188,11 @@
 
     .dropdown_select {
         cursor: pointer;
-
     }
 
     .dropdown:hover .dropdown_list {
         display: block;
     }
-
-    .dropdown_selected {}
 
     .dropdown_list {
         width: 150px;
@@ -207,7 +207,7 @@
 
     .dropdown_list::before {
         content: "";
-        height: 20px;
+        height: 25px;
         position: absolute;
         left: 0;
         right: 0;
@@ -216,7 +216,6 @@
     }
 
     .dropdown_item {
-
         text-align: center;
         margin-top: -5px;
         margin-left: -40px;
@@ -230,24 +229,69 @@
         background-color: #2A3F53;
     }
 
-    /****************************************************/
+    /* ==================================================== */
+
+
+    .box {
+        position: absolute;
+        margin-left: 300px;
+        width: 1599px;
+    }
+
+    .header1 {
+        width: 1599px;
+        position: fixed;
+        z-index: 1;
+    }
+
+    .Header2 {
+        width: 1599px;
+        margin-top: 200px;
+    }
+
     .tenQL {
-        margin-top: 10px;
         padding: 25px;
         border-bottom: 1px solid #D9D9D9;
-
+        padding-left: 50px;
+        background-color: #fff;
     }
 
     .thoigian {
-        padding: 30px;
+        padding: 20px;
+        border-bottom: 2px solid #D9D9D9;
+        padding-left: 50px;
+        background-color: #fff;
+    }
+
+    .themDS {
+        position: absolute;
+        right: 30px;
+        width: 150px;
+    }
+
+    .themDS button {
+        padding: 5px;
+    }
+
+    .tenQL a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .thoigian {
+        padding: 20px;
         border-bottom: 2px solid #D9D9D9;
     }
 
     .themDS {
         position: absolute;
         right: 50px;
-        width: 130px;
+        width: 120px;
         margin-top: -14px;
+    }
+
+    .themDS button {
+        padding: 5px;
     }
 
     .themthang {
@@ -369,104 +413,102 @@
         </nav>
         <main>
 
-            <section class="canhan">
-                <i class="fas fa-bars"></i>
-                <img src="anh_manhinh/use.png" alt="">
-                <section class="dropdown">
-                    <section class="dropdwon_select">
-                        <span class="dropdown_selected">Administrator</span>
-                        <i class="fas fa-sort-down"></i>
-                        <ul class="dropdown_list">
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/Doi_mat_khau.html">
-                                <li class="dropdown_item">
-                                    <span class="dropdown_test"> Đổi Mật Khẩu</span>
-                                    <i class="fas fa-key"></i>
-                                </li>
-                            </a>
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/dang_nhap.html" type=" color: #000">
-                                <li class="dropdown_item">
-                                    <span class="dropdown_test">Đăng Xuất</span>
-                                    <i class="fas fa-sign-out-alt"></i>
-                                </li>
-                            </a>
-                        </ul>
+            <div class="box">
+                <div class="header1">
+                    <section class="canhan">
+                        <i class="fas fa-bars"></i>
+                        <img src="anh_manhinh/use.png" alt="">
+                        <section class="dropdown">
+                            <section class="dropdwon_select">
+                                <span class="dropdown_selected">Administrator</span>
+                                <i class="fas fa-sort-down"></i>
+                                <ul class="dropdown_list">
+                                    <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/Doi_mat_khau.html">
+                                        <li class="dropdown_item">
+                                            <span class="dropdown_test"> Đổi Mật Khẩu</span>
+                                            <i class="fas fa-key"></i>
+                                        </li>
+                                    </a>
+                                    <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/dang_nhap.html" type=" color: #000">
+                                        <li class="dropdown_item">
+                                            <span class="dropdown_test">Đăng Xuất</span>
+                                            <i class="fas fa-sign-out-alt"></i>
+                                        </li>
+                                    </a>
+                                </ul>
+                            </section>
+
+                        </section>
+                    </section>
+                    <section class="tenQL">
+                        <span>Hóa Đơn</span>
                     </section>
 
-                </section>
-            </section>
-            <section class="tenQL">
-                <span>Hóa Đơn</span>
-            </section>
-
-            <section class="thoigian">
-                <a href="../CoffeOder/hoa-don-ngay.php" class="themDS"><button class="">Tổng Đơn Ngày</button></a>
-                <a href="../CoffeOder/hoa-don-thang.php" class="themthang"><button class="">Tổng Đơn Tháng</button></a>
-                <a href="../CoffeOder/hoaDonct-get.php" class="themhoadon"><button class="">Hóa Đơn </button></a>
-
-            </section>
-            <table id="customers">
-                <tr>
-                    <th style="width: auto;">Ngày</th>
-
-                    <th style="width: auto;">Tổng tiền</th>
-
-                </tr>
-                <?php
-
-                include 'API.php';
-                $Cons = mysqli_connect("localhost", "root", "", "coffeoder");
-                $sql = "SELECT time_Data, tongTien FROM hoadonct";
-                $result = mysqli_query($Cons, $sql);
-
-                // Tạo một mảng để lưu trữ tổng hóa đơn theo ngày
-                $totalByDate = array();
-
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $orderDate = $row["time_Data"];
-                        $totalAmount = $row["tongTien"];
-
-                        // Tính tổng cho mỗi ngày
-                        if (!isset($totalByDate[$orderDate])) {
-                            $totalByDate[$orderDate] = 0;
-                        }
-                        $totalByDate[$orderDate] += $totalAmount;
-                    }
-
-                    // Hiển thị tổng hóa đơn theo ngày
-                    // echo "<table>";
-                    // echo "<tr><th>Ngày</th><th>Tổng Hóa Đơn</th></tr>";
-                    foreach ($totalByDate as $date => $total) {
-                        // echo "<tr>";
-                        // echo "<td>" . $date . "</td>";
-                        // echo "<td>" . $total . "</td>";
-                        // echo "</tr>";
-                ?>
+                    <section class="thoigian">
+                        <a href="../CoffeOder/hoa-don-ngay.php" class="themDS"><button class="">Tổng Đơn Ngày</button></a>
+                        <a href="../CoffeOder/hoa-don-thang.php" class="themthang"><button class="">Tổng Đơn Tháng</button></a>
+                        <a href="../CoffeOder/hoaDonct-get.php" class="themhoadon"><button class="">Hóa Đơn </button></a>
+                    </section>
+                </div>
+                <div class="Header2">
+                    <table id="customers">
                         <tr>
-                            <td>
-                                <?php echo $date ?>
-                            </td>
+                            <th style="width: auto;">Ngày</th>
 
-                            <td>
-                                <?php echo $total ?>
-                            </td>
+                            <th style="width: auto;">Tổng tiền</th>
 
                         </tr>
-                <?php
-                    }
-                    echo "</table>";
-                } else {
-                    echo "Không có dữ liệu hóa đơn.";
-                }
-                ?>
-            </table>
-            <div>
-                <?php
+                        <?php
 
-                ?>
-                <p>
-                    <?php ?>
-                </p>
+                        include 'API.php';
+                        $Cons = mysqli_connect("localhost", "root", "", "coffeoder");
+                        $sql = "SELECT time_Data, tongTien FROM hoadonct";
+                        $result = mysqli_query($Cons, $sql);
+
+                        // Tạo một mảng để lưu trữ tổng hóa đơn theo ngày
+                        $totalByDate = array();
+
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                $orderDate = $row["time_Data"];
+                                $totalAmount = $row["tongTien"];
+
+                                // Tính tổng cho mỗi ngày
+                                if (!isset($totalByDate[$orderDate])) {
+                                    $totalByDate[$orderDate] = 0;
+                                }
+                                $totalByDate[$orderDate] += $totalAmount;
+                            }
+
+                            // Hiển thị tổng hóa đơn theo ngày
+                            // echo "<table>";
+                            // echo "<tr><th>Ngày</th><th>Tổng Hóa Đơn</th></tr>";
+                            foreach ($totalByDate as $date => $total) {
+                                // echo "<tr>";
+                                // echo "<td>" . $date . "</td>";
+                                // echo "<td>" . $total . "</td>";
+                                // echo "</tr>";
+                        ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $date ?>
+                                    </td>
+
+                                    <td>
+                                        <?php echo $total ?>
+                                    </td>
+
+                                </tr>
+                        <?php
+                            }
+                            echo "</table>";
+                        } else {
+                            echo "Không có dữ liệu hóa đơn.";
+                        }
+                        ?>
+                    </table>
+                </div>
+
             </div>
         </main>
     </div>

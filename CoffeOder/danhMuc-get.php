@@ -1,5 +1,3 @@
-<?php
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đồ bán chạy</title>
     <script src="https://kit.fontawesome.com/e123c1a84c.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="/duantotnghiep/man_chinh/Do_ban_chay.css">
+
 </head>
 
 <style>
@@ -43,6 +41,7 @@
         padding: 20px;
         position: fixed;
         height: 1000px;
+        z-index: 1;
 
 
     }
@@ -116,7 +115,7 @@
         background-color: #D9D9D9;
         padding: 25px;
         position: relative;
-        margin-left: 297px;
+        border-bottom: 1px solid #fff;
 
     }
 
@@ -129,14 +128,12 @@
         padding: 15px;
         background-color: white;
         flex-shrink: 0;
-        /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
         width: 30px;
-        /* Đặt chiều rộng ảnh là 200px */
         height: auto;
     }
 
     .canhan .dropdown {
-        position: absolute;
+        position: fixed;
         right: 60px;
         margin-top: -20px;
     }
@@ -147,7 +144,6 @@
 
     .dropdown_select {
         cursor: pointer;
-
     }
 
     .dropdown:hover .dropdown_list {
@@ -176,7 +172,6 @@
     }
 
     .dropdown_item {
-
         text-align: center;
         margin-top: -5px;
         margin-left: -40px;
@@ -191,18 +186,37 @@
     }
 
     /* ==================================================== */
+
+
+    .box {
+        position: absolute;
+        margin-left: 300px;
+        width: 1599px;
+    }
+
+    .header1 {
+        width: 1599px;
+        position: fixed;
+        z-index: 1;
+    }
+
+    .Header2 {
+        width: 1599px;
+        margin-top: 200px;
+    }
+
     .tenQL {
-        margin-top: 10px;
         padding: 25px;
         border-bottom: 1px solid #D9D9D9;
-        padding-left: 350px;
-
+        padding-left: 50px;
+        background-color: #fff;
     }
 
     .thoigian {
         padding: 20px;
         border-bottom: 2px solid #D9D9D9;
-        padding-left: 350px;
+        padding-left: 50px;
+        background-color: #fff;
     }
 
     .themDS {
@@ -222,50 +236,121 @@
     /* ===================================================== */
     #container {
         height: 300px;
-        width: 60vw;
-        padding: 0;
-        background: rgb(246, 247, 247);
-        display: flexd;
+        width: 82vw;
         place-items: center;
+        background: rgb(246, 247, 247);
         margin-right: 50px;
+        /* display: grid; */
+        margin-left: 20px;
 
     }
 
     #slider-container {
         height: 300px;
-        width: 80vw;
-        /* width: 200px; */
-        max-width: 1900px;
+        width: 82vw;
+        max-width: 100%;
         background: #fff;
-        /* box-shadow: 5px 5px 8px gray inset; */
         position: relative;
         overflow: hidden;
-        padding: 10px;
-
+        margin-top: 3%;
     }
 
-    /* 
+    #slider-container .btn {
+        position: absolute;
+        top: calc(50% - 30px);
+        height: 10px;
+        width: 10px;
+        border-left: 7px solid rgb(207, 205, 200);
+        border-top: 7px solid rgb(207, 205, 200);
+    }
 
-    #slider-container #slider {
+    #slider-container .btn:hover {
+        transform: scale(1.2);
+    }
+
+    #slider-container .btn.inactive {
+        border-color: rgb(153, 121, 126)
+    }
+
+    #slider-container .btn:first-of-type {
+        transform: rotate(-45deg);
+        left: 10px
+    }
+
+    #slider-container .btn:last-of-type {
+        transform: rotate(135deg);
+        right: 10px;
+    }
+
+
+
+    #slider-container .slider {
         display: flex;
-        width: 1000%;
+        width: 100%;
         height: 90%;
         transition: all .5s;
-    } */
+    }
 
-    #slider-container #slider .slide {
+    #slider-container .slider .slide {
         height: 100%;
         margin: auto 20px;
         background-color: #eeeef3;
-        box-shadow: 2px 2px 4px 2px gray, -2px -2px 4px 2px gray;
+        /* box-shadow: 2px 2px 4px 2px gray, -2px -2px 4px 2px gray; */
         display: flex;
         place-items: center;
     }
 
-    #slider-container #slider .slide span {
+    #slider-container .slider .slide span {
 
-        height: 400px;
+        height: 300px;
         width: 250px;
+    }
+
+    #slider-container .slider .slide span .tensp {
+        color: rgb(8, 8, 8);
+        font-size: 18px;
+        text-align: center;
+        margin: 0px;
+    }
+
+    #slider-container .slider .slide span .giasp {
+        color: rgb(244, 5, 5);
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        margin: 8px;
+    }
+
+    @media only screen and (min-width: 1100px) {
+
+        #slider-container .slider .slide2 {
+            width: calc(2.5% - 20px);
+        }
+
+    }
+
+    @media only screen and (max-width: 1100px) {
+
+        #slider-container .slider .slide {
+            width: calc(3.3333333% - 20px);
+        }
+
+    }
+
+    @media only screen and (max-width: 900px) {
+
+        #slider-container .slider .slide {
+            width: calc(5% - 20px);
+        }
+
+    }
+
+    @media only screen and (max-width: 550px) {
+
+        #slider-container .slider .slide {
+            width: calc(10% - 20px);
+        }
+
     }
 </style>
 
@@ -286,7 +371,7 @@
             </section>
 
             <section class="menu">
-                <ul>
+            <ul>
                     <a href="../CoffeOder/danhMuc-get.php">
                         <li><i class="fas fa-caravan"></i>Đồ bán chạy</li>
                     </a>
@@ -313,21 +398,23 @@
         </nav>
         <main>
 
-            <section class="canhan">
-                <i class="fas fa-bars"></i>
-                <img src="anh_manhinh/use.png" alt="">
-                <section class="dropdown">
-                    <section class="dropdwon_select">
-                        <span class="dropdown_selected"> Administrator</span>
-                        <i class="fas fa-sort-down"></i>
-                        <ul class="dropdown_list">
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/Doi_mat_khau.html">
+            <div class="box">
+                <div class="header1">
+                    <section class="canhan">
+                        <i class="fas fa-bars"></i>
+                        <img src="anh_manhinh/use.png" alt="">
+                        <section class="dropdown">
+                            <section class="dropdwon_select">
+                                <span class="dropdown_selected"> Administrator</span>
+                                <i class="fas fa-sort-down"></i>
+                                <ul class="dropdown_list">
+                            <a href="#">
                                 <li class="dropdown_item">
                                     <span class="dropdown_test"> Đổi Mật Khẩu</span>
                                     <i class="fas fa-key"></i>
                                 </li>
                             </a>
-                            <a href="http://127.0.0.1:5500/duantotnghiep/Dang_nhap/dang_nhap.html" type=" color: #000">
+                            <a href="../CoffeOder/login.php" type=" color: #000">
                                 <li class="dropdown_item">
                                     <span class="dropdown_test">Đăng Xuất</span>
                                     <i class="fas fa-sign-out-alt"></i>
@@ -335,91 +422,301 @@
                             </a>
 
                         </ul>
+                            </section>
+
+                        </section>
                     </section>
+                    <section class="tenQL">
+                        <span>Đồ Bán Chạy</span>
+                    </section>
+                    <section class="thoigian">
+                        <input type="date"> -- <input type="date" name="" id="">
+                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/danhMuc-add.php" class="themDS"><button class="">Thêm danh sách</button></a>
+                    </section>
+                </div>
 
-                </section>
-            </section>
-            <section class="tenQL">
-                <span>Đồ Bán Chạy</span>
-            </section>
-            <section class="thoigian">
-                <input type="date"> -- <input type="date" name="" id="">
-                <a href="../CoffeOder/danhMuc-add.php" class="themDS"><button class="">Thêm danh sách</button></a>
-            </section>
+                <div class="Header2">
+                    <?php
+                    // Thông tin kết nối database
+                    include 'API.php';
+                    $conn = mysqli_connect("localhost", "root", "", "coffeoder");
 
-            <?php
-            // Thông tin kết nối database
-            include 'API.php';
-            $conn = mysqli_connect("localhost", "root", "", "coffeoder");
+                    try {
+                        // // Kết nối tới database sử dụng PDO
+                        // $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
 
-            try {
+                        // // Truy vấn dữ liệu từ bảng employee_data
+                        // $stmt = $conn->query("SELECT * FROM sanpham");
 
-                $set_danh_muc = "SELECT * FROM danhmuc order by ten_danhMuc";
-                $result = mysqli_query($conn, $set_danh_muc);
+                        // // Lấy tất cả các bản ghi và chuyển thành mảng kết quả JSON
+                        // $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                while ($dm = mysqli_fetch_assoc($result)) {
-            ?>
-                    <h3 style="margin-left: 310px;">
-                        <?php echo $dm['ten_danhMuc']; ?>
-                        <!-- </h3> -->
-                        <div id="container">
-                            <div id="slider-container">
-                                <span onclick="slideRight()" class="btn button"></span>
-                                <div id="slider">
-                                    <div class="slide">
-                                        <?php
-                                        // Thông tin kết nối database
-                                        include 'API.php';
-                                        $conn = mysqli_connect("localhost", "root", "", "coffeoder");
+                        // // Thiết lập header để trả về JSON
+                        // header('Content-Type: application/json');
 
-                                        try {
-                                            $set_san_pham = "SELECT * FROM sanpham order by anhSanPham,giaSanPham,ten_sp";
-                                            $results = mysqli_query($conn, $set_san_pham);
+                        // // Hiển thị kết quả JSON hoặc trả về mã lỗi HTTP 404 Not Found nếu không có bản ghi nào được tìm thấy
+                        // echo ($stmt->rowCount() > 0) ? json_encode($result) : http_response_code(404);
 
-                                            while ($sp = mysqli_fetch_assoc($results)) {
-                                        ?>
-                                                <div class="Sanpham">
-                                                    <h3 style="margin-left: 10px;">
-                                                        <img src="<?php echo $sp['anhSanPham'];
-                                                                    ?> " style="height: 150px; width: 150px;"> <br>
-                                                        <?php echo $sp['ten_sp']; ?> <br>
-                                                        <?php echo number_format($sp['giaSanPham']); ?> <br>
+                        $set_danh_muc = "SELECT * FROM danhmuc order by ten_danhMuc";
+                        $result = mysqli_query($conn, $set_danh_muc);
+                        $i = 1;
+                        while ($dm = mysqli_fetch_assoc($result)) {
+                           
+                            
+                    ?>
+                            <h3 style="padding-left: 30px; padding-top: 40px;">
+                                <?php echo $dm['ten_danhMuc']; ?>
+                            </h3>
+                            <h1></h1>
+                            <div id="container">
+                                <div id="slider-container">
+                                    <span onclick="slideRight<?php echo $i; ?>()" class="btn button<?php echo $i; ?>"></span>
+                                    <div id="slider<?php echo $i; ?>" class="slider">
+                                        <div class="slide">
+                                            <?php
+                                            // Thông tin kết nối database
+                                            include 'API.php';
+                                            $conn = mysqli_connect("localhost", "root", "", "coffeoder");
 
-                                                    </h3>
-                                                </div>
+                                            try {
+                                                // // Kết nối tới database sử dụng PDO
+                                                // $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+
+                                                // // Truy vấn dữ liệu từ bảng employee_data
+                                                // $stmt = $conn->query("SELECT * FROM sanpham");
+
+                                                // // Lấy tất cả các bản ghi và chuyển thành mảng kết quả JSON
+                                                // $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                                // // Thiết lập header để trả về JSON
+                                                // header('Content-Type: application/json');
+
+                                                // // Hiển thị kết quả JSON hoặc trả về mã lỗi HTTP 404 Not Found nếu không có bản ghi nào được tìm thấy
+                                                // echo ($stmt->rowCount() > 0) ? json_encode($result) : http_response_code(404);
+
+                                                $set_san_pham = "SELECT * FROM sanpham order by anhSanPham,giaSanPham,ten_sp";
+                                                $results = mysqli_query($conn, $set_san_pham);
+
+                                                while ($sp = mysqli_fetch_assoc($results)) {
+                                            ?>
+                                                    <div class="Sanpham">
+                                                        <div style="margin-left: 10px;">
+                                                            <img src="<?php echo $sp['anhSanPham'];
+                                                                        ?> " style="height: 150px; width: 150px; object-fit: fill;"> <br>
+                                                            <div><span> <?php echo $sp['ten_sp']; ?> </span></div> <br>
+                                                            <div><span> <?php echo number_format($sp['giaSanPham']); ?> </span> </div> <br>
+
+                                                        </div>
+                                                    </div>
 
 
-                                        <?php
-                                            };
-                                        } catch (PDOException $e) {
-                                            // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
-                                            http_response_code(500);
-                                            echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
+                                            <?php
+                                                };
+                                            } catch (PDOException $e) {
+                                                // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
+                                                http_response_code(500);
+                                                echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
+                                            }
+
+                                            // Đóng kết nối database
+                                            $conn = null;
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <span onclick="slideLeft<?php echo $i; ?>()" class="btn button<?php echo $i; ?>"></span>
+
+                                    <script>
+                                        var container<?php echo $i; ?> = document.getElementById('container')
+                                        var slider<?php echo $i; ?> = document.getElementById('slider<?php echo $i; ?>');
+                                        var slides = document.getElementsByClassName('slide').length;
+                                        var buttons<?php echo $i; ?> = document.getElementsByClassName('button<?php echo $i; ?>');
+
+                                        console.log(buttons<?php echo $i; ?>)
+
+                                        var currentPosition<?php echo $i; ?> = 0;
+                                        var currentMargin<?php echo $i; ?> = 0;
+                                        var slidesPerPage<?php echo $i; ?> = 0;
+                                        var slidesCount<?php echo $i; ?> = slides - slidesPerPage<?php echo $i; ?>;
+                                        var containerWidth<?php echo $i; ?> = container<?php echo $i; ?>.offsetWidth;
+                                        var prevKeyActive<?php echo $i; ?> = false;
+                                        var nextKeyActive<?php echo $i; ?> = true;
+
+                                        window.addEventListener("resize", checkWidth);
+
+                                        function checkWidth() {
+                                            containerWidth<?php echo $i; ?> = container<?php echo $i; ?>.offsetWidth;
+                                            setParams(containerWidth<?php echo $i; ?>);
                                         }
 
-                                        // Đóng kết nối database
-                                        $conn = null;
-                                        ?>
-                                    </div>
+                                        function setParams(w) {
+                                            if (w < 551) {
+                                                slidesPerPage<?php echo $i; ?> = 1;
+                                            } else {
+                                                if (w < 901) {
+                                                    slidesPerPage<?php echo $i; ?> = 2;
+                                                } else {
+                                                    if (w < 1101) {
+                                                        slidesPerPage<?php echo $i; ?> = 3;
+                                                    } else {
+                                                        slidesPerPage<?php echo $i; ?> = 4;
+                                                    }
+                                                }
+                                            }
+                                            slidesCount<?php echo $i; ?> = slides - slidesPerPage<?php echo $i; ?>;
+                                            if (currentPosition<?php echo $i; ?> > slidesCount<?php echo $i; ?>) {
+                                                currentPosition<?php echo $i; ?> += slidesPerPage<?php echo $i; ?>;
+                                                //không được xóa
+                                                console.log(currentPosition<?php echo $i; ?> -= slidesPerPage<?php echo $i; ?>)
+                                                //
+                                            };
+                                            currentMargin<?php echo $i; ?> = -currentPosition<?php echo $i; ?> * (100 / slidesPerPage<?php echo $i; ?>);
+                                            slider<?php echo $i; ?>.style.marginLeft = currentMargin<?php echo $i; ?> + '%';
+                                            if (currentPosition<?php echo $i; ?> > 0) {
+                                                buttons<?php echo $i; ?>[0].classList.remove('inactive');
+                                            }
+                                            if (currentPosition<?php echo $i; ?> < slidesCount<?php echo $i; ?>) {
+                                                buttons<?php echo $i; ?>[1].classList.remove('inactive');
+                                            }
+                                            if (currentPosition<?php echo $i; ?> >= slidesCount<?php echo $i; ?>) {
+                                                buttons<?php echo $i; ?>[1].classList.add('inactive');
+                                            }
+                                        }
+
+                                        setParams();
+
+                                        function slideRight<?php echo $i; ?>() {
+                                            if (currentPosition<?php echo $i; ?> != 0) {
+                                                slider<?php echo $i; ?>.style.marginLeft = currentMargin<?php echo $i; ?> + (100 / slidesPerPage<?php echo $i; ?>) + '%';
+                                                currentMargin<?php echo $i; ?> += (100 / slidesPerPage<?php echo $i; ?>);
+                                                currentPosition<?php echo $i; ?>--;
+                                            };
+                                            if (currentPosition<?php echo $i; ?> === 0) {
+                                                buttons<?php echo $i; ?>[0].classList.add('inactive');
+                                            }
+                                            if (currentPosition<?php echo $i; ?> < slidesCount<?php echo $i; ?>) {
+                                                buttons<?php echo $i; ?>[1].classList.remove('inactive');
+                                            }
+                                        };
+
+                                        function slideLeft<?php echo $i; ?>() {
+                                            if (currentPosition<?php echo $i; ?> != slidesCount<?php echo $i; ?>) {
+                                                slider<?php echo $i; ?>.style.marginLeft = currentMargin<?php echo $i; ?> - (100 / slidesPerPage<?php echo $i; ?>) + '%';
+                                                currentMargin<?php echo $i; ?> -= (100 / slidesPerPage<?php echo $i; ?>);
+                                                currentPosition<?php echo $i; ?>++;
+                                            };
+                                            if (currentPosition<?php echo $i; ?> == slidesCount<?php echo $i; ?>) {
+                                                buttons<?php echo $i; ?>[1].classList.add('inactive');
+                                            }
+                                            if (currentPosition<?php echo $i; ?> > 0) {
+                                                buttons<?php echo $i; ?>[0].classList.remove('inactive');
+                                            }
+                                        };
+                                    </script>
                                 </div>
+
                             </div>
-                        </div>
 
-                <?php
 
-                }
-            } catch (PDOException $e) {
-                // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
-                http_response_code(500);
-                echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
-            }
+                    <?php
+                    $i++;
 
-            $conn = null;
-                ?>
+                        }
+                    } catch (PDOException $e) {
+                        // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
+                        http_response_code(500);
+                        echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
+                    }
+
+                    // Đóng kết nối database
+                    $conn = null;
+                    ?>
+                </div>
+            </div>
+
+            <h3 style="margin-left: 20px;">Đồ uống</h3>
+
     </div>
+
+
+    <!-- <h2 style="margin-left: 20px; margin-top: 20px;">Đồ ăn</h2> -->
+
+
+    <!-- <div id="container">
+                    <div id="slider-container">
+                        <span onclick="Right2()" class="btn btn2"></span>
+
+                        <span onclick="Left2()" class="btn btn2"></span>
+                    </div>
+                </div> -->
+
+
+
     </main>
 
     </div>
+
+
 </body>
 
+
+
 </html>
+<?php
+// Thông tin kết nối database
+include 'API.php';
+
+// try {
+//     // Kết nối tới database sử dụng PDO
+//     $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+
+//     // Truy vấn dữ liệu từ bảng employee_data
+//     $stmt = $conn->query("SELECT * FROM sanpham");
+
+//     // Lấy tất cả các bản ghi và chuyển thành mảng kết quả JSON
+//     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+//     // Thiết lập header để trả về JSON
+//     header('Content-Type: application/json');
+
+//     // Hiển thị kết quả JSON hoặc trả về mã lỗi HTTP 404 Not Found nếu không có bản ghi nào được tìm thấy
+//     echo ($stmt->rowCount() > 0) ? json_encode($result) : http_response_code(404);
+// } catch (PDOException $e) {
+//     // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
+//     http_response_code(500);
+//     echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
+// }
+
+// Đóng kết nối database
+$conn = null;
+?>
+<?php
+// Thông tin kết nối database
+$db_host = "localhost";
+$db_name = "coffeoder";
+$db_user = "root";
+$db_pass = "";
+
+// try {
+//     // Kết nối tới database sử dụng PDO
+//     $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+
+//     // Truy vấn dữ liệu từ bảng employee_data
+//     $stmt = $conn->query("SELECT * FROM danhmuc");
+
+//     // Lấy tất cả các bản ghi và chuyển thành mảng kết quả JSON
+//     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+//     // Thiết lập header để trả về JSON
+//     header('Content-Type: application/json');
+
+//     // Hiển thị kết quả JSON hoặc trả về mã lỗi HTTP 404 Not Found nếu không có bản ghi nào được tìm thấy
+//     echo ($stmt->rowCount() > 0) ? json_encode($result) : http_response_code(404);
+// } catch(PDOException $e) {
+//     // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
+//     http_response_code(500);
+//     echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
+// }
+
+// Đóng kết nối database
+$conn = null;
+?>
