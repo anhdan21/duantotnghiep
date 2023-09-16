@@ -371,7 +371,7 @@
             </section>
 
             <section class="menu">
-            <ul>
+                <ul>
                     <a href="../CoffeOder/danhMuc-get.php">
                         <li><i class="fas fa-caravan"></i>Đồ bán chạy</li>
                     </a>
@@ -408,22 +408,20 @@
                                 <span class="dropdown_selected"> Administrator</span>
                                 <i class="fas fa-sort-down"></i>
                                 <ul class="dropdown_list">
-                            <a href="#">
-                                <li class="dropdown_item">
-                                    <span class="dropdown_test"> Đổi Mật Khẩu</span>
-                                    <i class="fas fa-key"></i>
-                                </li>
-                            </a>
-                            <a href="../CoffeOder/login.php" type=" color: #000">
-                                <li class="dropdown_item">
-                                    <span class="dropdown_test">Đăng Xuất</span>
-                                    <i class="fas fa-sign-out-alt"></i>
-                                </li>
-                            </a>
-
-                        </ul>
+                                    <a href="#">
+                                        <li class="dropdown_item">
+                                            <span class="dropdown_test"> Đổi Mật Khẩu</span>
+                                            <i class="fas fa-key"></i>
+                                        </li>
+                                    </a>
+                                    <a href="../CoffeOder/login.php" type=" color: #000">
+                                        <li class="dropdown_item">
+                                            <span class="dropdown_test">Đăng Xuất</span>
+                                            <i class="fas fa-sign-out-alt"></i>
+                                        </li>
+                                    </a>
+                                </ul>
                             </section>
-
                         </section>
                     </section>
                     <section class="tenQL">
@@ -440,61 +438,27 @@
                     // Thông tin kết nối database
                     include 'API.php';
                     $conn = mysqli_connect("localhost", "root", "", "coffeoder");
-
                     try {
-                        // // Kết nối tới database sử dụng PDO
-                        // $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-
-                        // // Truy vấn dữ liệu từ bảng employee_data
-                        // $stmt = $conn->query("SELECT * FROM sanpham");
-
-                        // // Lấy tất cả các bản ghi và chuyển thành mảng kết quả JSON
-                        // $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                        // // Thiết lập header để trả về JSON
-                        // header('Content-Type: application/json');
-
-                        // // Hiển thị kết quả JSON hoặc trả về mã lỗi HTTP 404 Not Found nếu không có bản ghi nào được tìm thấy
-                        // echo ($stmt->rowCount() > 0) ? json_encode($result) : http_response_code(404);
-
                         $set_danh_muc = "SELECT * FROM danhmuc order by ten_danhMuc";
                         $result = mysqli_query($conn, $set_danh_muc);
                         $i = 1;
                         while ($dm = mysqli_fetch_assoc($result)) {
-                           
-                            
                     ?>
                             <h3 style="padding-left: 30px; padding-top: 40px;">
                                 <?php echo $dm['ten_danhMuc']; ?>
                             </h3>
-                            <h1></h1>
+                            <hr>
                             <div id="container">
                                 <div id="slider-container">
                                     <span onclick="slideRight<?php echo $i; ?>()" class="btn button<?php echo $i; ?>"></span>
                                     <div id="slider<?php echo $i; ?>" class="slider">
                                         <div class="slide">
                                             <?php
-                                            // Thông tin kết nối database
                                             include 'API.php';
                                             $conn = mysqli_connect("localhost", "root", "", "coffeoder");
-
                                             try {
-                                                // // Kết nối tới database sử dụng PDO
-                                                // $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-
-                                                // // Truy vấn dữ liệu từ bảng employee_data
-                                                // $stmt = $conn->query("SELECT * FROM sanpham");
-
-                                                // // Lấy tất cả các bản ghi và chuyển thành mảng kết quả JSON
-                                                // $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                                                // // Thiết lập header để trả về JSON
-                                                // header('Content-Type: application/json');
-
-                                                // // Hiển thị kết quả JSON hoặc trả về mã lỗi HTTP 404 Not Found nếu không có bản ghi nào được tìm thấy
-                                                // echo ($stmt->rowCount() > 0) ? json_encode($result) : http_response_code(404);
-
-                                                $set_san_pham = "SELECT * FROM sanpham order by anhSanPham,giaSanPham,ten_sp";
+                                                //$set_san_pham = "SELECT * FROM sanpham order by anhSanPham,giaSanPham,ten_sp";
+                                                $set_san_pham = "SELECT * FROM sanpham WHERE Id_danhMuc = " . $dm['Id_danhMuc'] . " ORDER BY anhSanPham, giaSanPham, ten_sp";
                                                 $results = mysqli_query($conn, $set_san_pham);
 
                                                 while ($sp = mysqli_fetch_assoc($results)) {
@@ -508,17 +472,13 @@
 
                                                         </div>
                                                     </div>
-
-
                                             <?php
                                                 };
                                             } catch (PDOException $e) {
-                                                // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
                                                 http_response_code(500);
                                                 echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
                                             }
 
-                                            // Đóng kết nối database
                                             $conn = null;
                                             ?>
                                         </div>
@@ -615,11 +575,8 @@
                                 </div>
 
                             </div>
-
-
                     <?php
-                    $i++;
-
+                            $i++;
                         }
                     } catch (PDOException $e) {
                         // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
@@ -637,86 +594,9 @@
 
     </div>
 
-
-    <!-- <h2 style="margin-left: 20px; margin-top: 20px;">Đồ ăn</h2> -->
-
-
-    <!-- <div id="container">
-                    <div id="slider-container">
-                        <span onclick="Right2()" class="btn btn2"></span>
-
-                        <span onclick="Left2()" class="btn btn2"></span>
-                    </div>
-                </div> -->
-
-
-
     </main>
-
     </div>
-
 
 </body>
 
-
-
 </html>
-<?php
-// Thông tin kết nối database
-include 'API.php';
-
-// try {
-//     // Kết nối tới database sử dụng PDO
-//     $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-
-//     // Truy vấn dữ liệu từ bảng employee_data
-//     $stmt = $conn->query("SELECT * FROM sanpham");
-
-//     // Lấy tất cả các bản ghi và chuyển thành mảng kết quả JSON
-//     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-//     // Thiết lập header để trả về JSON
-//     header('Content-Type: application/json');
-
-//     // Hiển thị kết quả JSON hoặc trả về mã lỗi HTTP 404 Not Found nếu không có bản ghi nào được tìm thấy
-//     echo ($stmt->rowCount() > 0) ? json_encode($result) : http_response_code(404);
-// } catch (PDOException $e) {
-//     // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
-//     http_response_code(500);
-//     echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
-// }
-
-// Đóng kết nối database
-$conn = null;
-?>
-<?php
-// Thông tin kết nối database
-$db_host = "localhost";
-$db_name = "coffeoder";
-$db_user = "root";
-$db_pass = "";
-
-// try {
-//     // Kết nối tới database sử dụng PDO
-//     $conn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-
-//     // Truy vấn dữ liệu từ bảng employee_data
-//     $stmt = $conn->query("SELECT * FROM danhmuc");
-
-//     // Lấy tất cả các bản ghi và chuyển thành mảng kết quả JSON
-//     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-//     // Thiết lập header để trả về JSON
-//     header('Content-Type: application/json');
-
-//     // Hiển thị kết quả JSON hoặc trả về mã lỗi HTTP 404 Not Found nếu không có bản ghi nào được tìm thấy
-//     echo ($stmt->rowCount() > 0) ? json_encode($result) : http_response_code(404);
-// } catch(PDOException $e) {
-//     // Trả về mã lỗi HTTP 500 Internal Server Error nếu xảy ra lỗi trong quá trình kết nối hoặc truy vấn
-//     http_response_code(500);
-//     echo json_encode(array("message" => "Unable to retrieve data: " . $e->getMessage()));
-// }
-
-// Đóng kết nối database
-$conn = null;
-?>
