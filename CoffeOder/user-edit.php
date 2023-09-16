@@ -25,222 +25,222 @@ $row = mysqli_fetch_assoc($result);
 
 <style>
     body {
-         margin: 0;
-         padding: 0;
-         box-sizing: border-box;
-         font-family: 'Inter', sans-serif;
-     }
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+    }
 
-     @font-face {
-         font-family: 'Inter';
-         src: url('đường_dẫn_đến_tệp_font/inter.woff2') format('woff2'),
-             url('đường_dẫn_đến_tệp_font/inter.woff') format('woff');
-         /* Nếu muốn hỗ trợ thêm các định dạng font khác, bạn có thể thêm vào đây */
-         font-weight: normal;
-         /* Trọng lượng phông chữ */
-         font-style: normal;
-         /* Kiểu phông chữ */
-     }
+    @font-face {
+        font-family: 'Inter';
+        src: url('đường_dẫn_đến_tệp_font/inter.woff2') format('woff2'),
+            url('đường_dẫn_đến_tệp_font/inter.woff') format('woff');
+        /* Nếu muốn hỗ trợ thêm các định dạng font khác, bạn có thể thêm vào đây */
+        font-weight: normal;
+        /* Trọng lượng phông chữ */
+        font-style: normal;
+        /* Kiểu phông chữ */
+    }
 
-     .div-all {
-         display: flex;
+    .div-all {
+        display: flex;
 
-     }
+    }
 
-     nav {
-         flex: 1;
-         background-color: #2A3F53;
-         color: aliceblue;
-         padding: 20px;
-         position: fixed;
-         height: 1000px;
-         z-index: 1;
-
-
-     }
-
-     .head h2 {
-         margin-left: 60px;
-         margin-bottom: 40px;
-         text-align: center;
-
-     }
-
-     .img {
-         border: 1px solid #ffffff;
-         border-radius: 50%;
-         padding: 20px;
-         background-color: white;
-         flex-shrink: 0;
-         /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
-         width: 25px;
-         /* Đặt chiều rộng ảnh là 200px */
-         height: auto;
-     }
-
-     .use {
-         display: flex;
-         row-gap: 1fr;
-         margin-bottom: 20px;
-
-     }
-
-     /**/
-     /*xin chao */
-     .use section {
-         margin-left: 40px;
-         margin-top: 15px;
-     }
-
-     /*menu list danh sach */
-     .menu {
-         margin-top: 40px;
-         border-top: 1px solid white;
-         padding-bottom: 90px;
-     }
-
-     .menu ul {
-         list-style-type: none;
-     }
-
-     ul li i {
-         margin-right: 20px;
-         width: 20px;
-         height: 10px;
-     }
-
-     ul li {
-         margin-top: 70px;
-     }
-
-     ul a {
-         color: white;
-         text-decoration: none;
-     }
-
-     main {
-         flex: 5;
-     }
+    nav {
+        flex: 1;
+        background-color: #2A3F53;
+        color: aliceblue;
+        padding: 20px;
+        position: fixed;
+        height: 1000px;
+        z-index: 1;
 
 
-     /* ========================= */
-     .canhan {
-         background-color: #D9D9D9;
-         padding: 25px;
-         position: relative;
-         border-bottom: 1px solid #fff;
+    }
 
-     }
+    .head h2 {
+        margin-left: 60px;
+        margin-bottom: 40px;
+        text-align: center;
 
-     .canhan img {
-         position: absolute;
-         right: 200px;
-         margin-top: -12px;
-         border: 1px solid #ffffff;
-         border-radius: 50%;
-         padding: 15px;
-         background-color: white;
-         flex-shrink: 0;
-         width: 30px;
-         height: auto;
-     }
+    }
 
-     .canhan .dropdown {
-         position: fixed;
-         right: 60px;
-         margin-top: -20px;
-     }
+    .img {
+        border: 1px solid #ffffff;
+        border-radius: 50%;
+        padding: 20px;
+        background-color: white;
+        flex-shrink: 0;
+        /* Đảm bảo ảnh không bị co lại khi không đủ không gian */
+        width: 25px;
+        /* Đặt chiều rộng ảnh là 200px */
+        height: auto;
+    }
 
-     .dropdown {
-         position: relative;
-     }
+    .use {
+        display: flex;
+        row-gap: 1fr;
+        margin-bottom: 20px;
 
-     .dropdown_select {
-         cursor: pointer;
-     }
+    }
 
-     .dropdown:hover .dropdown_list {
-         display: block;
-     }
+    /**/
+    /*xin chao */
+    .use section {
+        margin-left: 40px;
+        margin-top: 15px;
+    }
 
-     .dropdown_list {
-         width: 150px;
-         border-radius: 4px;
-         background-color: #D9D9D9;
-         position: absolute;
-         top: 100%;
-         left: 0;
-         right: 0;
-         display: none;
-     }
+    /*menu list danh sach */
+    .menu {
+        margin-top: 40px;
+        border-top: 1px solid white;
+        padding-bottom: 90px;
+    }
 
-     .dropdown_list::before {
-         content: "";
-         height: 25px;
-         position: absolute;
-         left: 0;
-         right: 0;
-         background-color: transparent;
-         transform: translateY(-100%);
-     }
+    .menu ul {
+        list-style-type: none;
+    }
 
-     .dropdown_item {
-         text-align: center;
-         margin-top: -5px;
-         margin-left: -40px;
-         padding: 15px;
-         cursor: pointer;
-         transition: background-color 0.2s linear;
-         list-style-type: none;
-     }
+    ul li i {
+        margin-right: 20px;
+        width: 20px;
+        height: 10px;
+    }
 
-     .dropdown_item:hover {
-         background-color: #2A3F53;
-     }
+    ul li {
+        margin-top: 70px;
+    }
 
-     /* ==================================================== */
+    ul a {
+        color: white;
+        text-decoration: none;
+    }
+
+    main {
+        flex: 5;
+    }
 
 
-     .box {
-         position: absolute;
-         margin-left: 300px;
-         width: 1599px;
-     }
+    /* ========================= */
+    .canhan {
+        background-color: #D9D9D9;
+        padding: 25px;
+        position: relative;
+        border-bottom: 1px solid #fff;
 
-     .header1 {
-         width: 1599px;
-         position: fixed;
-         z-index: 1;
-     }
+    }
 
-     .Header2 {
-         width: 1599px;
-         margin-top: 190px;
-     }
+    .canhan img {
+        position: absolute;
+        right: 200px;
+        margin-top: -12px;
+        border: 1px solid #ffffff;
+        border-radius: 50%;
+        padding: 15px;
+        background-color: white;
+        flex-shrink: 0;
+        width: 30px;
+        height: auto;
+    }
 
-     .tenQL {
-         padding: 25px;
-         border-bottom: 1px solid #D9D9D9;
-         padding-left: 50px;
-         background-color: #fff;
-     }
+    .canhan .dropdown {
+        position: fixed;
+        right: 60px;
+        margin-top: -20px;
+    }
 
-     .thoigian {
-         padding: 20px;
-         border-bottom: 2px solid #D9D9D9;
-         padding-left: 50px;
-         background-color: #fff;
-     }
+    .dropdown {
+        position: relative;
+    }
 
-     .themDS {
-         position: absolute;
-         right: 30px;
-         width: 150px;
-     }
+    .dropdown_select {
+        cursor: pointer;
+    }
 
-     .themDS button {
-         padding: 5px;
-     }
+    .dropdown:hover .dropdown_list {
+        display: block;
+    }
+
+    .dropdown_list {
+        width: 150px;
+        border-radius: 4px;
+        background-color: #D9D9D9;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: none;
+    }
+
+    .dropdown_list::before {
+        content: "";
+        height: 25px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        background-color: transparent;
+        transform: translateY(-100%);
+    }
+
+    .dropdown_item {
+        text-align: center;
+        margin-top: -5px;
+        margin-left: -40px;
+        padding: 15px;
+        cursor: pointer;
+        transition: background-color 0.2s linear;
+        list-style-type: none;
+    }
+
+    .dropdown_item:hover {
+        background-color: #2A3F53;
+    }
+
+    /* ==================================================== */
+
+
+    .box {
+        position: absolute;
+        margin-left: 300px;
+        width: 1599px;
+    }
+
+    .header1 {
+        width: 1599px;
+        position: fixed;
+        z-index: 1;
+    }
+
+    .Header2 {
+        width: 1599px;
+        margin-top: 190px;
+    }
+
+    .tenQL {
+        padding: 25px;
+        border-bottom: 1px solid #D9D9D9;
+        padding-left: 50px;
+        background-color: #fff;
+    }
+
+    .thoigian {
+        padding: 20px;
+        border-bottom: 2px solid #D9D9D9;
+        padding-left: 50px;
+        background-color: #fff;
+    }
+
+    .themDS {
+        position: absolute;
+        right: 30px;
+        width: 150px;
+    }
+
+    .themDS button {
+        padding: 5px;
+    }
 
     /****************************************************/
     .thongtinMK {
@@ -295,7 +295,7 @@ $row = mysqli_fetch_assoc($result);
             <section class="head">
                 <h2>Coffee Bee Order</h2>
                 <section class="use">
-                    <img src="./anh/use.png" class="img" alt="">
+                    <img src="../man_chinh/anh_manhinh/use.png" class="img" alt="">
                     <section>
                         <span>Xin chào,</span> <br>
                         <span>Administrator</span>
@@ -336,7 +336,7 @@ $row = mysqli_fetch_assoc($result);
                 <div class="header1">
                     <section class="canhan">
                         <i class="fas fa-bars"></i>
-                        <img src="anh_manhinh/use.png" alt="">
+                        <img src="../man_chinh/anh_manhinh/use.png" alt="">
                         <section class="dropdown">
                             <section class="dropdwon_select">
                                 <span class="dropdown_selected"> Administrator</span>
@@ -372,7 +372,14 @@ $row = mysqli_fetch_assoc($result);
                             <label for="">Tên NV:<input type="text" name="userName" value="<?php echo $row['userName'] ?>"></label> <br>
                             <label for="">Họ NV:<input type="text" name="fullName" value="<?php echo $row['fullName'] ?>"></label> <br>
                             <label for="">SDT:<input type="phone_Number" name="phone_Number" value="<?php echo $row['phone_Number'] ?>"></label> <br>
-                            <label for="">Vị trí:<input type="text" name="chucNang" value="<?php echo $row['chucNang'] ?>">
+                            <!-- <label for="">Vị trí:<input type="text" name="chucNang" value="<?php echo $row['chucNang'] ?>"> -->
+                            <h5 for="myDropdown" style="margin-right: 500px;">Vị trí:
+                                <select name="chucNang" id="chucNang" style="height: 40px; width:120px; margin-left: 10px;">
+                                    <option value="1">Order</option>
+                                    <option value="2">Thu ngân</option>
+                                    <option value="3">Pha chế</option>
+                                </select>
+                            </h5>
                             </label> <br>
 
                             Select image to upload:<br>

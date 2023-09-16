@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $data = array();
             # code...
             $data['ten_danhMuc'] = isset($_POST['ten_danhMuc']) ? $_POST['ten_danhMuc'] : '';
-           
+
 
             if (empty(trim($_POST['ten_danhMuc']))) {
                 $error['ten_danhMuc']['required'] = 'Không được để trống';
@@ -40,13 +40,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $sql_str = "INSERT INTO `danhmuc` (`ten_danhMuc`) VALUES (:ten_danhMuc)";
                     $stmt = $objConn->prepare($sql_str);
                     $stmt->bindParam(':ten_danhMuc', $ten_danhMuc);
-        
-        
+
+
                     if ($stmt->execute() && $stmt->rowCount() > 0) {
                         // echo "Thêm danh mục thành công.";
-                      
-                         header("Location: danhMuc-get.php");
-                        
+
+                        header("Location: danhMuc-get.php");
                     } else {
                         echo "Failed to add user.";
                     }
@@ -61,7 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "";
     }
-   
 }
 ?>
 
@@ -325,7 +323,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         margin-top: 100px;
     }
 
-    .thongtinMK label {
+    .thongtinMK h4 {
         margin-left: -100px;
         padding: 10px;
 
@@ -380,7 +378,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <section class="head">
                 <h2>Coffee Bee Order</h2>
                 <section class="use">
-                    <img src="./anh/use.png" class="img" alt="">
+                    <img src="../man_chinh/anh_manhinh/use.png" class="img" alt="">
                     <section>
                         <span>Xin chào,</span> <br>
                         <span>Administrator</span>
@@ -421,7 +419,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="header1">
                     <section class="canhan">
                         <i class="fas fa-bars"></i>
-                        <img src="anh_manhinh/use.png" alt="">
+                        <img src="../man_chinh/anh_manhinh/use.png" alt="">
                         <section class="dropdown">
                             <section class="dropdwon_select">
                                 <span class="dropdown_selected"> Administrator</span>
@@ -443,38 +441,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </ul>
                             </section>
 
-                </section>
-            </section>
-            <section class="tenQL">
-                <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Do_ban_chay.html"><span>Đồ bán chạy</span></a>
-                <a href=""><span>/ Thêm danh sách</span></a>
-                
-            </section>
+                        </section>
+                    </section>
+                    <section class="tenQL">
+                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Do_ban_chay.html"><span>Đồ bán chạy</span></a>
+                        <a href=""><span>/ Thêm danh sách</span></a>
 
-            <form action="danhMuc-add.php" method="POST">
-            <section class="thongtinMK">
-            <?php
-                    // Code PHP xử lý validate
-                   
-                  
-        ?>
-                <label for="">Tên loại:<input type="text"  name="ten_danhMuc" id="ten_danhMuc" placeholder="Nhập tên loại"  value="<?php echo isset($data['giaSanPham']) ? $data['giaSanPham'] : ''; ?>"></label>
+                    </section>
+
+                    <form action="danhMuc-add.php" method="POST">
+                        <section class="thongtinMK">
+                            <?php
+                            // Code PHP xử lý validate
+                            ?>
+                            <h4 for="">Tên loại:<input type="text" name="ten_danhMuc" id="ten_danhMuc" placeholder="Nhập tên loại" value="<?php echo isset($data['giaSanPham']) ? $data['giaSanPham'] : ''; ?>"></h4>
                             <?php
                             echo isset($error['ten_danhMuc']['required']) ? $error['ten_danhMuc']['required'] : '';
                             echo isset($error['ten_danhMuc']['min']) ? $error['ten_danhMuc']['min'] : '';
                             ?>
-                
-                
-                
-                <label for="">Chi tiết:<input type="text" placeholder="Thông tin chi tiết loại" ></label> <br>
-                <div class="oclock">
-                    <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span> 
-                    <span >Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
-                </div><br>
-               
-                <button type="submit">Thêm danh sách</button>                
-            </section>
-        </form>
+
+
+
+                            <h4 for="">Chi tiết:<input type="text" placeholder="Thông tin chi tiết loại"></h4> <br>
+                            <div class="oclock">
+                                <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span>
+                                <span>Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
+                            </div><br>
+
+                            <button type="submit">Thêm danh sách</button>
+                        </section>
+                    </form>
         </main>
     </div>
 </body>

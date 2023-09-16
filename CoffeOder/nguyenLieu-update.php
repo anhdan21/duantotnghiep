@@ -121,7 +121,7 @@ if (isset($_POST['btnSave'])) {
             <section class="head">
                 <h2>Coffee Bee Order</h2>
                 <section class="use">
-                    <img src="./anh/use.png" class="img" alt="">
+                    <img src="../man_chinh/anh_manhinh/use.png" class="img" alt="">
                     <section>
                         <span>Xin chào,</span> <br>
                         <span>Administrator</span>
@@ -161,7 +161,7 @@ if (isset($_POST['btnSave'])) {
                 <div class="header1">
                     <section class="canhan">
                         <i class="fas fa-bars"></i>
-                        <img src="anh_manhinh/use.png" alt="">
+                        <img src="../man_chinh/anh_manhinh/use.png" alt="">
                         <section class="dropdown">
                             <section class="dropdwon_select">
                                 <span class="dropdown_selected"> Administrator</span>
@@ -194,9 +194,8 @@ if (isset($_POST['btnSave'])) {
                         <p><?php echo implode('<br>', $err); ?></p>
 
                         <form action="" method="post" enctype="multipart/form-data">
-                            <span>ID :<?php echo $row['Id_nguyenLieu']; ?></span>
-                            <!-- <label for="id_User">Id người nhập</label>
-                        <input type="text" name="id_User" value="<?php echo $row['id_User']; ?>"> -->
+                            <h3>ID :<?php echo $row['Id_nguyenLieu']; ?></h3>
+
                             <label for="ten_nguyenLieu">Tên nguyên liệu</label>
                             <input type="text" name="ten_nguyenLieu" value="<?php echo $row['ten_nguyenLieu']; ?>">
 
@@ -292,7 +291,6 @@ if (isset($_POST['btnSave'])) {
     form {
         display: flex;
         flex-direction: column;
-        align-items: center;
         text-align: left;
     }
 
@@ -303,7 +301,7 @@ if (isset($_POST['btnSave'])) {
     }
 
     input[type="text"] {
-        width: 70%;
+        width: 90%;
         padding: 10px;
         margin-bottom: 15px;
         border: 1px solid #ccc;
@@ -312,7 +310,7 @@ if (isset($_POST['btnSave'])) {
 
     button[name="btnSave"],
     button[name="btnCancel"] {
-        width: 50%;
+        width: 90%;
         padding: 10px;
         margin-top: 10px;
         background-color: #008000;
@@ -555,12 +553,11 @@ if (isset($_POST['btnSave'])) {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        align-items: center;
         margin-top: 100px;
     }
 
     .thongtinMK label {
-        margin-left: -100px;
+        margin-left: 100px;
         padding: 10px;
 
     }

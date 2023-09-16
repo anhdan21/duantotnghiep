@@ -382,7 +382,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     /****************************************************/
-    .thongtinMK {
+    /* .thongtinMK {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -390,7 +390,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         margin-top: 50px;
     }
 
-    .thongtinMK label {
+    .thongtinMK h4 {
         margin-left: -100px;
         padding: 10px;
 
@@ -418,12 +418,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         color: white;
     }
 
-    /**************************************************/
     .oclock {
         display: flex;
         flex-direction: row-reverse;
         justify-content: center;
-    }
+    } */
+
+    form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left; /* Để căn lề bên trái */
+}
+
+.thongtinMK {
+    display: flex;
+    flex-direction: column;
+}
+
+h4 {
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="phone_Number"],
+select {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="file"] {
+    margin-top: 10px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Tùy chỉnh kiểu dropdown */
+select {
+    height: 40px;
+    width: 100%;
+}
 
     /***************************/
 </style>
@@ -434,7 +477,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <section class="head">
                 <h2>Coffee Bee Order</h2>
                 <section class="use">
-                    <img src="./anh/use.png" class="img" alt="">
+                    <img src="../man_chinh/anh_manhinh/use.png" class="img" alt="">
                     <section>
                         <span>Xin chào,</span> <br>
                         <span>Administrator</span>
@@ -475,7 +518,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="header1">
                     <section class="canhan">
                         <i class="fas fa-bars"></i>
-                        <img src="anh_manhinh/use.png" alt="">
+                        <img src="../man_chinh/anh_manhinh/use.png" alt="">
                         <section class="dropdown">
                             <section class="dropdwon_select">
                                 <span class="dropdown_selected"> Administrator</span>
@@ -507,40 +550,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="Header2">
                     <form action="user-add.php" method="POST" enctype="multipart/form-data">
                         <section class="thongtinMK">
-                            <label for="">Tên NV:<input type="text" name="username" id="username" placeholder="Nhập tên nhân viên" value="<?php echo isset($data['username']) ? $data['username'] : ''; ?>"></label>
+                            <h4 for="">Tên NV:<input type="text" name="username" id="username" placeholder="Nhập tên nhân viên" value="<?php echo isset($data['username']) ? $data['username'] : ''; ?>"></h4>
                             <?php
                             echo isset($error['username']) ? $error['username'] : '';
                             ?>
-                            <label for="">Họ NV:<input type="text" name="fullname" id="fullname" placeholder="Nhập họ nhân viên" value="<?php echo isset($data['fullname']) ? $data['fullname'] : ''; ?>"></label>
+                            <h4 for="">Họ NV:<input type="text" name="fullname" id="fullname" placeholder="Nhập họ nhân viên" value="<?php echo isset($data['fullname']) ? $data['fullname'] : ''; ?>"></h4>
                             <?php
                             echo isset($error['fullname']) ? $error['fullname'] : '';
                             ?>
-                            <label for="">Password:<input type="text" name="passwd" id="passwd" placeholder="Nhập password" value="<?php echo isset($data['passwd']) ? $data['passwd'] : ''; ?>"></label>
+                            <h4 for="">Password:<input type="text" name="passwd" id="passwd" placeholder="Nhập password" value="<?php echo isset($data['passwd']) ? $data['passwd'] : ''; ?>"></h4>
                             <?php
                             echo isset($error['passwd']['required']) ? $error['passwd']['required'] : '';
                             echo isset($error['passwd']['min']) ? $error['passwd']['min'] : '';
                             ?>
-                            <label for="">SDT:<input type="phone_Number" name="phone_Number" id="phone_Number" placeholder="Nhập SDT" value="<?php echo isset($data['phone_Number']) ? $data['phone_Number'] : ''; ?>"></label>
+                            <h4 for="">SDT:<input type="phone_Number" name="phone_Number" id="phone_Number" placeholder="Nhập SDT" value="<?php echo isset($data['phone_Number']) ? $data['phone_Number'] : ''; ?>"></h4>
                             <?php
                             echo isset($error['phone_Number']['required']) ? $error['phone_Number']['required'] : '';
                             echo isset($error['phone_Number']['invaild']) ? $error['phone_Number']['invaild'] : '';
                             ?>
-                            <label for="">Vị trí:<input type="text" name="chucNang" id="chucNang" placeholder="Nhập chức vị trí nhân viên" value="<?php echo isset($data['chucNang']) ? $data['chucNang'] : ''; ?>"></label>
-                            <?php
-                            echo isset($error['chucNang']) ? $error['chucNang'] : '';
-                            ?> <br>
-                            <span style="margin-right: 380px;">Chọn ảnh :</span>
+                            <h4 for="myDropdown">Vị trí: </h4>
+                                <select name="chucNang" id="chucNang" style="height: 40px; width:120px; margin-left: 10px;">
+                                    <option value="1">Order</option>
+                                    <option value="2">Thu ngân</option>
+                                    <option value="3">Pha chế</option>
+                                </select>
+                            
+                            <h4 >Chọn ảnh :</h4>
                             <input style="margin-top: -1.99%;" type="file" name="image" id="image">
+                            <br>
                             <div class="oclock">
-
-                                <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span>
+                                <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span><br>
                                 <span>Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
                             </div><br>
                             <button type="submit">Thêm Nhân Viên</button>
                         </section>
                     </form>
                 </div>
-            </div>    
+            </div>
 
         </main>
     </div>

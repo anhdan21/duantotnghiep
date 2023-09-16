@@ -131,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <section class="head">
                 <h2>Coffee Bee Order</h2>
                 <section class="use">
-                    <img src="./anh/use.png" class="img" alt="">
+                    <img src="../man_chinh/anh_manhinh/use.png" class="img" alt="">
                     <section>
                         <span>Xin chào,</span> <br>
                         <span>Administrator</span>
@@ -171,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="header1">
                     <section class="canhan">
                         <i class="fas fa-bars"></i>
-                        <img src="anh_manhinh/use.png" alt="">
+                        <img src="../man_chinh/anh_manhinh/use.png" alt="">
                         <section class="dropdown">
                             <section class="dropdwon_select">
                                 <span class="dropdown_selected"> Administrator</span>
@@ -204,21 +204,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="Header2">
                     <form action="sanPham-add.php" method="POST" enctype="multipart/form-data">
                         <section class="thongtinMK">
-                            <label for="">Tên SP:<input type="text" name="ten_sp" id="ten_sp" placeholder="Nhập tên sản phẩm" value="<?php echo isset($data['ten_sp']) ? $data['ten_sp'] : ''; ?>"></label>
+                            <h4 for="">Tên SP:<input type="text" name="ten_sp" id="ten_sp" placeholder="Nhập tên sản phẩm" value="<?php echo isset($data['ten_sp']) ? $data['ten_sp'] : ''; ?>"></h4>
                             <?php
                             echo isset($error['ten_sp']) ? $error['ten_sp'] : '';
                             ?>
 
-                            <label for="">Giá SP:<input type="text" name="giaSanPham" id="giaSanPham" placeholder="Nhập giá loại" value="<?php echo isset($data['giaSanPham']) ? $data['giaSanPham'] : ''; ?>"></label>
+                            <h4 for="">Giá SP:<input type="text" name="giaSanPham" id="giaSanPham" placeholder="Nhập giá loại" value="<?php echo isset($data['giaSanPham']) ? $data['giaSanPham'] : ''; ?>"></h4>
                             <?php
                             echo isset($error['giaSanPham']['required']) ? $error['giaSanPham']['required'] : '';
                             echo isset($error['giaSanPham']['invaild']) ? $error['giaSanPham']['invaild'] : '';
                             ?>
-                            <label for="">Size:<input type="text" name="size" id="size" placeholder="Nhập size sản phẩm" value="<?php echo isset($data['size']) ? $data['size'] : ''; ?>"></label>
+                            <h4 for="">Size :<input type="text" name="size" id="size" placeholder="Nhập size sản phẩm" value="<?php echo isset($data['size']) ? $data['size'] : ''; ?>"></h4>
                             <?php
                             echo isset($error['size']) ? $error['size'] : '';
                             ?>
-                            <h4 for="id_danhMuc" style="margin-right: 450px;">Danh mục :
+                            <h4 for="id_danhMuc" > Danh mục :
                                 <select name="id_danhMuc" style="height: 40px; width:200px">
                                     <?php
                                     include 'API.php';
@@ -232,7 +232,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     ?>
                                 </select>
                             </h4>
-                            <label for="">Giới thiệu:<input type="text" name="gioiThieu" id="gioiThieu" placeholder="Thông tin sản phẩm" value="<?php echo isset($data['gioiThieu']) ? $data['gioiThieu'] : ''; ?>"></label>
+                            <h4 for="">Giới thiệu:<input type="text" name="gioiThieu" id="gioiThieu" placeholder="Thông tin sản phẩm" value="<?php echo isset($data['gioiThieu']) ? $data['gioiThieu'] : ''; ?>"></h4>
                             <?php
                             echo isset($error['gioiThieu']) ? $error['gioiThieu'] : '';
                             ?><br>
@@ -525,7 +525,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     /****************************************************/
-    .thongtinMK {
+    /* .thongtinMK {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -533,7 +533,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         margin-top: 50px;
     }
 
-    .thongtinMK label {
+    .thongtinMK h4 {
         margin-left: -100px;
         padding: 10px;
 
@@ -561,12 +561,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         color: white;
     }
 
-    /**************************************************/
     .oclock {
         display: flex;
         flex-direction: row-reverse;
         justify-content: center;
-    }
+    } */
+
+    form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left; /* Để căn lề bên trái */
+}
+
+.thongtinMK {
+    display: flex;
+    flex-direction: column;
+}
+
+h4 {
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="file"] {
+    margin-top: 10px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Tùy chỉnh kiểu dropdown */
+select {
+    height: 40px;
+}
+
+
 
     .select-menu {
         width: 160px;

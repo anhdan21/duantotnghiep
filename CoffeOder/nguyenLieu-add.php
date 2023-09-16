@@ -39,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 if (strlen(trim($_POST['soLuong'])) > 1) {
                     $error['soLuong']['min'] = 'Số lượng không được nhỏ hơn 0.';
-
                 }
             }
             if (empty($data['kieuNguyenLieu'])) {
@@ -118,7 +117,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "";
     }
-
 }
 
 ?>
@@ -374,48 +372,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 
-    /****************************************************/
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: left;
+        /* Để căn lề bên trái */
+    }
+
     .thongtinMK {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        margin-top: 50px;
     }
 
-    .thongtinMK label {
-        margin-left: -100px;
+    h4 {
+        margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
         padding: 10px;
-
+        margin-bottom: 10px;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
     }
 
-    .thongtinMK input {
-        margin-left: 30px;
-        width: 500px;
-        padding: 10px;
+    button[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
     }
 
-    .thongtinMK span {
-        margin-top: 20px;
-        margin-left: -300px;
-    }
-
-    .thongtinMK button {
-        padding: 10px;
-        margin: 50px 0 0 500px;
-        border-radius: 5px;
-    }
-
-    .thongtinMK button:hover {
-        background-color: #2A3F53;
-        color: white;
-    }
-
-    /**************************************************/
     .oclock {
         display: flex;
-        flex-direction: row-reverse;
-        justify-content: center;
+        justify-content: space-between;
+    }
+
+    /* Tùy chỉnh kiểu dropdown */
+    select {
+        height: 40px;
     }
 </style>
 
@@ -425,7 +424,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <section class="head">
                 <h2>Coffee Bee Order</h2>
                 <section class="use">
-                    <img src="./anh/use.png" class="img" alt="">
+                    <img src="../man_chinh/anh_manhinh/use.png" class="img" alt="">
                     <section>
                         <span>Xin chào,</span> <br>
                         <span>Administrator</span>
@@ -467,7 +466,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="header1">
                     <section class="canhan">
                         <i class="fas fa-bars"></i>
-                        <img src="anh_manhinh/use.png" alt="">
+                        <img src="../man_chinh/anh_manhinh/use.png" alt="">
                         <section class="dropdown">
                             <section class="dropdwon_select">
                                 <span class="dropdown_selected"> Administrator</span>
@@ -498,30 +497,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <form action="nguyenLieu-add.php" method="POST" enctype="multipart/form-data">
                         <section class="thongtinMK">
-                            <label for="">Tên NL:<input type="text" name="ten_nguyenLieu"
-                                    placeholder="Nhập tên Nguyên Liệu"
-                                    value="<?php echo isset($data['ten_nguyenLieu']) ? $data['ten_nguyenLieu'] : ''; ?>"></label>
+                            <h4 for="">Tên NL:<input type="text" name="ten_nguyenLieu" placeholder="Nhập tên Nguyên Liệu" value="<?php echo isset($data['ten_nguyenLieu']) ? $data['ten_nguyenLieu'] : ''; ?>"></h4>
                             <?php
                             echo isset($error['ten_nguyenLieu']) ? $error['ten_nguyenLieu'] : '';
                             ?>
 
-                            <label for="">Giá :<input type="text" name="price" placeholder="Nhập giá "
-                                    value="<?php echo isset($data['price']) ? $data['price'] : ''; ?>"></label>
+                            <h4 for="">Giá :<input type="text" name="price" placeholder="Nhập giá " value="<?php echo isset($data['price']) ? $data['price'] : ''; ?>"></h4>
                             <?php
                             echo isset($error['price']['required']) ? $error['price']['required'] : '';
                             echo isset($error['price']['invaild']) ? $error['price']['invaild'] : '';
 
                             ?>
-                            <label for="">Số lượng:<input type="number" name="soLuong"
-                                    value="<?php echo isset($data['soLuong']) ? $data['soLuong'] : ''; ?>"></label>
+                            <h4 for="">Số lượng:<input type="number" name="soLuong" value="<?php echo isset($data['soLuong']) ? $data['soLuong'] : ''; ?>"></h4>
                             <?php
                             echo isset($error['soLuong']['required']) ? $error['soLuong']['required'] : '';
                             echo isset($error['soLuong']['min']) ? $error['soLuong']['min'] : '';
 
                             ?>
-                            <!-- <label for="">User:<input type="text" name="id_User" required></label> <br> -->
-                            <h4 for="id_User" style="margin-right: 350px;">Chọn Người Nhập :
-                                <select name="id_User" style="height: 40px; width:200px">
+                            <h4 for="id_User" >Chọn Người Nhập :
+                                <select name="id_User" style="height: 40px; width:300px">
                                     <?php
                                     include 'API.php';
                                     try {
@@ -529,7 +523,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         $sql = "SELECT id_User, fullName FROM user";
                                         $stmt = $conn->query($sql);
 
-                                        // Lặp qua danh sách người dùng và tạo các tùy chọn trong dropdown menu
                                         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                             echo "<option value='" . $row['id_User'] . "'>" . $row['fullName'] . "</option>";
                                         }
@@ -540,8 +533,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </select>
                             </h4>
 
-                            <label for="">Kiểu:<input type="text" name="kieuNguyenLieu" placeholder="Dạng hộp hoặc gói"
-                                    value="<?php echo isset($data['kieuNguyenLieu']) ? $data['kieuNguyenLieu'] : ''; ?>"></label>
+                            <h4 for="">Kiểu:<input type="text" name="kieuNguyenLieu" placeholder="Dạng hộp hoặc gói" value="<?php echo isset($data['kieuNguyenLieu']) ? $data['kieuNguyenLieu'] : ''; ?>"></h4>
                             <?php
                             echo isset($error['kieuNguyenLieu']) ? $error['kieuNguyenLieu'] : '';
                             ?>

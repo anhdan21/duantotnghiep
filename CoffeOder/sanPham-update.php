@@ -28,7 +28,7 @@
              <section class="head">
                  <h2>Coffee Bee Order</h2>
                  <section class="use">
-                     <img src="./anh/use.png" class="img" alt="">
+                     <img src="../man_chinh/anh_manhinh/use.png" class="img" alt="">
                      <section>
                          <span>Xin chào,</span> <br>
                          <span>Administrator</span>
@@ -68,7 +68,7 @@
                  <div class="header1">
                      <section class="canhan">
                          <i class="fas fa-bars"></i>
-                         <img src="anh_manhinh/use.png" alt="">
+                         <img src="../man_chinh/anh_manhinh/use.png" alt="">
                          <section class="dropdown">
                              <section class="dropdwon_select">
                                  <span class="dropdown_selected"> Administrator</span>
@@ -124,6 +124,7 @@
                              <input type="file" name="anhSanPham" id="anhSanPham">
                          </h4><br>
                          <button type="submit" name="btnSave">Save Update</button>
+                         <br><br>
                          <button type="submit" name="btnCancel">Cancel</button>
                      </form>
                  </div>
@@ -174,7 +175,7 @@
  <style>
      /* CSS cho form */
      form {
-         max-width: 500px;
+         max-width: 700px;
          /* Đặt chiều rộng tối đa của form */
          margin: 0 auto;
          /* Căn giữa form trong trang */
@@ -224,7 +225,7 @@
      /* CSS cho nút Save và Cancel */
      button[name="btnSave"],
      button[name="btnCancel"] {
-         width: 50%;
+         width: 100%;
          /* Đặt chiều rộng của nút là 50% của form */
          padding: 10px;
          /* Khoảng cách bên trong nút */
