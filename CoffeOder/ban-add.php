@@ -17,9 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         try {
             $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
             $objConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            die('Lỗi kết nối CSDL: ' . $e->getMessage());
-        }
+        
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error = array();
@@ -29,23 +27,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $data['soBan'] = isset($_POST['soBan']) ? $_POST['soBan'] : '';
             $data['trangThai'] = isset($_POST['trangThai']) ? $_POST['trangThai'] : '';
 
-
+            $sql_check = "SELECT * FROM `table` WHERE Id_Table = :id_tang , soBan = :soBan";
+            // // $Conn = mysqli_connect("localhost", "root" , "", "coffeoder");
+            // $sql = mysqli_query(mysqli_connect("localhost", "root" , "", "coffeoder"),$sql_check);
+            // $ban = m
+        
             // Kiểm tra định dạng dữ liệu
             require('./validate.php');
             if (empty($data['id_tang'])) {
                 $error['id_tang'] = 'Bạn chưa nhập tầng';
+            }else{
+                if(empty($data['soBan']) == $soBan){
+                    $error['soBan'] = 'Bàn bị trùng';
+                }
             }
 
             if (empty($data['soBan'])) {
                 $error['soBan'] = 'Bạn chưa số bàn';
             }
-            // else if (!is_email($data['email'])) {
-            //     $error['email'] = 'Email không đúng định dạng';
-            // }
-
-            // if (empty($data['trangThai'])) {
-            //     $error['trangThai'] = 'Bạn chưa nhập trạng thái hoạt động';
-            // }
+           
 
             // Lưu dữ liệu
             if (!$error) {
@@ -83,7 +83,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         // Thực hiện truy vấn để thêm người dùng vào CSDL
 
-    } else {
+    } catch (PDOException $e) {
+        die('Lỗi kết nối CSDL: ' . $e->getMessage());
+    }
+        } else {
         echo " ";
     }
 }
@@ -445,6 +448,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="">Tên bàn:<input type="text" name="soBan" placeholder="Nhập tên bàn" value="<?php echo isset($data['soBan']) ? $data['soBan'] : ''; ?>"></label>
                     <br>
                     <?php
+                    
                     echo isset($error['soBan']) ? $error['soBan'] : '';
                     ?>
 

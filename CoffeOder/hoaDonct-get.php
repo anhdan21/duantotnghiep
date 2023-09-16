@@ -392,9 +392,9 @@
                 <tr>
                     <th style="width: auto;">Ngày</th>
                     <th style="width: auto;">Tầng & Bàn</th>
-                    <th style="width: auto;">Thời gian vào</th>
-                    <th style="width: auto;">Thời gian ra</th>
-                    <th style="width: auto;">Giảm</th>
+                    <th style="width: auto;">Tên sản phẩm</th>
+                    <th style="width: auto;">Số lượng</th>
+                    <th style="width: auto;">Giá sản phẩm</th>
                     <th style="width: auto;">Tổng tiền</th>
 
                 </tr>
@@ -413,18 +413,18 @@
                     // $r = mysqli_fetch_assoc($resultt);
 
                     //câu lệnh khóa ngoại table
-                    $set_Table = "SELECT * FROM hoadonct ORDER BY Id_hoaDonCT ASC;";
+                    // $set_Table = "SELECT * FROM hoadon_item ORDER BY Id_hoaDonCT ASC;";
 
-                    $set_Table1 = "SELECT hoadonct.* , table.soBan AS soban
-                        FROM  hoadonct 
-                        INNER JOIN  `table` ON hoadonct.Id_Table = table.Id_Table
-                        order by hoadonct.Id_hoaDonCT ASC";
-
-                    $set_Table = "SELECT hoadonct.* , giamgia.giam AS Giam
+                    $set_Table = "SELECT hoadon_item.* , hoadonct.time_Data AS time_data , hoadonct.tongTien AS tongtien, hoadonct.Id_Table AS id_table     
+                                                        -- ,sanpham.ten_sp AS ten_Sp
                         
-                        FROM  hoadonct 
-                        INNER JOIN  giamgia  ON hoadonct.id_giamGia = giamgia.id_giamGia
-                        order by hoadonct.Id_hoaDonCT ASC ";
+                        FROM  hoadon_item
+                        INNER JOIN  hoadonct  ON hoadon_item.Id_hoaDonCT = hoadonct.Id_hoaDonCT
+                        order by hoadon_item.id_hd_item ASC
+                        --  AND
+                        -- INNER JOIN sanpham ON hoadon_item.id_sanPham = sanpham.Id_sanPham
+                        -- order by hoadon_item.id_hd_item ASC 
+                        ";
 
                     $resultl = mysqli_query($Cons, $set_Table);
 
@@ -463,22 +463,22 @@
                         ?>
                         <tr>
                             <td>
-                                <?php echo $T['time_Data'] ?>
+                                <?php echo $T['time_data'] ?>
                             </td>
                             <td>
-                            <?php echo $T['Id_Table'] ?>
+                            <?php echo $T['id_table'] ?>
                             </td>
                             <td>
-                                <?php echo $T['time_in'] ?>
+                                <?php echo $T['tenSp'] ?>
                             </td>
                             <td>
-                                <?php echo $T['time_out'] ?>
+                                <?php echo $T['soLuong'] ?>
                             </td>
                             <td>
-                                <?php echo $T['Giam'] ?>%
+                                <?php echo $T['giaSp'] ?>
                             </td>
                             <td>
-                                <?php echo $T['tongTien'] ?>
+                                <?php echo $T['tongtien'] ?>
                             </td>
 
                         </tr>
