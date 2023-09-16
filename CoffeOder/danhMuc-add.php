@@ -16,35 +16,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die('Lỗi kết nối CSDL: ' . $e->getMessage());
         }
 
-        try {
-            $sql_str = "INSERT INTO `danhmuc` (`ten_danhMuc`) VALUES (:ten_danhMuc)";
-            $stmt = $objConn->prepare($sql_str);
-            $stmt->bindParam(':ten_danhMuc', $ten_danhMuc);
+        //validate
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $error = array();
+            $data = array();
+            # code...
+            $data['ten_danhMuc'] = isset($_POST['ten_danhMuc']) ? $_POST['ten_danhMuc'] : '';
+           
 
-
-            if ($stmt->execute() && $stmt->rowCount() > 0) {
-                // echo "Thêm danh mục thành công.";
-                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                    $error = [];
-                    if (empty(trim($_POST['ten_danhMuc']))) {
-                        $error['ten_danhMuc']['required'] = 'Không được để trống';
-                    } else {
-                        if (strlen(trim($_POST['ten_danhMuc'])) < 6) {
-                            $error['ten_danhMuc']['min'] = 'Tên danh mục phải trên 6 ký tự';
-                        }
-                    }
-                } else {
-                    return header("Location: danhMuc-set.php");
-                }
+            if (empty(trim($_POST['ten_danhMuc']))) {
+                $error['ten_danhMuc']['required'] = 'Không được để trống';
             } else {
-                echo "Failed to add user.";
+                if (strlen(trim($_POST['ten_danhMuc'])) < 6) {
+                    $error['ten_danhMuc']['min'] = 'Tên danh mục phải trên 6 ký tự';
+                }
             }
-        } catch (PDOException $e) {
-            die('Lỗi thêm user vào CSDL: ' . $e->getMessage());
+            // Lưu dữ liệu
+            if (!$error) {
+                // echo 'Dữ liệu có thể lưu trữ';
+                // Code lưu dữ liệu tại đây
+                // ...
+                try {
+                    $sql_str = "INSERT INTO `danhmuc` (`ten_danhMuc`) VALUES (:ten_danhMuc)";
+                    $stmt = $objConn->prepare($sql_str);
+                    $stmt->bindParam(':ten_danhMuc', $ten_danhMuc);
+        
+        
+                    if ($stmt->execute() && $stmt->rowCount() > 0) {
+                        // echo "Thêm danh mục thành công.";
+                      
+                         header("Location: danhMuc-get.php");
+                        
+                    } else {
+                        echo "Failed to add user.";
+                    }
+                } catch (PDOException $e) {
+                    die('Lỗi thêm user vào CSDL: ' . $e->getMessage());
+                }
+                // header("Location: ban_set.php");
+            } else {
+                // echo 'Dữ liệu bị lỗi, không thể lưu trữ';
+            }
         }
     } else {
         echo "";
     }
+   
 }
 ?>
 
@@ -441,12 +458,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                    
                   
         ?>
-                <label for="">Tên loại:<input type="text"  name="ten_danhMuc" id="ten_danhMuc" placeholder="Nhập tên loại" ><br>
-                <?php echo !empty($error ['ten_danhMuc']['required'])? `<p style="color: red">`.$error ['ten_danhMuc']['required'] .`</p>` :false ;
-                      echo !empty($error ['ten_danhMuc']['min'])? `<p style="color: red">`.$error ['ten_danhMuc']['min'] .`</p>` :false ;
-                ?>
-            
-            </label> <br>
+                <label for="">Tên loại:<input type="text"  name="ten_danhMuc" id="ten_danhMuc" placeholder="Nhập tên loại"  value="<?php echo isset($data['giaSanPham']) ? $data['giaSanPham'] : ''; ?>"></label>
+                            <?php
+                            echo isset($error['ten_danhMuc']['required']) ? $error['ten_danhMuc']['required'] : '';
+                            echo isset($error['ten_danhMuc']['min']) ? $error['ten_danhMuc']['min'] : '';
+                            ?>
                 
                 
                 
