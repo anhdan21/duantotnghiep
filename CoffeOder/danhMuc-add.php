@@ -426,41 +426,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </ul>
                             </section>
 
-                        </section>
-                    </section>
-                    <section class="tenQL">
-                        <a href=""><span> Thêm danh sách</span></a>
-
-                    </section>
-                    <div class="Header2">
-                <form action="danhMuc-add.php" method="POST">
-                    <section class="thongtinMK">
-                        <?php
-                        // Code PHP xử lý validate
-
-
-                        ?>
-                        <label for="">Tên loại:<input type="text" name="ten_danhMuc" id="ten_danhMuc" placeholder="Nhập tên loại"><br>
-                            <?php echo !empty($error['ten_danhMuc']['required']) ?  $error['ten_danhMuc']['required'] : false;
-                            echo !empty($error['ten_danhMuc']['min']) ? `<p style="color: red">` . $error['ten_danhMuc']['min'] . `</p>` : false;
-                            ?>
-
-                        </label> <br>
-
-
-
-                        <label for="">Chi tiết:<input type="text" placeholder="Thông tin chi tiết loại"></label> <br>
-                        <div class="oclock">
-                            <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span>
-                            <span>Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
-                        </div><br>
-
-                        <button type="submit">Thêm danh sách</button>
-                    </section>
-                </form>
-                </div>
-            </div>
+                </section>
+            </section>
+            <section class="tenQL">
+                <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Do_ban_chay.html"><span>Đồ bán chạy</span></a>
+                <a href=""><span>/ Thêm danh sách</span></a>
                 
+            </section>
+
+            <form action="danhMuc-add.php" method="POST">
+            <section class="thongtinMK">
+            <?php
+                    // Code PHP xử lý validate
+                   
+                  
+        ?>
+                <label for="">Tên loại:<input type="text"  name="ten_danhMuc" id="ten_danhMuc" placeholder="Nhập tên loại" ><br>
+                <?php echo !empty($error ['ten_danhMuc']['required'])? `<p style="color: red">`.$error ['ten_danhMuc']['required'] .`</p>` :false ;
+                      echo !empty($error ['ten_danhMuc']['min'])? `<p style="color: red">`.$error ['ten_danhMuc']['min'] .`</p>` :false ;
+                ?>
+            
+            </label> <br>
+                
+                
+                
+                <label for="">Chi tiết:<input type="text" placeholder="Thông tin chi tiết loại" ></label> <br>
+                <div class="oclock">
+                    <span> Ngày:<p id="current-date" style="margin: -17px 0 0 50px;"></p></span> 
+                    <span >Time:<p id="current-time" style="margin: -17px 0 0 50px;"></p></span>
+                </div><br>
+               
+                <button type="submit">Thêm danh sách</button>                
+            </section>
+        </form>
         </main>
     </div>
 </body>
