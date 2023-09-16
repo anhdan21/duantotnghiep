@@ -12,72 +12,113 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //$img_nguyenLieu = $_POST['img_nguyenLieu']; 
         $kieuNguyenLieu = $_POST['kieuNguyenLieu'];
 
-        $target_dir = '../CoffeOder/uploads/';
-        $target_file = $target_dir . basename($_FILES["img_nguyenLieu"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        if (isset($_POST["submit"])) {
-            $check = getimagesize($_FILES["img_nguyenLieu"]["tmp_name"]);
-            if ($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
+
+
+        //validate
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $error = array();
+            $data = array();
+            # code...
+            $data['ten_nguyenLieu'] = isset($_POST['ten_nguyenLieu']) ? $_POST['ten_nguyenLieu'] : '';
+            $data['price'] = isset($_POST['price']) ? $_POST['price'] : '';
+            $data['soLuong'] = isset($_POST['soLuong']) ? $_POST['soLuong'] : '';
+            $data['kieuNguyenLieu'] = isset($_POST['kieuNguyenLieu']) ? $_POST['kieuNguyenLieu'] : '';
+
+            if (empty(trim($data['ten_nguyenLieu']))) {
+                $error['ten_nguyenLieu'] = 'Bạn chưa nhập tên nguyện liệu.';
+            }
+            if (empty(trim($data['price']))) {
+                $error['price']['required'] = 'Bạn chưa nhập giá nguyên liệu.';
+            } else {
+                if (!filter_var(trim($_POST['price']), FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]])) {
+                    $error['price']['invaild'] = 'Giá nguyên liệu không hợp lệ.';
+                }
+            }
+            if (empty($data['soLuong'])) {
+                $error['soLuong'] = 'Bạn chưa nhập số lượng.';
+            } else {
+                if (strlen(trim($_POST['soLuong'])) > 1) {
+                    $error['soLuong']['min'] = 'Số lượng không được nhỏ hơn 0.';
+
+                }
+            }
+            if (empty($data['kieuNguyenLieu'])) {
+                $error['kieuNguyenLieu'] = 'Bạn chưa nhập kiểu nguyên liệu.';
+            }
+            // Lưu dữ liệu
+            if (!$error) {
+                // echo 'Dữ liệu có thể lưu trữ';
+                // Code lưu dữ liệu tại đây
+                // ...
+                $target_dir = '../CoffeOder/uploads/';
+                $target_file = $target_dir . basename($_FILES["img_nguyenLieu"]["name"]);
                 $uploadOk = 1;
-            } else {
-                echo "File is not an image.";
-                $uploadOk = 0;
-            }
-        }
-        // if (file_exists($target_file)) {
-        //     echo "Sorry, file already exists.";
-        //     $uploadOk = 0;
-        // }
-        if (
-            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-            && $imageFileType != "gif"
-        ) {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            $uploadOk = 0;
-        }
-        if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
-        } else {
-            if (move_uploaded_file($_FILES["img_nguyenLieu"]["tmp_name"], $target_file)) {
-                echo "The file " . htmlspecialchars(basename($_FILES["img_nguyenLieu"]["name"])) . " has been uploaded.";
-                $img_nguyenLieu = $target_file;
-            } else {
-                echo "Sorry, there was an error uploading your file.";
-            }
-        }
+                $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+                if (isset($_POST["submit"])) {
+                    $check = getimagesize($_FILES["img_nguyenLieu"]["tmp_name"]);
+                    if ($check !== false) {
+                        echo "File is an image - " . $check["mime"] . ".";
+                        $uploadOk = 1;
+                    } else {
+                        echo "File is not an image.";
+                        $uploadOk = 0;
+                    }
+                }
 
-        try {
-            $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-            $objConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            die('Lỗi kết nối CSDL: ' . $e->getMessage());
-        }
+                if (
+                    $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                    && $imageFileType != "gif"
+                ) {
+                    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                    $uploadOk = 0;
+                }
+                if ($uploadOk == 0) {
+                    echo "Sorry, your file was not uploaded.";
+                } else {
+                    if (move_uploaded_file($_FILES["img_nguyenLieu"]["tmp_name"], $target_file)) {
+                        echo "The file " . htmlspecialchars(basename($_FILES["img_nguyenLieu"]["name"])) . " has been uploaded.";
+                        $img_nguyenLieu = $target_file;
+                    } else {
+                        echo "Sorry, there was an error uploading your file.";
+                    }
+                }
 
-        try {
-            $sql_str = "INSERT INTO `nguyenlieu` (`soLuong`,`price`  ,`id_User` ,`ten_nguyenLieu`,`img_nguyenLieu` ,  `kieuNguyenLieu`) 
+                try {
+                    $objConn = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+                    $objConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                } catch (PDOException $e) {
+                    die('Lỗi kết nối CSDL: ' . $e->getMessage());
+                }
+
+                try {
+                    $sql_str = "INSERT INTO `nguyenlieu` (`soLuong`,`price`  ,`id_User` ,`ten_nguyenLieu`,`img_nguyenLieu` ,  `kieuNguyenLieu`) 
                                             VALUES (:soLuong,:price,   :id_User,:ten_nguyenLieu,:img_nguyenLieu, :kieuNguyenLieu )";
-            $stmt = $objConn->prepare($sql_str);
-            $stmt->bindParam(':soLuong', $soLuong);
-            $stmt->bindParam(':price', $price);
-            $stmt->bindParam(':ten_nguyenLieu', $ten_nguyenLieu);
-            $stmt->bindParam(':id_User', $id_User);
-            $stmt->bindParam(':img_nguyenLieu', $img_nguyenLieu);
-            $stmt->bindParam(':kieuNguyenLieu', $kieuNguyenLieu);
+                    $stmt = $objConn->prepare($sql_str);
+                    $stmt->bindParam(':soLuong', $soLuong);
+                    $stmt->bindParam(':price', $price);
+                    $stmt->bindParam(':ten_nguyenLieu', $ten_nguyenLieu);
+                    $stmt->bindParam(':id_User', $id_User);
+                    $stmt->bindParam(':img_nguyenLieu', $img_nguyenLieu);
+                    $stmt->bindParam(':kieuNguyenLieu', $kieuNguyenLieu);
 
-            if ($stmt->execute() && $stmt->rowCount() > 0) {
-                echo "User added successfully.";
-                header("Location:../man_chinh/Quan_ly_nguyen_lieu.html");
+                    if ($stmt->execute() && $stmt->rowCount() > 0) {
+                        echo "User added successfully.";
+                        header("Location:../man_chinh/Quan_ly_nguyen_lieu.html");
+                    } else {
+                        echo "Failed to add user.";
+                    }
+                } catch (PDOException $e) {
+                    die('Lỗi thêm user vào CSDL: ' . $e->getMessage());
+                }
+                // header("Location: ban_set.php");
             } else {
-                echo "Failed to add user.";
+                // echo 'Dữ liệu bị lỗi, không thể lưu trữ';
             }
-        } catch (PDOException $e) {
-            die('Lỗi thêm user vào CSDL: ' . $e->getMessage());
         }
     } else {
         echo "";
     }
+
 }
 
 ?>
@@ -94,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://kit.fontawesome.com/e123c1a84c.js" crossorigin="anonymous"></script>
 </head>
 <style>
-     body {
+    body {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -423,46 +464,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <main>
 
             <div class="box">
-                        <div class="header1">
-                            <section class="canhan">
-                                <i class="fas fa-bars"></i>
-                                <img src="anh_manhinh/use.png" alt="">
-                                <section class="dropdown">
-                                    <section class="dropdwon_select">
-                                        <span class="dropdown_selected"> Administrator</span>
-                                        <i class="fas fa-sort-down"></i>
-                                        <ul class="dropdown_list">
-                                            <a href="#">
-                                                <li class="dropdown_item">
-                                                    <span class="dropdown_test"> Đổi Mật Khẩu</span>
-                                                    <i class="fas fa-key"></i>
-                                                </li>
-                                            </a>
-                                            <a href="../CoffeOder/login.php" type=" color: #000">
-                                                <li class="dropdown_item">
-                                                    <span class="dropdown_test">Đăng Xuất</span>
-                                                    <i class="fas fa-sign-out-alt"></i>
-                                                </li>
-                                            </a>
+                <div class="header1">
+                    <section class="canhan">
+                        <i class="fas fa-bars"></i>
+                        <img src="anh_manhinh/use.png" alt="">
+                        <section class="dropdown">
+                            <section class="dropdwon_select">
+                                <span class="dropdown_selected"> Administrator</span>
+                                <i class="fas fa-sort-down"></i>
+                                <ul class="dropdown_list">
+                                    <a href="#">
+                                        <li class="dropdown_item">
+                                            <span class="dropdown_test"> Đổi Mật Khẩu</span>
+                                            <i class="fas fa-key"></i>
+                                        </li>
+                                    </a>
+                                    <a href="../CoffeOder/login.php" type=" color: #000">
+                                        <li class="dropdown_item">
+                                            <span class="dropdown_test">Đăng Xuất</span>
+                                            <i class="fas fa-sign-out-alt"></i>
+                                        </li>
+                                    </a>
 
-                                        </ul>
-                                    </section>
-
-                                </section>
+                                </ul>
                             </section>
-                            <section class="tenQL">
-                                <a href=""><span> Thêm nguyên liệu</span></a>
 
-                            </section>
-                        </div>    
-                            
-                <div class="Header2">
+                        </section>
+                    </section>
+                    <section class="tenQL">
+                        <a href=""><span> Thêm nguyên liệu</span></a>
+
+                    </section>
+
                     <form action="nguyenLieu-add.php" method="POST" enctype="multipart/form-data">
                         <section class="thongtinMK">
-                            <label for="">Tên NL:<input type="text" name="ten_nguyenLieu" placeholder="Nhập tên Nguyên Liệu" required></label> <br>
-                            <label for="">Giá :<input type="text" name="price" placeholder="Nhập giá " required></label> <br>
-                            <label for="">Số lượng:<input type="number" name="soLuong" required></label> <br>
+                            <label for="">Tên NL:<input type="text" name="ten_nguyenLieu"
+                                    placeholder="Nhập tên Nguyên Liệu"
+                                    value="<?php echo isset($data['ten_nguyenLieu']) ? $data['ten_nguyenLieu'] : ''; ?>"></label>
+                            <?php
+                            echo isset($error['ten_nguyenLieu']) ? $error['ten_nguyenLieu'] : '';
+                            ?>
 
+                            <label for="">Giá :<input type="text" name="price" placeholder="Nhập giá "
+                                    value="<?php echo isset($data['price']) ? $data['price'] : ''; ?>"></label>
+                            <?php
+                            echo isset($error['price']['required']) ? $error['price']['required'] : '';
+                            echo isset($error['price']['invaild']) ? $error['price']['invaild'] : '';
+
+                            ?>
+                            <label for="">Số lượng:<input type="number" name="soLuong"
+                                    value="<?php echo isset($data['soLuong']) ? $data['soLuong'] : ''; ?>"></label>
+                            <?php
+                            echo isset($error['soLuong']['required']) ? $error['soLuong']['required'] : '';
+                            echo isset($error['soLuong']['min']) ? $error['soLuong']['min'] : '';
+
+                            ?>
                             <!-- <label for="">User:<input type="text" name="id_User" required></label> <br> -->
                             <h4 for="id_User" style="margin-right: 350px;">Chọn Người Nhập :
                                 <select name="id_User" style="height: 40px; width:200px">
@@ -484,7 +540,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </select>
                             </h4>
 
-                            <label for="">Kiểu:<input type="text" name="kieuNguyenLieu" required></label> <br>
+                            <label for="">Kiểu:<input type="text" name="kieuNguyenLieu" placeholder="Dạng hộp hoặc gói"
+                                    value="<?php echo isset($data['kieuNguyenLieu']) ? $data['kieuNguyenLieu'] : ''; ?>"></label>
+                            <?php
+                            echo isset($error['kieuNguyenLieu']) ? $error['kieuNguyenLieu'] : '';
+                            ?>
                             <h4>Chọn ảnh --
                                 <input type="file" name="img_nguyenLieu" id="img_nguyenLieu">
                             </h4><br>
@@ -495,8 +555,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <button type="submit" name="submit">Thêm nguyên liệu</button>
                         </section>
                     </form>
-                    </div>  
-            </div>          
         </main>
     </div>
 </body>
