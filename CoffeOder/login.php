@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     unset($user['passwd']);
                 }
                 // echo json_encode($result);
-                header("Location: danhMuc-get.php");
+                header("Location: ../CoffeOder/danhMuc-get.php");
             } else {
                 
                 $thon= " <p style='color : red; magrin-left:20%;'> Sai thong tin tai khoa mat khau </p>";
