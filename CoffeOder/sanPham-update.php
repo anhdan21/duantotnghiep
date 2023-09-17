@@ -96,7 +96,7 @@
                     </section>
                  </div>
                  <div class="Header2">
-                     <form action="sanPham-update-post.php" method="POST" enctype="multipart/form-data">
+                     <form action="../CoffeOder/sanPham-update-post.php" method="POST" enctype="multipart/form-data">
                          <h3>Update Sản phẩm</h3>
 
                          <input type="hidden" value="<?php echo $row['Id_sanPham']; ?>" name="sid">ID :<?php echo $row['Id_sanPham']; ?></input> <br><br>

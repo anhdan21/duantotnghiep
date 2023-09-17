@@ -394,7 +394,7 @@ $row = mysqli_fetch_assoc($result);
 
                 <div class="Header2">
 
-                    <form action="ban-update.php" method="POST">
+                    <form action="../CoffeOder/ban-update.php" method="POST">
                         <section class="thongtinMK">
                             <input type="hidden" name="sid" value="<?php echo $row['Id_Table']; ?>" id="">
 

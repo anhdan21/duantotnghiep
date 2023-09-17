@@ -414,8 +414,8 @@
                                     <td>
                                         <div class="sua">
 
-                                            <a style="margin-right: 18px;" href="ban-edit.php?id=<?php echo $r['Id_Table']; ?>">Sửa</a>
-                                            <a onclick="return confirm('Bạn có muốn xóa không');" style="margin-right: 18px;" href="ban-delete.php?id=<?php echo $r['Id_Table']; ?>">Xóa</a>
+                                            <a style="margin-right: 18px;" href="../CoffeOder/ban-edit.php?id=<?php echo $r['Id_Table']; ?>">Sửa</a>
+                                            <a onclick="return confirm('Bạn có muốn xóa không');" style="margin-right: 18px;" href="../CoffeOder/ban-delete.php?id=<?php echo $r['Id_Table']; ?>">Xóa</a>
                                         </div>
                                     </td>
                                 </tr>

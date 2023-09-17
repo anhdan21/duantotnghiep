@@ -366,7 +366,7 @@ $row = mysqli_fetch_assoc($result);
                 </div>
 
                 <div class="Header2">
-                    <form action="user-update.php" method="POST" enctype="multipart/form-data">
+                    <form action="../CoffeOder/user-update.php" method="POST" enctype="multipart/form-data">
                         <section class="thongtinMK">
                             <input type="hidden" name="sid" value="<?php echo $row['Id_User']; ?>" id="">
                             <label for="">Tên NV:<input type="text" name="userName" value="<?php echo $row['userName'] ?>"></label> <br>

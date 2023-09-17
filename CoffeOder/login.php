@@ -139,7 +139,7 @@ h1{
                        $r = mysqli_fetch_assoc($resultt);
                             
                             ?>
-                                    <img src="padlock 1.png" name="image" alt="">
+                                    <img src="../CoffeOder/padlock 1.png" name="image" alt="">
                                     <form action="login.php" method="POST">
                                         <i class="fas fa-user-alt"></i>
                                         <input type="text" placeholder=" Username" name="userName"> <br>

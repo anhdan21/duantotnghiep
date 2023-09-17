@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if ($stmt->execute() && $stmt->rowCount() > 0) {
                         // echo "Thêm danh mục thành công.";
 
-                        header("Location: danhMuc-get.php");
+                        header("Location: ../CoffeOder/danhMuc-get.php");
                     } else {
                         echo "Failed to add user.";
                     }
@@ -444,7 +444,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </section>
                     </section>
                     <section class="tenQL">
-                        <a href="http://127.0.0.1:5500/duantotnghiep/man_chinh/Do_ban_chay.html"><span>Đồ bán chạy</span></a>
+                        <a href=""><span>Đồ bán chạy</span></a>
                         <a href=""><span>/ Thêm danh sách</span></a>
 
                     </section>

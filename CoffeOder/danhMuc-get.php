@@ -429,7 +429,7 @@
                     </section>
                     <section class="thoigian">
                         <input type="date"> -- <input type="date" name="" id="">
-                        <a href="http://localhost/Coffebe/duantotnghiep/CoffeOder/danhMuc-add.php" class="themDS"><button class="">Thêm danh sách</button></a>
+                        <a href="../CoffeOder/danhMuc-add.php" class="themDS"><button class="">Thêm danh sách</button></a>
                     </section>
                 </div>
 

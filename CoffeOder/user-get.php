@@ -408,9 +408,9 @@
                                         <td>
                                             <div class="sua">
 
-                                                <a onclick="myFunction() " style="margin-right: 18px;" href="user-edit.php?id=<?php echo $r['Id_User']; ?>">Sửa</a>
+                                                <a onclick="myFunction() " style="margin-right: 18px;" href="../CoffeOder/user-edit.php?id=<?php echo $r['Id_User']; ?>">Sửa</a>
 
-                                                <a onclick="return confirm('Bạn có muốn xóa không');" style="margin-right: 18px;" href="user-delete.php?id=<?php echo $r['Id_User']; ?>">Xóa</a>
+                                                <a onclick="return confirm('Bạn có muốn xóa không');" style="margin-right: 18px;" href="../CoffeOder/user-delete.php?id=<?php echo $r['Id_User']; ?>">Xóa</a>
                                                 
 
                                             </div>
