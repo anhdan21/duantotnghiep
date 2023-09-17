@@ -372,7 +372,9 @@
                             </tr>
                             <?php
                             // Thông tin kết nối database
-                            include 'API.php';
+                            // include '../CoffeOder/API.php';
+                            require_once 'API.php';
+
                             $Cons = mysqli_connect("localhost", "root", "", "coffeoder");
                             try {
 
